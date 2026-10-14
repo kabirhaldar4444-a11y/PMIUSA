@@ -2,8 +2,10 @@
   "name": "pmius",
   "version": "1.0.0",
   "description": "PMIUSA - Global Tech, Engineering & Management Academy",
+  "main": "server.js",
   "scripts": {
-    "dev": "node scripts/dev-server.js"
+    "dev": "node server.js",
+    "start": "node server.js"
   },
   "keywords": [
     "pmiusa",
