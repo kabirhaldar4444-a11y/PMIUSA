@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Course Details &amp; Syllabus | PMIUSA Global Academy</title>
+  <meta name="description" id="metaDesc" content="Explore detailed curriculum, modules, prerequisites, and certification outcomes for PMIUSA accredited professional courses.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/pmiusa-logo-transparent.png">
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <style>
+    /* ── Course Detail Custom Styling ── */
+    body {
+      background: #f8fafc;
+      color: #334155;
+    }
+    
+    .detail-hero-section {
+      background: linear-gradient(135deg, #0b1a3d 0%, #004aab 60%, #1480dd 100%);
+      padding: 160px 0 75px;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+    }
+    .detail-hero-section::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(255, 209, 102, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .detail-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      margin-bottom: 22px;
+      color: rgba(255, 255, 255, 0.78);
+      flex-wrap: wrap;
+    }
+    .detail-breadcrumb a {
+      color: rgba(255, 255, 255, 0.88);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .detail-breadcrumb a:hover {
+      color: #ffd166;
+    }
+    .detail-breadcrumb span.current {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .detail-cat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(10px);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    .detail-hero-title {
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 18px;
+      color: #ffffff;
+      max-width: 900px;
+      letter-spacing: -0.5px;
+    }
+    .detail-hero-subtitle {
+      font-size: 17px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 860px;
+      margin-bottom: 28px;
+    }
+    
+    .detail-meta-pills {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .detail-meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      padding: 8px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+    .detail-meta-pill i {
+      color: #ffd166;
+    }
+
+    /* ── Content Layout Grid ── */
+    .detail-layout-container {
+      padding: 60px 0 100px;
+    }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* ── Main Column Sections ── */
+    .detail-main-col {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+    .detail-card-box {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 36px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    }
+    .detail-section-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .detail-section-title i {
+      color: #004aab;
+      font-size: 20px;
+    }
+
+    /* Freehand Clipart Banner in Detail Page */
+    .detail-clipart-banner {
+      border-radius: 16px;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+    .detail-clipart-banner .freehand-svg {
+      width: 220px;
+      height: 160px;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.22));
+      animation: floatBannerArt 4s ease-in-out infinite;
+    }
+    @keyframes floatBannerArt {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .detail-text-p {
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: #475569;
+      margin-bottom: 20px;
+    }
+
+    /* Tool badges list */
+    .detail-tools-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+    .detail-tool-chip {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Curriculum Modules Accordion */
+    .curriculum-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .curriculum-module-card {
+      border: 1.5px solid #e2e8f0;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: all 0.25s ease;
+      background: #ffffff;
+    }
+    .curriculum-module-card.active {
+      border-color: #93c5fd;
+      box-shadow: 0 4px 16px rgba(0, 74, 171, 0.08);
+    }
+    .module-header {
+      padding: 18px 22px;
+      background: #f8fafc;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+      transition: background 0.2s ease;
+    }
+    .curriculum-module-card.active .module-header {
+      background: #eff6ff;
+    }
+    .module-header h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .module-header i.toggle-icon {
+      color: #004aab;
+      font-size: 15px;
+      transition: transform 0.3s ease;
+    }
+    .curriculum-module-card.active .module-header i.toggle-icon {
+      transform: rotate(180deg);
+    }
+    .module-body {
+      padding: 22px 24px;
+      display: none;
+      border-top: 1px solid #e2e8f0;
+      background: #ffffff;
+    }
+    .curriculum-module-card.active .module-body {
+      display: block;
+    }
+    .module-topics-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .module-topics-list li {
+      font-size: 14.5px;
+      color: #334155;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      line-height: 1.5;
+    }
+    .module-topics-list li i {
+      color: #10b981;
+      margin-top: 4px;
+      font-size: 14px;
+    }
+
+    /* Benefits Checklist Grid */
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .outcome-item {
+      display: flex;
+      gap: 14px;
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+    }
+    .outcome-item i {
+      color: #004aab;
+      font-size: 20px;
+      margin-top: 2px;
+    }
+    .outcome-item p {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1e293b;
+      line-height: 1.5;
+    }
+
+    /* Certificate Preview Card */
+    .certificate-card-preview {
+      background: linear-gradient(135deg, #0b1a3d 0%, #004aab 100%);
+      border-radius: 16px;
+      padding: 32px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+    .cert-icon-seal {
+      width: 86px;
+      height: 86px;
+      background: #ffd166;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      color: #78350f;
+      box-shadow: 0 0 0 8px rgba(255, 209, 102, 0.25);
+      flex-shrink: 0;
+    }
+    .cert-info-text h4 {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+    .cert-info-text p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.88);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* ── Sidebar Sticky Card ── */
+    .detail-sidebar-col {
+      position: sticky;
+      top: 100px;
+    }
+    .sidebar-enroll-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 32px 28px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+    }
+    .sidebar-price-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+    .sidebar-main-price {
+      font-size: 32px;
+      font-weight: 900;
+      color: #004aab;
+    }
+    .sidebar-discount-tag {
+      background: #dcfce7;
+      color: #16a34a;
+      font-weight: 700;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .sidebar-urgency-note {
+      font-size: 13px;
+      color: #d97706;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .btn-sidebar-enroll {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #004aab 0%, #1480dd 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.25s ease;
+      box-shadow: 0 6px 20px rgba(0, 74, 171, 0.28);
+      margin-bottom: 12px;
+    }
+    .btn-sidebar-enroll:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 74, 171, 0.38);
+      color: #ffffff;
+    }
+    .btn-sidebar-syllabus {
+      width: 100%;
+      padding: 13px;
+      background: #f1f5f9;
+      color: #1e293b;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      margin-bottom: 26px;
+    }
+    .btn-sidebar-syllabus:hover {
+      background: #e2e8f0;
+    }
+
+    .sidebar-feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 22px;
+    }
+    .sidebar-feature-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: #334155;
+      font-weight: 500;
+    }
+    .sidebar-feature-list li i {
+      color: #10b981;
+      font-size: 15px;
+    }
+
+    .sidebar-helpline {
+      margin-top: 24px;
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      font-size: 13px;
+      color: #64748b;
+    }
+    .sidebar-helpline strong {
+      display: block;
+      color: #004aab;
+      font-size: 16px;
+      margin-top: 4px;
+    }
+
+    /* Related programs section */
+    .related-courses-sec {
+      background: #ffffff;
+      padding: 80px 0;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    @media (max-width: 992px) {
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+      .detail-sidebar-col {
+        position: static;
+      }
+      .detail-hero-title {
+        font-size: 28px;
+      }
+      .outcomes-grid {
+        grid-template-columns: 1fr;
+      }
+      .certificate-card-preview {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Backdrop for Drawer / Modal -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+  <!-- Floating Contact & Course Enrollment Drawer -->
+  <aside class="floating-drawer" id="inquiryDrawer" aria-label="Course Enrollment Form">
+    <div class="drawer-header">
+      <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close drawer">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <h3><i class="fa-solid fa-graduation-cap"></i> PMIUSA Enrollment</h3>
+      <p>Secure your cohort seat &amp; receive detailed curriculum.</p>
+    </div>
+
+    <div class="drawer-body">
+      <!-- Dynamic Selected Course Card -->
+      <div class="drawer-program-card" id="drawerProgramCard">
+        <div class="drawer-program-badge">
+          <i class="fa-solid fa-shield-check text-primary"></i> <span id="drawerProgramCat">PMIUSA Certified</span>
+        </div>
+        <div class="drawer-program-title" id="drawerProgramTitle">
+          Program Details
+        </div>
+        <div class="drawer-program-meta">
+          <div class="drawer-program-price" id="drawerProgramPrice">₹45,000</div>
+          <div class="drawer-program-duration" id="drawerProgramDuration"><i class="fa-regular fa-clock me-1"></i> 20 Days</div>
+        </div>
+      </div>
+
+      <!-- Registration Form -->
+      <form id="drawerForm" class="drawer-form" action="#" method="POST">
+        <input type="hidden" id="drawer_course_id" name="course_id" value="">
+        <input type="hidden" id="drawer_course_title" name="course_title" value="">
+        
+        <div class="form-group">
+          <label for="drawer_name">Full Name *</label>
+          <input type="text" id="drawer_name" class="form-control" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label for="drawer_phone">WhatsApp / Phone Number *</label>
+          <input type="tel" id="drawer_phone" class="form-control" placeholder="+91 98765 43210" required>
+        </div>
+        <div class="form-group">
+          <label for="drawer_email">Email Address *</label>
+          <input type="email" id="drawer_email" class="form-control" placeholder="your.email@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="drawer_batch">Preferred Batch Schedule *</label>
+          <select id="drawer_batch" class="form-control" required>
+            <option value="immediate" selected>Upcoming Cohort (Starts This Week)</option>
+            <option value="weekend">Weekend Batch (Sat - Sun)</option>
+            <option value="evening">Weekday Evening Batch (7:00 PM - 9:00 PM)</option>
+            <option value="fasttrack">1-on-1 Fast Track Corporate</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-drawer-submit">
+          <i class="fa-solid fa-check-circle me-1"></i> Confirm Enrollment &amp; Get Syllabus
+        </button>
+      </form>
+
+      <!-- Success State -->
+      <div class="drawer-success-state" id="drawerSuccessState">
+        <div class="drawer-success-icon"><i class="fa-solid fa-check"></i></div>
+        <h3 style="font-size: 22px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">Enrollment Received!</h3>
+        <p style="font-size: 14px; color: #64748b; line-height: 1.5; margin-bottom: 20px;">
+          Thank you for enrolling in <strong id="successCourseName" style="color: #004aab;">the program</strong>. Our senior admission advisor will reach out to you within 15 minutes to confirm your cohort and share the syllabus.
+        </p>
+        <button type="button" class="btn-drawer-submit" id="drawerSuccessDoneBtn" style="margin-top: 0;">
+          Done
+        </button>
+      </div>
+
+      <div class="drawer-trust-badges">
+        <span><i class="fa-solid fa-lock text-success"></i> 100% Confidential</span>
+        <span><i class="fa-solid fa-bolt text-warning"></i> Fast Admission</span>
+        <span><i class="fa-solid fa-award text-primary"></i> Global Certificate</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Sticky Drawer Tab on Screen Edge -->
+  <div class="floating-drawer-tab" id="drawerTab" role="button" tabindex="0" aria-label="Open Course Enrollment">
+    <i class="fa-solid fa-graduation-cap"></i>
+    <span>Enroll &amp; Syllabus</span>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="main-header fixed" id="header">
+    <div class="header-upper">
+      <div class="container">
+        <div class="header-inner">
+          
+          <a href="index.html" class="logo-outer" aria-label="PMIUSA Home">
+            <canvas id="navbar-logo-canvas" class="navbar-logo-canvas"
+              aria-label="PMIUSA"></canvas>
+          </a>
+
+          <div class="navigation-menu-wrapper" id="navMenu">
+            <nav>
+              <ul class="navigation">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li class="dropdown active">
+                  <a href="courses.html">
+                    Courses <i class="fa-solid fa-angle-down"></i>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="courses.html?cat=ai"><i class="fa-solid fa-brain"></i> AI &amp; Modern Tech</a></li>
+                    <li><a href="courses.html?cat=management"><i class="fa-solid fa-list-check"></i> Project &amp; Agile</a></li>
+                    <li><a href="courses.html?cat=bim"><i class="fa-solid fa-cubes"></i> BIM &amp; Architecture</a></li>
+                    <li><a href="courses.html?cat=site"><i class="fa-solid fa-hard-hat"></i> Site Operations</a></li>
+                    <li><a href="courses.html?cat=business"><i class="fa-solid fa-chart-line"></i> Business &amp; Finance</a></li>
+                    <li><a href="courses.html?cat=engineering"><i class="fa-solid fa-microchip"></i> Engineering Tech</a></li>
+                  </ul>
+                </li>
+                <li><a href="policies.html">Policies</a></li>
+                <li><a href="contactus.html">Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="header-actions">
+            <a href="contactus.html" class="gettouchbutton">
+              <i class="fa-solid fa-envelope"></i> Get in Touch
+            </a>
+          </div>
+
+          <button class="navbar-toggler" id="menuToggle" aria-label="Toggle navigation">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Details Header -->
+  <section class="detail-hero-section">
+    <div class="container">
+      <div class="detail-breadcrumb">
+        <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+        <i class="fa-solid fa-chevron-right" style="font-size: 11px;"></i>
+        <a href="courses.html">Courses</a>
+        <i class="fa-solid fa-chevron-right" style="font-size: 11px;"></i>
+        <span id="breadcrumbCat">Track</span>
+        <i class="fa-solid fa-chevron-right" style="font-size: 11px;"></i>
+        <span class="current" id="breadcrumbTitle">Program</span>
+      </div>
+
+      <div class="detail-cat-badge" id="heroCatBadge">
+        <i class="fa-solid fa-certificate"></i> <span id="heroCatName">PMIUSA Certified</span>
+      </div>
+
+      <h1 class="detail-hero-title" id="heroTitle">
+        Loading Course Details...
+      </h1>
+
+      <p class="detail-hero-subtitle" id="heroSubtitle">
+        Gain hands-on competencies with Silicon Valley mentors, live capstone simulations, and accredited certifications.
+      </p>
+
+      <div class="detail-meta-pills">
+        <div class="detail-meta-pill"><i class="fa-regular fa-clock"></i> Duration: <span id="metaDuration">20 Days</span></div>
+        <div class="detail-meta-pill"><i class="fa-solid fa-laptop-code"></i> 100% Online Live &amp; Self-Paced</div>
+        <div class="detail-meta-pill"><i class="fa-solid fa-certificate"></i> PMIUSA Accredited Credential</div>
+        <div class="detail-meta-pill"><i class="fa-solid fa-star"></i> 4.9/5 (1,240+ Alumni)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Layout -->
+  <section class="detail-layout-container">
+    <div class="container">
+      <div class="detail-grid">
+        
+        <!-- Left Main Column -->
+        <div class="detail-main-col">
+          
+          <!-- Clipart Graphic Card & Overview -->
+          <div class="detail-card-box">
+            <div class="detail-clipart-banner thumb-theme-ai" id="detailClipartBanner">
+              <div id="detailSvgContainer"></div>
+            </div>
+
+            <h2 class="detail-section-title"><i class="fa-solid fa-compass"></i> Executive Overview</h2>
+            <p class="detail-text-p" id="detailOverviewText">
+              Loading course overview...
+            </p>
+
+            <h3 style="font-size: 17px; font-weight: 700; color: #0f172a; margin-top: 25px; margin-bottom: 12px;">
+              Key Tools, Platforms &amp; Methodologies Mastered
+            </h3>
+            <div class="detail-tools-row" id="detailToolsRow"></div>
+          </div>
+
+          <!-- Curriculum Accordion -->
+          <div class="detail-card-box">
+            <h2 class="detail-section-title"><i class="fa-solid fa-layer-group"></i> Comprehensive Modular Curriculum</h2>
+            <p class="detail-text-p" style="margin-bottom: 25px;">
+              Structured around real-world industry scenarios, actionable checklists, and live lab implementations.
+            </p>
+
+            <div class="curriculum-accordion" id="curriculumAccordion">
+              <!-- Modules dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Career Impact & Learning Outcomes -->
+          <div class="detail-card-box">
+            <h2 class="detail-section-title"><i class="fa-solid fa-rocket"></i> Career Impact &amp; Vocational Outcomes</h2>
+            <div class="outcomes-grid" id="outcomesGrid"></div>
+          </div>
+
+          <!-- Target Audience & Prerequisites -->
+          <div class="detail-card-box">
+            <h2 class="detail-section-title"><i class="fa-solid fa-user-check"></i> Eligibility &amp; Target Audience</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;" id="audienceGrid">
+              <div>
+                <h4 style="font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 14px;">
+                  <i class="fa-solid fa-users text-primary me-2"></i> Who Should Enroll
+                </h4>
+                <ul class="module-topics-list" id="audienceList"></ul>
+              </div>
+              <div>
+                <h4 style="font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 14px;">
+                  <i class="fa-solid fa-clipboard-check text-success me-2"></i> Prerequisites
+                </h4>
+                <ul class="module-topics-list" id="prereqList"></ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Certification Preview -->
+          <div class="certificate-card-preview">
+            <div class="cert-icon-seal"><i class="fa-solid fa-award"></i></div>
+            <div class="cert-info-text">
+              <h4>Globally Verifiable PMIUSA Credential</h4>
+              <p>Upon successfully completing live lab evaluations and the capstone project review, you receive a tamper-proof digital credential with blockchain-backed certificate verification recognized by Fortune 500 hiring partners.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Sticky Sidebar Column -->
+        <div class="detail-sidebar-col">
+          <div class="sidebar-enroll-card">
+            
+            <div class="sidebar-price-header">
+              <div>
+                <span class="price-label">Program Fee</span>
+                <div class="sidebar-main-price" id="sidebarPrice">₹45,000</div>
+              </div>
+              <span class="sidebar-discount-tag"><i class="fa-solid fa-tag me-1"></i> Special Cohort Rate</span>
+            </div>
+
+            <div class="sidebar-urgency-note">
+              <i class="fa-solid fa-fire text-danger"></i> Next cohort begins this Monday &bull; 4 seats left
+            </div>
+
+            <button type="button" class="btn-sidebar-enroll" id="sidebarEnrollBtn">
+              <i class="fa-solid fa-user-graduate"></i> Enroll in Program Now
+            </button>
+
+            <button type="button" class="btn-sidebar-syllabus" id="sidebarSyllabusBtn">
+              <i class="fa-solid fa-file-arrow-down"></i> Download Syllabus (PDF)
+            </button>
+
+            <ul class="sidebar-feature-list">
+              <li><i class="fa-solid fa-circle-check"></i> <span id="featDuration">20 Days Intensive Cohort</span></li>
+              <li><i class="fa-solid fa-circle-check"></i> 100% Online Live Classes &amp; Labs</li>
+              <li><i class="fa-solid fa-circle-check"></i> 1-on-1 Mentor Guidance &amp; Code Review</li>
+              <li><i class="fa-solid fa-circle-check"></i> Real-World Enterprise Capstone</li>
+              <li><i class="fa-solid fa-circle-check"></i> Globally Verifiable PMIUSA Credential</li>
+              <li><i class="fa-solid fa-circle-check"></i> Lifetime Access to LMS &amp; PDFs</li>
+              <li><i class="fa-solid fa-circle-check"></i> Guaranteed Career Support</li>
+            </ul>
+
+            <div class="sidebar-helpline">
+              Have questions about this track?
+              <strong><a href="tel:+918448702302" style="color: #004aab; text-decoration: none;">+91-8448702302</a></strong>
+              <span>Admissions Team &bull; 9 AM - 7 PM IST</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Programs Section -->
+  <section class="related-courses-sec">
+    <div class="container">
+      <div class="section-header" style="margin-bottom: 40px;">
+        <span class="section-tag">Explore More</span>
+        <h2 class="section-title">Related <span>Programs</span> &amp; Certifications</h2>
+      </div>
+      <div class="courses-grid-view" id="relatedGrid" style="margin-bottom: 0;"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-section">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-col footer-col-brand">
+          <a href="index.html" class="footer-logo-wrapper">
+            <img src="assets/images/pmiusa-logo-transparent.png" alt="PMIUSA abstract soaring wing logo" class="footer-logo-img">
+          </a>
+          <p>
+            PMIUSA — Empowering students and modern enterprises with high-impact technical training, accredited certifications, and strategic outsourcing services.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="courses.html">All Courses</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <!-- Col: POLICIES (Matching PMI Website) -->
+        <div class="footer-col footer-col-policies">
+          <div class="policy-heading-block">
+            <h4 class="footer-heading policy-heading">POLICIES</h4>
+            <span class="policy-accent-bar" aria-hidden="true"></span>
+          </div>
+          <ul class="footer-links-list policy-links-list">
+            <li>
+              <a href="policies.html#panel-terms" class="policy-link-item" data-policy="terms">
+                <i class="fa-solid fa-file-contract"></i>
+                <span>Terms &amp; Conditions</span>
+              </a>
+            </li>
+            <li>
+              <a href="policies.html#panel-privacy" class="policy-link-item" data-policy="privacy">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Privacy Policy</span>
+              </a>
+            </li>
+            <li>
+              <a href="policies.html#panel-delivery" class="policy-link-item" data-policy="delivery">
+                <i class="fa-solid fa-truck-ramp-box"></i>
+                <span>Service Delivery</span>
+              </a>
+            </li>
+            <li>
+              <a href="policies.html#panel-refund" class="policy-link-item" data-policy="refund">
+                <i class="fa-solid fa-rotate-left"></i>
+                <span>Refund Policy</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">Gurugram Center</h4>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>53, Hartron Complex, Electronic City, Sector 18, Gurugram, Haryana - 122015</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:info@pcit.net">info@pcit.net</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">Admissions</h4>
+          <p style="color: rgba(255,255,255,0.7); font-size: 14px; margin-bottom: 12px;">Call us for cohort schedules &amp; fee scholarship details:</p>
+          <a href="tel:+918448702302" style="color: #95ecff; font-weight: 700; font-size: 18px;">+91-8448702302</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>COPYRIGHT &copy; 2026 PMIUSA. ALL RIGHTS RESERVED.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/courses-data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/navbar-logo.js"></script>
+
+  <script>
+    // ── Course Detail Dynamic Hydration ──
+    document.addEventListener('DOMContentLoaded', function() {
+      const courses = window.PMIUSA_COURSES || [];
+      const urlParams = new URLSearchParams(window.location.search);
+      let courseId = urlParams.get('id') || 'generative-ai-prompt-engineering-for-enterprise-workflows';
+
+      // Find course or fallback to first
+      let currentCourse = courses.find(function(c) { return c.id === courseId; }) || courses[0];
+      if (!currentCourse) return;
+
+      const catNames = {
+        ai: 'AI & Modern Tech',
+        management: 'Project & Agile Management',
+        bim: 'BIM & Architecture',
+        site: 'Site Operations & Safety',
+        business: 'Business, Finance & Real Estate',
+        engineering: 'Engineering & Materials'
+      };
+      const catLabel = catNames[currentCourse.category] || 'Professional Tech';
+
+      // Page Title & Meta
+      document.getElementById('pageTitle').textContent = currentCourse.title + ' | PMIUSA Certification';
+      document.getElementById('metaDesc').content = 'Detailed curriculum, modules, prerequisites, and pricing for ' + currentCourse.title + ' by PMIUSA.';
+      
+      // Hero Header
+      document.getElementById('breadcrumbCat').textContent = catLabel;
+      document.getElementById('breadcrumbTitle').textContent = currentCourse.title;
+      document.getElementById('heroCatName').textContent = catLabel;
+      document.getElementById('heroTitle').textContent = currentCourse.title;
+      document.getElementById('metaDuration').textContent = currentCourse.duration;
+
+      // Sidebar
+      document.getElementById('sidebarPrice').textContent = currentCourse.price;
+      document.getElementById('featDuration').textContent = currentCourse.duration + ' Intensive Cohort';
+
+      // Clipart banner theme
+      const banner = document.getElementById('detailClipartBanner');
+      banner.className = 'detail-clipart-banner thumb-theme-' + currentCourse.category;
+
+      // Generate Clipart SVG
+      function getSvg(cat) {
+        if (cat === 'ai') {
+          return '<svg class="freehand-svg" viewBox="0 0 160 120" fill="none"><rect x="48" y="32" width="64" height="54" rx="16" fill="#ffffff" stroke="#1e1b4b" stroke-width="3"/><rect x="56" y="42" width="48" height="24" rx="10" fill="#0f172a"/><circle cx="68" cy="54" r="5" fill="#38bdf8"/><circle cx="92" cy="54" r="5" fill="#38bdf8"/><path d="M80 32V20M80 18A4 4 0 1 0 80 10A4 4 0 0 0 80 18" stroke="#ffd166" stroke-width="3.5"/><path d="M70 74C74 78 86 78 90 74" stroke="#4338ca" stroke-width="3"/><path d="M22 26L25 18L28 26L36 29L28 32L25 40L22 32L14 29Z" fill="#ffd166"/><circle cx="132" cy="78" r="4" fill="#a5f3fc"/></svg>';
+        }
+        if (cat === 'bim') {
+          return '<svg class="freehand-svg" viewBox="0 0 160 120" fill="none"><path d="M80 20L125 44L80 68L35 44Z" fill="#38bdf8" stroke="#0f172a" stroke-width="3"/><path d="M35 44L80 68V106L35 82Z" fill="#0284c7" stroke="#0f172a" stroke-width="3"/><path d="M80 68L125 44V82L80 106Z" fill="#bae6fd" stroke="#0f172a" stroke-width="3"/><path d="M125 22L138 35M138 35L145 28" stroke="#ffd166" stroke-width="3.5"/></svg>';
+        }
+        if (cat === 'management') {
+          return '<svg class="freehand-svg" viewBox="0 0 160 120" fill="none"><rect x="36" y="22" width="88" height="68" rx="12" fill="#ffffff" stroke="#1e293b" stroke-width="3"/><rect x="36" y="22" width="88" height="18" rx="10" fill="#3b82f6"/><rect x="44" y="48" width="22" height="16" rx="4" fill="#fde047" stroke="#1e293b" stroke-width="1.8"/><rect x="70" y="48" width="22" height="24" rx="4" fill="#93c5fd" stroke="#1e293b" stroke-width="1.8"/><path d="M125 78A16 16 0 1 1 140 68" stroke="#f59e0b" stroke-width="3.5"/><path d="M22 42L28 48L38 36" stroke="#22c55e" stroke-width="3.5"/></svg>';
+        }
+        if (cat === 'site') {
+          return '<svg class="freehand-svg" viewBox="0 0 160 120" fill="none"><path d="M38 104V28M38 34L118 34M118 34L136 44" stroke="#f59e0b" stroke-width="3.5"/><path d="M102 85C102 70 142 70 142 85Z" fill="#ffd166" stroke="#1e293b" stroke-width="3"/><path d="M96 85H148" stroke="#1e293b" stroke-width="3.5"/><path d="M20 104H145" stroke="#ffffff" stroke-width="3"/></svg>';
+        }
+        if (cat === 'business') {
+          return '<svg class="freehand-svg" viewBox="0 0 160 120" fill="none"><rect x="30" y="76" width="16" height="26" rx="4" fill="#34d399" stroke="#064e3b" stroke-width="2"/><rect x="52" y="62" width="16" height="40" rx="4" fill="#10b981" stroke="#064e3b" stroke-width="2"/><rect x="74" y="46" width="16" height="56" rx="4" fill="#059669" stroke="#064e3b" stroke-width="2"/><path d="M28 68L56 50L78 36L126 18" stroke="#fde047" stroke-width="3.5"/><circle cx="120" cy="58" r="14" fill="#f59e0b" stroke="#78350f" stroke-width="2.5"/></svg>';
+        }
+        return '<svg class="freehand-svg" viewBox="0 0 160 120" fill="none"><circle cx="80" cy="58" r="24" fill="#e0e7ff" stroke="#312e81" stroke-width="3"/><circle cx="80" cy="58" r="10" fill="#6366f1"/><path d="M80 26V34M80 82V90M48 58H56M104 58H112" stroke="#312e81" stroke-width="4.5"/></svg>';
+      }
+      document.getElementById('detailSvgContainer').innerHTML = getSvg(currentCourse.category);
+
+      // Overview text
+      const curr = currentCourse.curriculum;
+      document.getElementById('detailOverviewText').textContent = curr.overview;
+
+      // Tools chips
+      function getTools(title, cat) {
+        if (cat === 'ai') return ['OpenAI GPT-4o', 'Claude 3.5 Sonnet', 'GitHub Copilot', 'LangChain', 'Midjourney', 'Zapier AI'];
+        if (cat === 'bim') return ['Autodesk Revit 2026', 'Navisworks Manage', 'BIM 360', 'AutoCAD', 'IFC LOD 400', 'Solibri'];
+        if (cat === 'management') return ['Primavera P6', 'MS Project', 'Jira Agile', 'Scrum Framework', 'Earned Value Analysis', 'FMEA'];
+        if (cat === 'site') return ['Total Station', 'AutoLevel GPS', 'OSHA Safety', 'Telematics Fleet', 'Concrete Slump Audits', 'DPR Cloud'];
+        if (cat === 'business') return ['Real Estate ROI', 'Cash Flow Modeling', 'Vendor Procurement', 'Supply Chain ERP', 'Contract Law'];
+        return ['Engineering Standards', 'ISO 9001', 'Smart IoT Systems', 'QA/QC Protocols', 'Structural Verification'];
+      }
+      const tools = getTools(currentCourse.title, currentCourse.category);
+      document.getElementById('detailToolsRow').innerHTML = tools.map(function(t) {
+        return '<span class="detail-tool-chip"><i class="fa-solid fa-check text-primary"></i> ' + t + '</span>';
+      }).join('');
+
+      // Curriculum Accordion
+      const accordion = document.getElementById('curriculumAccordion');
+      accordion.innerHTML = curr.modules.map(function(m, idx) {
+        const activeClass = idx === 0 ? ' active' : '';
+        const topicsHtml = m.topics.map(function(t) {
+          return '<li><i class="fa-solid fa-check-double"></i> ' + t + '</li>';
+        }).join('');
+
+        return '<div class="curriculum-module-card' + activeClass + '">' +
+          '<div class="module-header" onclick="this.parentElement.classList.toggle(\'active\')">' +
+            '<h4><i class="fa-solid fa-folder-closed text-primary"></i> ' + m.title + '</h4>' +
+            '<i class="fa-solid fa-chevron-down toggle-icon"></i>' +
+          '</div>' +
+          '<div class="module-body">' +
+            '<ul class="module-topics-list">' +
+              topicsHtml +
+            '</ul>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+
+      // Outcomes Grid
+      document.getElementById('outcomesGrid').innerHTML = curr.careerOutcomes.map(function(o) {
+        return '<div class="outcome-item">' +
+          '<i class="fa-solid fa-circle-check"></i>' +
+          '<p>' + o + '</p>' +
+        '</div>';
+      }).join('');
+
+      // Audience & Prerequisites
+      document.getElementById('audienceList').innerHTML = curr.whoShouldAttend.map(function(a) {
+        return '<li><i class="fa-solid fa-user-check"></i> ' + a + '</li>';
+      }).join('');
+      document.getElementById('prereqList').innerHTML = curr.prerequisites.map(function(p) {
+        return '<li><i class="fa-solid fa-angle-right"></i> ' + p + '</li>';
+      }).join('');
+
+      // Related courses
+      const related = courses.filter(function(c) {
+        return c.category === currentCourse.category && c.id !== currentCourse.id;
+      }).slice(0, 3);
+
+      const relatedGrid = document.getElementById('relatedGrid');
+      if (relatedGrid) {
+        relatedGrid.innerHTML = related.map(function(rc) {
+          return '<div class="course-grid-card">' +
+            '<div class="grid-card-thumb thumb-theme-' + rc.category + '">' +
+              '<div class="thumb-badge-top">' +
+                '<span class="badge-category">' + catLabel + '</span>' +
+                '<span class="badge-duration">' + rc.duration + '</span>' +
+              '</div>' +
+              '<div class="clipart-art-wrapper">' +
+                getSvg(rc.category) +
+              '</div>' +
+            '</div>' +
+            '<div class="grid-card-body">' +
+              '<h3 class="course-card-title"><a href="course-detail.html?id=' + rc.id + '" style="color: inherit; text-decoration: none;">' + rc.title + '</a></h3>' +
+              '<div class="grid-card-footer">' +
+                '<div class="course-price">' + rc.price + '</div>' +
+                '<a href="course-detail.html?id=' + rc.id + '" class="btn-enroll" style="text-decoration: none;">' +
+                  'View Syllabus <i class="fa-solid fa-arrow-right ms-1"></i>' +
+                '</a>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+      }
+
+      // Sidebar actions
+      document.getElementById('sidebarEnrollBtn').addEventListener('click', function() {
+        if (typeof openEnrollDrawer === 'function') {
+          openEnrollDrawer(currentCourse.title, currentCourse.id);
+        }
+      });
+      document.getElementById('sidebarSyllabusBtn').addEventListener('click', function() {
+        if (typeof openEnrollDrawer === 'function') {
+          openEnrollDrawer(currentCourse.title, currentCourse.id);
+        }
+      });
+
+    });
+  </script>
+</body>
+</html>

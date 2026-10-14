@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PMIUSA - Global Project Management, BIM Engineering &amp; Accredited Academy</title>
+  <meta name="description" content="PMIUSA delivers enterprise PMO consulting, BIM architectural coordination, and globally accredited professional certifications in Generative AI, Agile, PMP, and Construction Management.">
+  <meta name="keywords" content="PMIUSA, Project Management, PMP, PMO Consulting, BIM Architecture, Revit, Generative AI, Agile Scrum, Construction Operations">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/pmiusa-logo-transparent.png">
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+
+
+  <aside class="floating-drawer" id="inquiryDrawer" aria-label="Course Inquiry Form">
+    <div class="floating-drawer-tab" id="drawerTab" role="button" tabindex="0" aria-label="Toggle drawer">
+      <i class="fa-solid fa-graduation-cap"></i>
+      <span>Reach out to us</span>
+    </div>
+    <h3 class="drawer-title">Get in Touch with an Advisor</h3>
+    <form id="drawerForm" action="#" method="POST">
+      <div class="form-group">
+        <label for="drawer_name">Full Name *</label>
+        <input type="text" id="drawer_name" class="form-control" placeholder="John Doe" required>
+      </div>
+      <div class="form-group">
+        <label for="drawer_phone">Phone Number *</label>
+        <input type="tel" id="drawer_phone" class="form-control" placeholder="+91 98765 43210" required>
+      </div>
+      <div class="form-group">
+        <label for="drawer_email">Email Address *</label>
+        <input type="email" id="drawer_email" class="form-control" placeholder="john@example.com" required>
+      </div>
+      <div class="form-group">
+        <label for="drawer_course">Selected Course / Track *</label>
+        <select id="drawer_course" class="form-control" required>
+          <option value="" disabled selected>-- Select a Program / Service --</option>
+          <option value="pmo_consulting">Enterprise PMO &amp; Project Management Consulting</option>
+          <option value="ai_tech">Generative AI &amp; Modern Enterprise Tech</option>
+          <option value="bim_architecture">BIM &amp; Digital Twin Architectural Solutions</option>
+          <option value="site_operations">Construction Site Operations &amp; Safety</option>
+          <option value="business_finance">Business Strategy, Real Estate &amp; Contract Law</option>
+          <option value="engineering_materials">Advanced Engineering &amp; Materials Technology</option>
+        </select>
+      </div>
+      <button type="submit" class="btn-drawer-submit">
+        <i class="fa-solid fa-paper-plane me-2"></i> Submit Application
+      </button>
+    </form>
+  </aside>
+
+  <!-- Main Navigation Header -->
+  <header class="main-header" id="header">
+    <div class="header-upper">
+      <div class="container">
+        <div class="header-inner">
+          
+          <!-- Brand Logo — particle canvas (morph once → hold) -->
+          <a href="index.html" class="logo-outer" aria-label="PMIUSA Home">
+            <canvas id="navbar-logo-canvas" class="navbar-logo-canvas"
+              aria-label="PMIUSA"></canvas>
+          </a>
+
+          <!-- Navigation Menu Wrapper -->
+          <div class="navigation-menu-wrapper" id="navMenu">
+            <nav>
+              <ul class="navigation">
+                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                
+                <!-- Replaced 'Services' with 'Courses' smartly as requested -->
+                <li class="dropdown">
+                  <a href="courses.html">
+                    Courses <i class="fa-solid fa-angle-down"></i>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="courses.html#fullstack">
+                        <i class="fa-solid fa-code"></i> Full Stack Web & Cloud
+                      </a>
+                    </li>
+                    <li>
+                      <a href="courses.html#datascience">
+                        <i class="fa-solid fa-brain"></i> AI, ML & Data Science
+                      </a>
+                    </li>
+                    <li>
+                      <a href="courses.html#devops">
+                        <i class="fa-solid fa-cloud"></i> Cloud Computing & DevOps
+                      </a>
+                    </li>
+                    <li>
+                      <a href="courses.html#cybersecurity">
+                        <i class="fa-solid fa-shield-halved"></i> Cyber Security & Defense
+                      </a>
+                    </li>
+                    <li>
+                      <a href="courses.html#marketing">
+                        <i class="fa-solid fa-bullhorn"></i> Digital Marketing & Growth
+                      </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="highlight">
+                      <a href="courses.html">
+                        <i class="fa-solid fa-book-open"></i> View All Courses & Syllabus <i class="fa-solid fa-arrow-right ms-auto"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li><a href="policies.html">Policies</a></li>
+                <li><a href="contactus.html">Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <!-- Header Right Action -->
+          <div class="header-actions">
+            <a href="contactus.html" class="gettouchbutton">
+              <i class="fa-solid fa-envelope"></i> Get in Touch
+            </a>
+          </div>
+
+          <!-- Mobile Navbar Toggle -->
+          <button class="navbar-toggler" id="menuToggle" aria-label="Toggle navigation">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!--====== Hero Section Start ======-->
+  <section class="hero-section rel z-2 pt-4 position-relative">
+    <div class="ocean">
+      <div class="wave"></div>
+      <div class="wave"></div>
+    </div>
+    <div class="container px-0 py-0 overflow-hidden hero-slider-container">
+      <div class="slider slider-for">
+        <!-- Slide 1: 24/7 Support -->
+        <div class="hero-slide active">
+          <div class="row align-items-center">
+            <div class="col-lg-6 col-12">
+              <div class="text_cap">
+                <strong>
+                  24/7 Support
+                </strong>
+                <p>
+                  Our team provides round-the-clock assistance, ensuring you never face downtime. Get reliable, expert help anytime to resolve issues quickly and efficiently.
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6 col-12">
+              <div class="img_card">
+                <img src="assets/images/hero-creative-01.png" alt="24/7 Support" class="w-100">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2: Business Growth and Support -->
+        <div class="hero-slide">
+          <div class="row align-items-center">
+            <div class="col-lg-6 col-12">
+              <div class="text_cap">
+                <strong>
+                  Business Growth and Support
+                </strong>
+                <p>
+                  We offer tailored solutions to drive your business forward, providing continuous support and strategic guidance. Our goal is to empower your growth with the right tools and expertise.
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6 col-12">
+              <div class="img_card">
+                <img src="assets/images/hero-creative-02.png" alt="Business Growth and Support" class="w-100">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3: Outsource Services to Grow Business -->
+        <div class="hero-slide">
+          <div class="row align-items-center">
+            <div class="col-lg-6 col-12">
+              <div class="text_cap">
+                <strong>
+                  Outsource Services to Grow Business
+                </strong>
+                <p>
+                  Get better customer insights, boost customer retention, and cut operating expenses by maximizing the efficiency of outbound customer support with our experts.
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6 col-12">
+              <div class="img_card">
+                <img src="assets/images/hero-creative-03.png" alt="Outsource Services to Grow Business" class="w-100">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Interactive Slider Controls with Arrows & Dots -->
+      <div class="hero-slider-nav">
+        <button type="button" class="hero-nav-arrow" id="heroPrevBtn" aria-label="Previous Slide">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <ul class="slick-dots">
+          <li class="slick-active" data-index="0" role="button" aria-label="Go to Slide 1" title="24/7 Support"></li>
+          <li data-index="1" role="button" aria-label="Go to Slide 2" title="Business Growth and Support"></li>
+          <li data-index="2" role="button" aria-label="Go to Slide 3" title="Outsource Services"></li>
+        </ul>
+        <button type="button" class="hero-nav-arrow" id="heroNextBtn" aria-label="Next Slide">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <div class="hero-slide-counter">
+          <span id="currentSlideNum">01</span> / 03
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--====== Hero Section End ======-->
+
+  <!-- Interactive Courses & Programs Showcase (Smart Feature Replacing Services) -->
+  <section class="courses-showcase-section" id="courses">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Explore Professional Tracks</span>
+        <h2 class="section-title">Industry-Recognized <span>Courses</span> & Certifications</h2>
+        <p class="section-desc">
+          Accelerate your skills with job-oriented curriculum, live interactive projects, and 1-on-1 industry mentorship.
+        </p>
+      </div>
+
+      <div class="split-showcase-wrapper">
+        
+        <!-- Sticky Navigation Column -->
+        <div class="courses-nav-column">
+          <div class="course-nav-item active" data-target="course-fullstack">
+            <div class="course-nav-header">
+              <h3>Full Stack Web & Cloud</h3>
+              <span class="course-badge">Trending</span>
+            </div>
+            <p>Master MERN/MEVN stack, microservices, cloud deployments, and CI/CD pipelines.</p>
+          </div>
+
+          <div class="course-nav-item" data-target="course-datascience">
+            <div class="course-nav-header">
+              <h3>AI, ML & Data Science</h3>
+              <span class="course-badge">High Demand</span>
+            </div>
+            <p>Predictive analytics, deep learning, Python, NumPy, Pandas, TensorFlow & generative AI.</p>
+          </div>
+
+          <div class="course-nav-item" data-target="course-devops">
+            <div class="course-nav-header">
+              <h3>Cloud & DevOps Engineering</h3>
+              <span class="course-badge">Certified</span>
+            </div>
+            <p>AWS, Microsoft Azure, Docker, Kubernetes, Terraform, and cloud architecture.</p>
+          </div>
+
+          <div class="course-nav-item" data-target="course-cybersecurity">
+            <div class="course-nav-header">
+              <h3>Cyber Security & Defense</h3>
+              <span class="course-badge">Essential</span>
+            </div>
+            <p>Ethical hacking, network defense, penetration testing, compliance, and SIEM.</p>
+          </div>
+
+          <div class="course-nav-item" data-target="course-marketing">
+            <div class="course-nav-header">
+              <h3>Digital Marketing & SEO</h3>
+              <span class="course-badge">Fast-Track</span>
+            </div>
+            <p>Performance marketing, search engine optimization, CRM automation & web analytics.</p>
+          </div>
+        </div>
+
+        <!-- Detailed Course Cards Column -->
+        <div class="courses-content-column">
+          
+          <!-- Card 1: Full Stack Web & Cloud -->
+          <article class="course-detail-card" id="course-fullstack">
+            <div class="course-card-image">
+              <span class="course-card-tag">Growth Track</span>
+              <div class="course-card-clipart clipart-theme-marketing">
+  <svg viewBox="0 0 500 260" xmlns="http://www.w3.org/2000/svg" aria-label="Digital Marketing &amp; Performance Clipart">
+    <defs>
+      <linearGradient id="mkt-blob" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#f97316" stop-opacity="0.9"/>
+        <stop offset="50%" stop-color="#ea580c" stop-opacity="0.95"/>
+        <stop offset="100%" stop-color="#e11d48" stop-opacity="0.9"/>
+      </linearGradient>
+      <linearGradient id="mkt-horn" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#fbbf24"/>
+        <stop offset="50%" stop-color="#f59e0b"/>
+        <stop offset="100%" stop-color="#d97706"/>
+      </linearGradient>
+      <linearGradient id="mkt-desk" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#c2410c"/>
+        <stop offset="50%" stop-color="#ea580c"/>
+        <stop offset="100%" stop-color="#f97316"/>
+      </linearGradient>
+      <filter id="mkt-shadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" flood-opacity="0.25"/>
+      </filter>
+    </defs>
+
+    <!-- Organic freehand background blob -->
+    <path d="M 60,125 C 45,55 125,25 215,35 C 315,45 425,20 455,80 C 485,150 445,230 355,240 C 245,250 135,235 85,205 C 55,180 65,155 60,125 Z" fill="url(#mkt-blob)" filter="url(#mkt-shadow)"/>
+
+    <!-- Decorative gears & star doodles -->
+    <g fill="#fed7aa" opacity="0.6">
+      <circle cx="85" cy="50" r="14"/>
+      <circle cx="85" cy="50" r="6" fill="#431407"/>
+    </g>
+    <g fill="#fde047" opacity="0.5">
+      <circle cx="420" cy="65" r="12"/>
+      <circle cx="420" cy="65" r="5" fill="#431407"/>
+    </g>
+
+    <!-- Floating Speech Bubbles with 3 dots -->
+    <g transform="translate(68, 75)">
+      <rect x="0" y="0" width="46" height="26" rx="13" fill="#e11d48"/>
+      <polygon points="12,26 8,33 20,26" fill="#e11d48"/>
+      <circle cx="15" cy="13" r="2.5" fill="#ffffff"/>
+      <circle cx="23" cy="13" r="2.5" fill="#ffffff"/>
+      <circle cx="31" cy="13" r="2.5" fill="#ffffff"/>
+    </g>
+    <g transform="translate(385, 115)">
+      <rect x="0" y="0" width="52" height="28" rx="14" fill="#f59e0b"/>
+      <polygon points="36,28 42,36 30,28" fill="#f59e0b"/>
+      <circle cx="18" cy="14" r="2.5" fill="#ffffff"/>
+      <circle cx="26" cy="14" r="2.5" fill="#ffffff"/>
+      <circle cx="34" cy="14" r="2.5" fill="#ffffff"/>
+    </g>
+
+    <!-- Curved Workstation Desk -->
+    <path d="M 110,215 Q 250,195 390,215 L 420,255 L 80,255 Z" fill="url(#mkt-desk)"/>
+    <rect x="155" y="222" width="190" height="22" rx="11" fill="rgba(255,255,255,0.2)"/>
+    <text x="250" y="237" fill="#ffffff" font-family="'Outfit', sans-serif" font-weight="700" font-size="11" text-anchor="middle" letter-spacing="1">📈 ROI &amp; PERFORMANCE GROWTH</text>
+
+    <!-- Center: Large 3D Vector Megaphone Broadcasting Soundwaves -->
+    <g transform="translate(190, 75)">
+      <!-- Soundwave concentric arcs -->
+      <path d="M 85,15 A 35,35 0 0 1 85,55" fill="none" stroke="#fef08a" stroke-width="3" stroke-linecap="round"/>
+      <path d="M 98,5 A 50,50 0 0 1 98,65" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+      <path d="M 112,-5 A 65,65 0 0 1 112,75" fill="none" stroke="#bae6fd" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+
+      <!-- Megaphone Cone -->
+      <polygon points="25,25 78,5 78,65 25,45" fill="url(#mkt-horn)"/>
+      <!-- Megaphone Rim -->
+      <ellipse cx="78" cy="35" rx="5" ry="30" fill="#fef08a"/>
+      <!-- Megaphone Base Body -->
+      <rect x="5" y="27" width="22" height="16" rx="4" fill="#ef4444"/>
+      <!-- Handle -->
+      <path d="M 12,43 L 8,62 L 18,60 L 19,43 Z" fill="#b91c1c"/>
+    </g>
+
+    <!-- Left: Marketer Character with Headset Celebrating -->
+    <g transform="translate(130, 105)">
+      <path d="M 12,50 C 12,42 18,36 28,36 C 38,36 44,42 44,50 L 48,80 L 8,80 Z" fill="#38bdf8"/>
+      <circle cx="28" cy="24" r="13" fill="#fcd34d"/>
+      <path d="M 15,22 C 15,12 21,9 29,9 C 37,9 41,12 41,17 C 37,17 33,19 29,18 C 24,18 18,22 15,22 Z" fill="#1e293b"/>
+      <path d="M 14,24 A 14,14 0 0 1 42,24" fill="none" stroke="#f59e0b" stroke-width="2.8" stroke-linecap="round"/>
+      <rect x="12" y="21" width="4" height="7" rx="2" fill="#f59e0b"/>
+      <rect x="40" y="21" width="4" height="7" rx="2" fill="#f59e0b"/>
+      <path d="M 14,26 Q 16,33 22,34" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
+      <circle cx="23" cy="34" r="1.8" fill="#fef08a"/>
+    </g>
+
+    <!-- Right: High-Growth Parabolic Curve & Metrics Monitor -->
+    <g transform="translate(290, 110)">
+      <rect x="0" y="0" width="95" height="65" rx="6" fill="#18181b" stroke="#f59e0b" stroke-width="1.5"/>
+      <rect x="0" y="0" width="95" height="12" rx="6" fill="#27272a"/>
+      <circle cx="8" cy="6" r="2" fill="#ef4444"/>
+      <circle cx="15" cy="6" r="2" fill="#eab308"/>
+      <circle cx="22" cy="6" r="2" fill="#22c55e"/>
+      <!-- Grid -->
+      <line x1="10" y1="56" x2="85" y2="56" stroke="#3f3f46" stroke-width="1"/>
+      <line x1="10" y1="20" x2="10" y2="56" stroke="#3f3f46" stroke-width="1"/>
+      <!-- Parabolic steep growth curve -->
+      <path d="M 12,52 Q 45,50 82,22" fill="none" stroke="#22c55e" stroke-width="3"/>
+      <polygon points="85,19 75,21 81,27" fill="#22c55e"/>
+      <!-- Metric pills -->
+      <rect x="36" y="24" width="46" height="14" rx="7" fill="#22c55e"/>
+      <text x="59" y="34" fill="#ffffff" font-family="'Outfit', sans-serif" font-weight="700" font-size="8" text-anchor="middle">+350% ROI</text>
+      <!-- Stand -->
+      <rect x="42" y="65" width="12" height="18" fill="#475569"/>
+      <rect x="34" y="81" width="28" height="4" rx="2" fill="#64748b"/>
+    </g>
+
+    <!-- Floating Target Bullseye with Arrow -->
+    <g transform="translate(325, 40)">
+      <circle cx="18" cy="18" r="18" fill="#ffffff"/>
+      <circle cx="18" cy="18" r="13" fill="#ef4444"/>
+      <circle cx="18" cy="18" r="8" fill="#ffffff"/>
+      <circle cx="18" cy="18" r="4" fill="#ef4444"/>
+      <!-- Arrow -->
+      <line x1="0" y1="0" x2="18" y2="18" stroke="#0284c7" stroke-width="2.5"/>
+      <polygon points="0,0 6,1 1,6" fill="#0284c7"/>
+    </g>
+
+    <!-- Floating Paper Airplane -->
+    <path d="M 120,60 Q 165,35 210,25" stroke="#fde047" stroke-width="2.5" stroke-dasharray="4,4" fill="none" opacity="0.85"/>
+    <g transform="translate(210, 16) rotate(-20)">
+      <polygon points="0,15 28,0 20,24 10,18" fill="#38bdf8"/>
+      <polygon points="10,18 28,0 16,16" fill="#bae6fd"/>
+    </g>
+
+    <!-- Floating Sparkles -->
+    <path d="M 180,35 Q 180,43 187,43 Q 180,43 180,51 Q 180,43 173,43 Q 180,43 180,35 Z" fill="#fef08a"/>
+    <path d="M 410,50 Q 410,57 417,57 Q 410,57 410,64 Q 410,57 403,57 Q 410,57 410,50 Z" fill="#ffffff"/>
+  </svg>
+</div>
+            </div>
+            <div class="course-card-body">
+              <h3>Digital Marketing & Performance Strategy</h3>
+              <div class="course-meta-tags">
+                <span class="course-meta-item"><i class="fa-regular fa-clock"></i> 3 Months</span>
+                <span class="course-meta-item"><i class="fa-solid fa-graduation-cap"></i> Beginner Friendly</span>
+                <span class="course-meta-item"><i class="fa-solid fa-laptop"></i> Interactive</span>
+                <span class="course-meta-item"><i class="fa-solid fa-certificate"></i> Google / Meta Prep</span>
+              </div>
+              <p>
+                Dominate digital acquisition channels with ROI-driven marketing campaigns. Master Google Ads, Meta Ads, SEO optimization, email automation, funnel analytics, and content marketing.
+              </p>
+              <div class="course-highlights">
+                <div class="highlight-item"><i class="fa-solid fa-check"></i> Live Ad Budget Management</div>
+                <div class="highlight-item"><i class="fa-solid fa-check"></i> Technical & On-Page SEO</div>
+                <div class="highlight-item"><i class="fa-solid fa-check"></i> Google Analytics 4 & Tag Manager</div>
+                <div class="highlight-item"><i class="fa-solid fa-check"></i> Freelance & Client Acquisition</div>
+              </div>
+              <div class="course-card-actions">
+                <div class="course-price">₹35,000 <span>/ EMI Available</span></div>
+                <a href="courses.html#marketing" class="btn-enroll">
+                  <i class="fa-solid fa-user-plus"></i> View Course Details
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Welcome / About Us Section -->
+  <section class="welcome-section" id="welcome">
+    <div class="container">
+      <div class="welcome-row">
+        <div class="welcome-text-col">
+          <span class="section-tag">Global Project Excellence &amp; Education</span>
+          <h2 class="welcome-title">Welcome to PMIUSA!</h2>
+          <p>
+            With over 16 years of expertise in enterprise project management, BIM digital twin engineering, and globally accredited professional education, PMIUSA is your trusted partner for sustainable institutional growth. Our mission is to deliver high-impact consulting, cutting-edge technology solutions, and globally verifiable certifications that empower modern enterprises and aspiring engineers to reach their highest potential.
+          </p>
+          <p>
+            PMIUSA combines deep domain mastery with hands-on technical incubation to deliver world-class services across PMO governance, Primavera P6 scheduling, Autodesk Revit coordination, Generative AI workflows, and corporate talent upskilling.
+          </p>
+          
+          <!-- Animated Dotted Circle "Know More" Button -->
+          <a href="about-us.html" class="know-more-btn">
+            <div class="spin-circle-wrapper">
+              <div class="spin-circle"></div>
+              <i class="fa-solid fa-arrow-right circle-arrow"></i>
+            </div>
+            <span class="know-more-text">Know More About Us</span>
+          </a>
+        </div>
+
+        <div class="welcome-visual-col">
+          <div class="cards-collage">
+            <div class="collage-card collage-card-1">
+              <div class="collage-clipart collage-theme-1">
+  <svg viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg" aria-label="PMO Architecture &amp; Governance Clipart">
+    <defs>
+      <linearGradient id="col1-blob" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9"/>
+        <stop offset="50%" stop-color="#1d4ed8" stop-opacity="0.95"/>
+        <stop offset="100%" stop-color="#0f172a" stop-opacity="0.9"/>
+      </linearGradient>
+      <linearGradient id="col1-desk" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#1e40af"/>
+        <stop offset="50%" stop-color="#3b82f6"/>
+        <stop offset="100%" stop-color="#60a5fa"/>
+      </linearGradient>
+    </defs>
+    <!-- Background organic blob -->
+    <path d="M 40,110 C 30,50 90,20 170,25 C 255,30 330,15 345,70 C 360,130 340,215 260,225 C 180,235 90,225 55,190 C 35,165 45,140 40,110 Z" fill="url(#col1-blob)"/>
+    
+    <!-- Blueprint Grid Lines -->
+    <g stroke="rgba(255,255,255,0.12)" stroke-width="1">
+      <line x1="40" y1="60" x2="320" y2="60"/>
+      <line x1="40" y1="100" x2="320" y2="100"/>
+      <line x1="40" y1="140" x2="320" y2="140"/>
+      <line x1="80" y1="30" x2="80" y2="220"/>
+      <line x1="140" y1="30" x2="140" y2="220"/>
+      <line x1="200" y1="30" x2="200" y2="220"/>
+      <line x1="260" y1="30" x2="260" y2="220"/>
+    </g>
+
+    <!-- Tower Crane & Enterprise Skyscrapers Silhouette -->
+    <g transform="translate(60, 60)" fill="#1e293b" opacity="0.6">
+      <rect x="20" y="40" width="30" height="90" rx="2"/>
+      <rect x="58" y="15" width="45" height="115" rx="2"/>
+      <rect x="110" y="55" width="35" height="75" rx="2"/>
+    </g>
+    <!-- Yellow Tower Crane -->
+    <g transform="translate(180, 40)" stroke="#facc15" stroke-width="2" fill="none">
+      <line x1="20" y1="0" x2="20" y2="110"/>
+      <line x1="-30" y1="20" x2="60" y2="20"/>
+      <line x1="20" y1="0" x2="-30" y2="20"/>
+      <line x1="20" y1="0" x2="60" y2="20"/>
+      <line x1="50" y1="20" x2="50" y2="60"/>
+      <circle cx="50" cy="62" r="3" fill="#facc15"/>
+    </g>
+
+    <!-- Curved Desk with Blueprint & Laptop -->
+    <path d="M 60,205 Q 180,185 300,205 L 320,245 L 40,245 Z" fill="url(#col1-desk)"/>
+    <rect x="110" y="215" width="140" height="20" rx="10" fill="rgba(255,255,255,0.2)"/>
+    <text x="180" y="229" fill="#ffffff" font-family="'Outfit', sans-serif" font-weight="700" font-size="10" text-anchor="middle" letter-spacing="1">🏛️ PMO ARCHITECTURE</text>
+
+    <!-- Floating Paper Airplane & Speech Bubble -->
+    <g transform="translate(260, 35) rotate(-10)">
+      <polygon points="0,12 24,0 18,20 9,15" fill="#38bdf8"/>
+    </g>
+    <g transform="translate(45, 60)">
+      <rect x="0" y="0" width="38" height="22" rx="11" fill="#0284c7"/>
+      <circle cx="12" cy="11" r="2" fill="#ffffff"/>
+      <circle cx="19" cy="11" r="2" fill="#ffffff"/>
+      <circle cx="26" cy="11" r="2" fill="#ffffff"/>
+    </g>
+    <!-- Floating Sparkle -->
+    <path d="M 150,30 Q 150,36 156,36 Q 150,36 150,42 Q 150,36 144,36 Q 150,36 150,30 Z" fill="#fef08a"/>
+  </svg>
+</div>
+            </div>
+            <div class="collage-card collage-card-2">
+              <div class="collage-clipart collage-theme-2">
+  <svg viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg" aria-label="Applied Mentorship &amp; Incubation Clipart">
+    <defs>
+      <linearGradient id="col2-blob" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#f43f5e" stop-opacity="0.9"/>
+        <stop offset="50%" stop-color="#a855f7" stop-opacity="0.95"/>
+        <stop offset="100%" stop-color="#4c1d95" stop-opacity="0.9"/>
+      </linearGradient>
+      <linearGradient id="col2-desk" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#7c3aed"/>
+        <stop offset="50%" stop-color="#a855f7"/>
+        <stop offset="100%" stop-color="#ec4899"/>
+      </linearGradient>
+    </defs>
+    <!-- Background organic blob -->
+    <path d="M 40,110 C 30,50 90,20 170,25 C 255,30 330,15 345,70 C 360,130 340,215 260,225 C 180,235 90,225 55,190 C 35,165 45,140 40,110 Z" fill="url(#col2-blob)"/>
+
+    <!-- Floating Lightbulb of Innovation -->
+    <g transform="translate(160, 30)">
+      <circle cx="20" cy="18" r="16" fill="#fef08a"/>
+      <path d="M 12,28 L 28,28 L 25,36 L 15,36 Z" fill="#eab308"/>
+      <path d="M 14,38 L 26,38" stroke="#ca8a04" stroke-width="2"/>
+      <!-- Radiating rays -->
+      <line x1="20" y1="-2" x2="20" y2="4" stroke="#fef08a" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="5" y1="6" x2="9" y2="10" stroke="#fef08a" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="35" y1="6" x2="31" y2="10" stroke="#fef08a" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+
+    <!-- Curved Mentorship Desk -->
+    <path d="M 60,205 Q 180,185 300,205 L 320,245 L 40,245 Z" fill="url(#col2-desk)"/>
+    <rect x="105" y="215" width="150" height="20" rx="10" fill="rgba(255,255,255,0.2)"/>
+    <text x="180" y="229" fill="#ffffff" font-family="'Outfit', sans-serif" font-weight="700" font-size="10" text-anchor="middle" letter-spacing="1">🤝 APPLIED MENTORSHIP</text>
+
+    <!-- Mentor on Left -->
+    <g transform="translate(100, 105)">
+      <path d="M 10,42 C 10,34 16,30 24,30 C 32,30 38,34 38,42 L 40,65 L 6,65 Z" fill="#3b82f6"/>
+      <circle cx="24" cy="20" r="11" fill="#fed7aa"/>
+      <path d="M 14,18 C 14,10 19,7 26,7 C 32,7 35,9 35,13 C 32,13 29,15 25,14 C 20,14 16,18 14,18 Z" fill="#1e1b4b"/>
+    </g>
+
+    <!-- Mentee on Right with Headset -->
+    <g transform="translate(210, 105)">
+      <path d="M 10,42 C 10,34 16,30 24,30 C 32,30 38,34 38,42 L 40,65 L 6,65 Z" fill="#10b981"/>
+      <circle cx="24" cy="20" r="11" fill="#fcd34d"/>
+      <path d="M 14,18 C 14,10 19,7 26,7 C 32,7 35,9 35,13 C 32,13 29,15 25,14 C 20,14 16,18 14,18 Z" fill="#064e3b"/>
+      <path d="M 13,20 A 11,11 0 0 1 35,20" fill="none" stroke="#f43f5e" stroke-width="2.2" stroke-linecap="round"/>
+      <rect x="11" y="18" width="3" height="5" rx="1.5" fill="#f43f5e"/>
+      <rect x="34" y="18" width="3" height="5" rx="1.5" fill="#f43f5e"/>
+    </g>
+
+    <!-- Workstation Laptop in Middle -->
+    <g transform="translate(150, 140)">
+      <rect x="10" y="10" width="40" height="26" rx="3" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
+      <polygon points="4,36 56,36 52,40 8,40" fill="#64748b"/>
+    </g>
+
+    <!-- Floating Speech Bubbles & Stars -->
+    <g transform="translate(50, 65)">
+      <rect x="0" y="0" width="36" height="20" rx="10" fill="#f43f5e"/>
+      <circle cx="11" cy="10" r="2" fill="#ffffff"/>
+      <circle cx="18" cy="10" r="2" fill="#ffffff"/>
+      <circle cx="25" cy="10" r="2" fill="#ffffff"/>
+    </g>
+    <path d="M 285,45 Q 285,52 292,52 Q 285,52 285,59 Q 285,52 278,52 Q 285,52 285,45 Z" fill="#ffffff"/>
+  </svg>
+</div>
+            </div>
+            <div class="collage-card collage-card-3">
+              <div class="collage-clipart collage-theme-3">
+  <svg viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg" aria-label="Globally Accredited Certifications Clipart">
+    <defs>
+      <linearGradient id="col3-blob" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#10b981" stop-opacity="0.9"/>
+        <stop offset="50%" stop-color="#059669" stop-opacity="0.95"/>
+        <stop offset="100%" stop-color="#047857" stop-opacity="0.9"/>
+      </linearGradient>
+      <linearGradient id="col3-diploma" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="100%" stop-color="#f8fafc"/>
+      </linearGradient>
+      <linearGradient id="col3-desk" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#047857"/>
+        <stop offset="50%" stop-color="#059669"/>
+        <stop offset="100%" stop-color="#10b981"/>
+      </linearGradient>
+    </defs>
+    <!-- Background organic blob -->
+    <path d="M 40,110 C 30,50 90,20 170,25 C 255,30 330,15 345,70 C 360,130 340,215 260,225 C 180,235 90,225 55,190 C 35,165 45,140 40,110 Z" fill="url(#col3-blob)"/>
+
+    <!-- Center: Prestigious Gold-Bordered Diploma Certificate -->
+    <g transform="translate(100, 45)">
+      <!-- Certificate Sheet -->
+      <rect x="0" y="0" width="160" height="115" rx="8" fill="url(#col3-diploma)" stroke="#facc15" stroke-width="3" filter="drop-shadow(0 10px 18px rgba(0,0,0,0.25))"/>
+      <!-- Inner border -->
+      <rect x="6" y="6" width="148" height="103" rx="5" fill="none" stroke="#e2e8f0" stroke-width="1.2"/>
+      
+      <!-- Certificate Header -->
+      <circle cx="80" cy="24" r="8" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5"/>
+      <path d="M 80,18 L 82,22 L 86,22 L 83,25 L 84,29 L 80,27 L 76,29 L 77,25 L 74,22 L 78,22 Z" fill="#ca8a04"/>
+      
+      <!-- Content lines -->
+      <rect x="40" y="40" width="80" height="4" rx="2" fill="#0f172a"/>
+      <rect x="52" y="49" width="56" height="3" rx="1.5" fill="#64748b"/>
+      <rect x="30" y="58" width="100" height="2" rx="1" fill="#94a3b8"/>
+      <rect x="35" y="65" width="90" height="2" rx="1" fill="#94a3b8"/>
+      
+      <!-- Red Wax Seal & Ribbon -->
+      <g transform="translate(80, 88)">
+        <polygon points="-8,6 0,22 -4,22" fill="#dc2626"/>
+        <polygon points="8,6 0,22 4,22" fill="#ef4444"/>
+        <circle cx="0" cy="4" r="10" fill="#dc2626"/>
+        <circle cx="0" cy="4" r="7" fill="#b91c1c"/>
+        <polygon points="0,-1 2,3 6,3 3,6 4,10 0,7 -4,10 -3,6 -6,3 -2,3" fill="#fef08a"/>
+      </g>
+    </g>
+
+    <!-- Curved Desk with Verified Stamp -->
+    <path d="M 60,205 Q 180,185 300,205 L 320,245 L 40,245 Z" fill="url(#col3-desk)"/>
+    <rect x="105" y="215" width="150" height="20" rx="10" fill="rgba(255,255,255,0.2)"/>
+    <text x="180" y="229" fill="#ffffff" font-family="'Outfit', sans-serif" font-weight="700" font-size="10" text-anchor="middle" letter-spacing="1">🎓 GLOBAL CERTIFICATION</text>
+
+    <!-- Floating Verified Checkmark Badge -->
+    <g transform="translate(48, 60)">
+      <circle cx="16" cy="16" r="16" fill="#10b981"/>
+      <circle cx="16" cy="16" r="13" fill="#059669"/>
+      <path d="M 10,16 L 14,20 L 22,12" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- Floating Paper Airplane -->
+    <g transform="translate(265, 40) rotate(-15)">
+      <polygon points="0,14 26,0 19,22 10,16" fill="#38bdf8"/>
+    </g>
+
+    <!-- Floating Stars -->
+    <path d="M 270,95 Q 270,102 277,102 Q 270,102 270,109 Q 270,102 263,102 Q 270,102 270,95 Z" fill="#fef08a"/>
+  </svg>
+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Presence / Interactive 3D Globe & Stats -->
+  <section class="presence-section" id="presence">
+    <div class="container">
+      <div class="presence-row">
+        
+        <div class="presence-info-col">
+          <span class="presence-tag">Our Global Reach</span>
+          <h2 class="presence-title">Our Numbers Speak for Us</h2>
+          <p class="presence-desc">
+            We believe in tangible results. Our journey over the years has been defined by innovation and unwavering dedication to our learners and corporate clients. Each milestone showcases our expertise and reinforces our mission to deliver world-class IT education and outsourcing solutions.
+          </p>
+          
+          <div class="stats-counter-row">
+            <div class="stat-item">
+              <div class="stat-number" data-target="250" data-suffix="+">0</div>
+              <div class="stat-label">Projects & Batches Done</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-target="16" data-suffix="+">0</div>
+              <div class="stat-label">Years of Experience</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-target="100" data-suffix="%">0</div>
+              <div class="stat-label">Placement & Success Rate</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D Globe Column -->
+        <div class="presence-globe-col">
+          <div id="globe-canvas-container"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs Accordion Section -->
+  <section class="faq-section" id="faqs">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Got Questions?</span>
+        <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+        <p class="section-desc">
+          Find answers about our courses, curriculum structure, certifications, and enterprise IT services.
+        </p>
+      </div>
+
+      <div class="faq-wrapper">
+        
+        <div class="accordion-item active">
+          <div class="accordion-header">
+            <h4>Q. What courses does PMIUSA provide, and how are they structured?</h4>
+            <div class="accordion-icon"><i class="fa-solid fa-chevron-down"></i></div>
+          </div>
+          <div class="accordion-body">
+            PMIUSA provides comprehensive courses in Full Stack Web & Cloud Development, AI & Data Science, Cloud & DevOps Engineering, Cyber Security & Ethical Hacking, and Digital Marketing. All courses combine interactive instructor-led classes with capstone projects and live labs to guarantee job-ready competency.
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h4>Q. Are these courses suitable for beginners and non-IT graduates?</h4>
+            <div class="accordion-icon"><i class="fa-solid fa-chevron-down"></i></div>
+          </div>
+          <div class="accordion-body">
+            Yes! Our foundational modules start from core concepts before progressing to advanced frameworks. Every student receives dedicated mentoring sessions and coding practice support to master industry tools with confidence.
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h4>Q. Do you offer job placement assistance upon course completion?</h4>
+            <div class="accordion-icon"><i class="fa-solid fa-chevron-down"></i></div>
+          </div>
+          <div class="accordion-body">
+            Absolutely. We maintain partnerships with over 50+ hiring partners. Our dedicated placement cell conducts mock technical interviews, resume polish workshops, GitHub portfolio reviews, and connects you directly with recruitment drives.
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h4>Q. What enterprise project management and technical services does PMIUSA deliver?</h4>
+            <div class="accordion-icon"><i class="fa-solid fa-chevron-down"></i></div>
+          </div>
+          <div class="accordion-body">
+            PMIUSA delivers enterprise PMO governance, Primavera P6 portfolio scheduling, Agile Scrum transformations, 3D/4D BIM architectural coordination, construction QA/QC site advisory, and corporate talent upskilling programs aligned with international ISO and PMI standards.
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h4>Q. How do I enroll or schedule a counseling session?</h4>
+            <div class="accordion-icon"><i class="fa-solid fa-chevron-down"></i></div>
+          </div>
+          <div class="accordion-body">
+            Getting started is seamless! Click on the "Reach out to us" drawer or contact our admission counselors at info@pcit.net or +91-8448702302 to schedule a free demo and syllabus walkthrough.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer-section">
+    <div class="container">
+      <div class="footer-top">
+        
+        <!-- Col 1: Brand & Bio -->
+        <div class="footer-col footer-col-brand">
+          <a href="index.html" class="footer-logo-wrapper">
+            <img src="assets/images/pmiusa-logo-transparent.png" alt="PMIUSA abstract soaring wing logo" class="footer-logo-img">
+          </a>
+          <p>
+            PMIUSA empowers modern enterprises with strategic project management consulting, BIM engineering solutions, and prepares tomorrow's leaders through accredited courses and hands-on mentorship.
+          </p>
+          <div class="footer-social-links">
+            <a href="https://www.linkedin.com/company/pcitsofficial/" target="_blank" class="social-icon-btn" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://www.facebook.com/pcits.gurgaon" target="_blank" class="social-icon-btn" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="mailto:info@pcit.net" class="social-icon-btn" aria-label="Email">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Important Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+            <li><a href="about-us.html"><i class="fa-solid fa-chevron-right"></i> About Us</a></li>
+            <li><a href="courses.html"><i class="fa-solid fa-chevron-right"></i> Our Courses</a></li>
+            <li><a href="policies.html"><i class="fa-solid fa-chevron-right"></i> Policies</a></li>
+            <li><a href="contactus.html"><i class="fa-solid fa-chevron-right"></i> Get in Touch</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: POLICIES (Matching PMI Website) -->
+        <div class="footer-col footer-col-policies">
+          <div class="policy-heading-block">
+            <h4 class="footer-heading policy-heading">POLICIES</h4>
+            <span class="policy-accent-bar" aria-hidden="true"></span>
+          </div>
+          <ul class="footer-links-list policy-links-list">
+            <li>
+              <a href="policies.html#panel-terms" class="policy-link-item" data-policy="terms">
+                <i class="fa-solid fa-file-contract"></i>
+                <span>Terms &amp; Conditions</span>
+              </a>
+            </li>
+            <li>
+              <a href="policies.html#panel-privacy" class="policy-link-item" data-policy="privacy">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Privacy Policy</span>
+              </a>
+            </li>
+            <li>
+              <a href="policies.html#panel-delivery" class="policy-link-item" data-policy="delivery">
+                <i class="fa-solid fa-truck-ramp-box"></i>
+                <span>Service Delivery</span>
+              </a>
+            </li>
+            <li>
+              <a href="policies.html#panel-refund" class="policy-link-item" data-policy="refund">
+                <i class="fa-solid fa-rotate-left"></i>
+                <span>Refund Policy</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact Info -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Contact Us</h4>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Premium Customer IT Services Ltd.<br>53, Hartron Complex, Electronic City, Sector 18, Gurugram, Haryana - 122015</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:info@pcit.net">info@pcit.net</a>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+918448702302">+91-8448702302</a>
+          </div>
+        </div>
+
+        <!-- Col 4: Newsletter -->
+        <div class="footer-col footer-newsletter">
+          <h4 class="footer-heading">Newsletter</h4>
+          <p>Subscribe to receive course updates, tech webinar invitations, and scholarship alerts.</p>
+          <form class="newsletter-form" action="#" method="POST">
+            <input type="email" class="newsletter-input" placeholder="Enter your email ID" required>
+            <button type="submit" class="btn-newsletter">Subscribe Now</button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div>
+          COPYRIGHT &copy; 2026 PMIUSA. ALL RIGHTS RESERVED.
+        </div>
+        <div>
+          Designed &amp; Developed with Modern Engineering
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" id="scrollTopBtn" aria-label="Scroll to top">
+    <i class="fa-solid fa-angle-up"></i>
+  </button>
+
+  <!-- Interactive Scripts -->
+  <script src="assets/js/navbar-logo.js"></script>
+  <script src="assets/js/globe.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

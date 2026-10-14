@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | PMIUSA - Premium IT Services</title>
+  <meta name="description" content="Learn about PMIUSA - 16 years of leadership in IT outsourcing, enterprise customer solutions, and industry-grade technology training.">
+  
+  <link rel="icon" type="image/png" href="assets/images/pmiusa-logo-transparent.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <style>
+    .page-banner {
+      background: linear-gradient(135deg, #0b1a3d 0%, #1480dd 100%);
+      padding: 160px 0 80px;
+      color: #ffffff;
+      text-align: center;
+      position: relative;
+    }
+    .page-banner h1 {
+      font-size: 46px;
+      color: #ffffff;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+    .page-banner p {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin: 60px 0;
+    }
+    .value-card {
+      background: #ffffff;
+      padding: 35px 30px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      transition: var(--transition);
+    }
+    .value-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-light);
+    }
+    .value-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #eaf3ff;
+      color: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 20px;
+    }
+    .value-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+    .value-card p {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    @media (max-width: 992px) {
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Drawer -->
+  <aside class="floating-drawer" id="inquiryDrawer">
+    <div class="floating-drawer-tab" id="drawerTab" role="button" tabindex="0">
+      <i class="fa-solid fa-graduation-cap"></i>
+      <span>Reach out to us</span>
+    </div>
+    <h3 class="drawer-title">Connect with Us</h3>
+    <form id="drawerForm" action="#" method="POST">
+      <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" class="form-control" placeholder="John Doe" required>
+      </div>
+      <div class="form-group">
+        <label>Phone Number *</label>
+        <input type="tel" class="form-control" placeholder="+91 98765 43210" required>
+      </div>
+      <div class="form-group">
+        <label>Email Address *</label>
+        <input type="email" class="form-control" placeholder="john@example.com" required>
+      </div>
+      <div class="form-group">
+        <label>Select Interest *</label>
+        <select class="form-control" required>
+          <option value="" disabled selected>-- Select an Option --</option>
+          <option value="courses">Enroll in Tech Courses</option>
+          <option value="bpo">Enterprise BPO Solutions</option>
+          <option value="partnership">Corporate Partnership</option>
+        </select>
+      </div>
+      <button type="submit" class="btn-drawer-submit">Send Message</button>
+    </form>
+  </aside>
+
+  <!-- Navigation Header with Courses -->
+  <header class="main-header fixed" id="header">
+    <div class="header-upper">
+      <div class="container">
+        <div class="header-inner">
+          <a href="index.html" class="logo-outer" aria-label="PMIUSA Home">
+            <canvas id="navbar-logo-canvas" class="navbar-logo-canvas"
+              aria-label="PMIUSA"></canvas>
+          </a>
+          <div class="navigation-menu-wrapper" id="navMenu">
+            <nav>
+              <ul class="navigation">
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="about-us.html">About Us</a></li>
+                <li class="dropdown">
+                  <a href="courses.html">
+                    Courses <i class="fa-solid fa-angle-down"></i>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="courses.html#fullstack"><i class="fa-solid fa-code"></i> Full Stack Web & Cloud</a></li>
+                    <li><a href="courses.html#datascience"><i class="fa-solid fa-brain"></i> AI & Data Science</a></li>
+                    <li><a href="courses.html#devops"><i class="fa-solid fa-cloud"></i> Cloud & DevOps</a></li>
+                    <li><a href="courses.html#cybersecurity"><i class="fa-solid fa-shield-halved"></i> Cyber Security</a></li>
+                    <li><a href="courses.html#marketing"><i class="fa-solid fa-bullhorn"></i> Digital Marketing</a></li>
+                  </ul>
+                </li>
+                <li><a href="policies.html">Policies</a></li>
+                <li><a href="contactus.html">Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="header-actions">
+            <a href="contactus.html" class="gettouchbutton"><i class="fa-solid fa-envelope"></i> Get in Touch</a>
+          </div>
+          <button class="navbar-toggler" id="menuToggle"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Banner -->
+  <section class="page-banner">
+    <div class="container">
+      <h1>About PMIUSA</h1>
+      <p>16 years of transformative engineering, BPO excellence, and elite tech talent mentorship.</p>
+    </div>
+  </section>
+
+  <!-- About Narrative Section -->
+  <section style="padding: 90px 0; background: #ffffff;">
+    <div class="container">
+      <div class="welcome-row">
+        <div class="welcome-text-col">
+          <span class="section-tag">Our Heritage &amp; Mission</span>
+          <h2 class="welcome-title">Empowering Careers &amp; Driving Global Business</h2>
+          <p>
+            Founded with a vision to deliver world-class IT and business support services, PMIUSA (Premium Management &amp; IT Services USA) has grown into an international powerhouse headquartered in Gurugram's Electronic City.
+          </p>
+          <p>
+            Recognizing the widening talent gap in software engineering, cloud infrastructure, and AI, we launched the PMIUSA Academy. Today, our students learn inside live corporate environments, guided by experienced tech leads and supported by our robust network of hiring partners.
+          </p>
+        </div>
+        <div class="welcome-visual-col">
+          <div class="cards-collage">
+            <div class="collage-card collage-card-1">
+              <img src="https://www.pcits.net/assets/images/flip5.jpg" alt="PMIUSA Campus">
+            </div>
+            <div class="collage-card collage-card-2">
+              <img src="https://www.pcits.net/assets/images/flip6.jpg" alt="Engineering Team">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Values -->
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon"><i class="fa-solid fa-lightbulb"></i></div>
+          <h3>Innovation First</h3>
+          <p>We continually evolve our tech stack, processes, and course curricula to match the cutting edge of industry practice.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="fa-solid fa-handshake"></i></div>
+          <h3>Unwavering Integrity</h3>
+          <p>Transparent communication, strict data protection standards (GDPR/HIPAA), and dedicated student-first guidance.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="fa-solid fa-trophy"></i></div>
+          <h3>Guaranteed Excellence</h3>
+          <p>100% commitment to student placement success and SLA fulfillment for all corporate enterprise partners.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-section">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-col footer-col-brand">
+          <a href="index.html" class="footer-logo-wrapper">
+            <img src="assets/images/pmiusa-logo-transparent.png" alt="PMIUSA abstract soaring wing logo" class="footer-logo-img">
+          </a>
+          <p>PMIUSA (Premium Management &amp; IT Services USA) — Transforming operations and empowering tech careers since 2008.</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">Important Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="contactus.html">Get in Touch</a></li>
+          </ul>
+        </div>
+        <!-- Col: POLICIES (Matching PMI Website) -->
+        <div class="footer-col footer-col-policies">
+          <div class="policy-heading-block">
+            <h4 class="footer-heading policy-heading">POLICIES</h4>
+            <span class="policy-accent-bar" aria-hidden="true"></span>
+          </div>
+          <ul class="footer-links-list policy-links-list">
+            <li>
+              <a href="policies.html#panel-terms" class="policy-link-item" data-policy="terms">
+                <i class="fa-solid fa-file-contract"></i>
+                <span>Terms &amp; Conditions</span>
+              </a>
+            </li>
+            <li>
+              <a href="policies.html#panel-privacy" class="policy-link-item" data-policy="privacy">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Privacy Policy</span>
+              </a>
+            </li>
+            <li>
+              <a href="policies.html#panel-delivery" class="policy-link-item" data-policy="delivery">
+                <i class="fa-solid fa-truck-ramp-box"></i>
+                <span>Service Delivery</span>
+              </a>
+            </li>
+            <li>
+              <a href="policies.html#panel-refund" class="policy-link-item" data-policy="refund">
+                <i class="fa-solid fa-rotate-left"></i>
+                <span>Refund Policy</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">Contact Details</h4>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>53, Hartron Complex, Sector 18, Gurugram, Haryana - 122015</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:info@pcit.net">info@pcit.net</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">Reach Out</h4>
+          <a href="tel:+918448702302" style="color: #95ecff; font-weight: 700; font-size: 18px;">+91-8448702302</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>COPYRIGHT &copy; 2026 PMIUSA. ALL RIGHTS RESERVED.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/navbar-logo.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

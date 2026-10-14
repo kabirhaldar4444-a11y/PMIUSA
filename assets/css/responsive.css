@@ -1,0 +1,273 @@
+/* ==========================================================================
+   PMIUSA - Responsive Stylesheet
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .hero-title {
+    font-size: 44px;
+  }
+  
+  .trusted-partners-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  
+  .footer-top {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar-toggler {
+    display: block;
+  }
+  
+  .navigation-menu-wrapper {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 24px;
+    display: none;
+    flex-direction: column;
+    z-index: 999;
+  }
+  
+  .navigation-menu-wrapper.show {
+    display: flex;
+  }
+  
+  .navigation {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+  }
+  
+  .navigation > li > a {
+    color: var(--text-dark) !important;
+    width: 100%;
+    padding: 10px 0;
+  }
+  
+  .dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    background: #f8fbff;
+    width: 100%;
+    display: none;
+    margin-top: 8px;
+  }
+  
+  .navigation li.dropdown.open .dropdown-menu {
+    display: block;
+  }
+  
+  .header-actions {
+    display: none;
+  }
+  
+  .hero-row {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .hero-content {
+    max-width: 100%;
+  }
+  
+  .hero-buttons {
+    justify-content: center;
+  }
+  
+  .hero-visual {
+    width: 100%;
+  }
+  
+  .hero-section {
+    min-height: auto;
+    padding: 120px 0 110px;
+  }
+  .hero-slider-container {
+    transform: none;
+  }
+  .hero-section .text_cap {
+    padding-right: 0;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+  .hero-section .text_cap strong {
+    font-size: 38px;
+    line-height: 1.22;
+  }
+  .hero-section .text_cap p {
+    margin: 15px auto 0;
+  }
+  .hero-actions-row {
+    justify-content: center;
+  }
+  .hero-section .slick-dots,
+  .hero-section .slider-for .slick-dots {
+    justify-content: center !important;
+    padding-right: 0;
+  }
+  .hero-slider-nav {
+    justify-content: center;
+    margin-top: 22px;
+  }
+
+  .split-showcase-wrapper {
+    flex-direction: column;
+  }
+  
+  .courses-nav-column {
+    position: static;
+    width: 100%;
+  }
+  
+  .welcome-row {
+    flex-direction: column;
+  }
+  
+  .presence-row {
+    flex-direction: column;
+  }
+  
+  .stats-counter-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .stat-item {
+    min-width: 140px;
+  }
+  
+  .trusted-partners-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .testimonial-card {
+    flex: 0 0 calc(50% - 15px);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 110px 0 140px;
+  }
+  .hero-section .text_cap strong {
+    font-size: 32px;
+    line-height: 1.25;
+  }
+  
+  .hero-title {
+    font-size: 34px;
+  }
+  
+  .hero-desc {
+    font-size: 16px;
+  }
+  
+  .hero-card-display img {
+    height: 260px;
+  }
+  
+  .floating-stat-badge {
+    display: none;
+  }
+  
+  .section-title {
+    font-size: 30px;
+  }
+  
+  .course-highlights {
+    grid-template-columns: 1fr;
+  }
+  
+  .trusted-partners-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .testimonial-card {
+    flex: 0 0 100%;
+  }
+  
+  .welcome-title {
+    font-size: 30px;
+  }
+  
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  
+  .floating-drawer {
+    width: 340px;
+  }
+
+  /* Policy Modal Mobile Responsiveness */
+  .policy-modal-card {
+    max-height: 92vh;
+    border-radius: 16px;
+  }
+  .policy-modal-header {
+    padding: 16px 18px;
+  }
+  .modal-header-text h3 {
+    font-size: 17px;
+  }
+  .modal-tabs-bar {
+    padding: 8px 12px;
+  }
+  .modal-tab-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  .policy-modal-body {
+    padding: 20px 18px;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .footer-top {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 28px;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btn-primary-hero, .btn-outline-hero {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .stats-counter-row {
+    flex-direction: column;
+  }
+  
+  .stat-item {
+    width: 100%;
+  }
+}
