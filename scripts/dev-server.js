@@ -2,7 +2,9 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+const ROOT_DIR = path.join(__dirname, '..');
+
 const MIME_TYPES = {
   '.html': 'text/html; charset=UTF-8',
   '.css': 'text/css; charset=UTF-8',
@@ -29,7 +31,15 @@ const server = http.createServer((req, res) => {
 
   if (reqPath === '/' || reqPath === '') reqPath = '/index.html';
 
-  const filePath = path.join(__dirname, reqPath);
+  let filePath = path.join(ROOT_DIR, reqPath);
+  
+  // If file doesn't exist and has no extension, try .html (clean URLs support)
+  if (!fs.existsSync(filePath) && !path.extname(filePath)) {
+    if (fs.existsSync(filePath + '.html')) {
+      filePath = filePath + '.html';
+    }
+  }
+
   const ext = path.extname(filePath).toLowerCase();
   const contentType = MIME_TYPES[ext] || 'application/octet-stream';
 
@@ -60,5 +70,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running at http://localhost:${PORT}/`);
+  console.log(`Development server running at http://localhost:${PORT}/`);
 });

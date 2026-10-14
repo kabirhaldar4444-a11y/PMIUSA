@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "PMIUSA - Global Tech, Engineering & Management Academy",
   "scripts": {
-    "dev": "node server.js"
+    "dev": "node scripts/dev-server.js"
   },
   "keywords": [
     "pmiusa",
