@@ -18,6 +18,7 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/rope-boy-character.css">
 
   <style>
     /* ── Course Detail Custom Styling ── */
@@ -28,7 +29,7 @@
     
     .detail-hero-section {
       background: linear-gradient(135deg, #0b1a3d 0%, #004aab 60%, #1480dd 100%);
-      padding: 160px 0 75px;
+      padding: 105px 0 28px;
       color: #ffffff;
       position: relative;
       overflow: hidden;
@@ -48,8 +49,8 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 13.5px;
-      margin-bottom: 22px;
+      font-size: 13px;
+      margin-bottom: 12px;
       color: rgba(255, 255, 255, 0.78);
       flex-wrap: wrap;
     }
@@ -69,49 +70,49 @@
     .detail-cat-badge {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      gap: 6px;
       background: rgba(255, 255, 255, 0.16);
       backdrop-filter: blur(10px);
-      padding: 6px 16px;
+      padding: 4px 14px;
       border-radius: 30px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       color: #ffffff;
-      margin-bottom: 16px;
+      margin-bottom: 10px;
       border: 1px solid rgba(255, 255, 255, 0.25);
     }
     .detail-hero-title {
-      font-size: 38px;
+      font-size: 29px;
       font-weight: 800;
       line-height: 1.25;
-      margin-bottom: 18px;
+      margin-bottom: 10px;
       color: #ffffff;
       max-width: 900px;
       letter-spacing: -0.5px;
     }
     .detail-hero-subtitle {
-      font-size: 17px;
-      line-height: 1.6;
+      font-size: 14.5px;
+      line-height: 1.5;
       color: rgba(255, 255, 255, 0.9);
       max-width: 860px;
-      margin-bottom: 28px;
+      margin-bottom: 16px;
     }
     
     .detail-meta-pills {
       display: flex;
-      gap: 12px;
+      gap: 9px;
       flex-wrap: wrap;
     }
     .detail-meta-pill {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(10px);
-      padding: 8px 16px;
-      border-radius: 12px;
+      padding: 6px 13px;
+      border-radius: 10px;
       border: 1px solid rgba(255, 255, 255, 0.18);
-      font-size: 13.5px;
+      font-size: 12.5px;
       font-weight: 600;
       color: #ffffff;
     }
@@ -121,7 +122,7 @@
 
     /* ── Content Layout Grid ── */
     .detail-layout-container {
-      padding: 60px 0 100px;
+      padding: 24px 0 80px;
     }
     .detail-grid {
       display: grid;
@@ -130,88 +131,238 @@
       align-items: start;
     }
 
-    /* ── Main Column Sections ── */
+    /* ── Main Column Sections & Smart Card Stack ── */
     .detail-main-col {
       display: flex;
       flex-direction: column;
-      gap: 36px;
+      position: relative;
     }
+
+    /* Sticky Section Navigation Pills for Instant Visibility in Full Screen */
+    .detail-section-nav {
+      position: sticky;
+      top: 88px;
+      z-index: 25;
+      display: flex;
+      gap: 8px;
+      padding: 6px 10px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 30px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+      margin-bottom: 14px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .detail-section-nav::-webkit-scrollbar {
+      display: none;
+    }
+    .section-nav-pill {
+      background: transparent;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #64748b;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .section-nav-pill:hover {
+      color: #004aab;
+      background: #eff6ff;
+    }
+    .section-nav-pill.active {
+      color: #ffffff;
+      background: #004aab;
+      box-shadow: 0 2px 8px rgba(0, 74, 171, 0.3);
+    }
+
     .detail-card-box {
       background: #ffffff;
       border-radius: 18px;
-      padding: 36px;
+      padding: 22px 26px;
       border: 1px solid #e2e8f0;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      position: relative;
     }
+    
+    /* Smart Stackable Cards - Perfectly Proportioned to fit in Full Screen */
+    .detail-stack-card {
+      display: block;
+      position: sticky;
+      margin-bottom: 75px;
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 8px 25px -4px rgba(15, 23, 42, 0.07), 0 0 0 1px rgba(15, 23, 42, 0.03);
+      max-height: calc(100vh - 155px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: #cbd5e1 transparent;
+      transform-origin: center top;
+      will-change: transform, filter;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                  filter 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                  box-shadow 0.3s ease;
+    }
+    .detail-stack-card::-webkit-scrollbar {
+      width: 5px;
+    }
+    .detail-stack-card::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .detail-stack-card::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 10px;
+    }
+    .detail-stack-card:last-child {
+      margin-bottom: 30px;
+    }
+
+    /* Staggered sticky tops placed below the sticky section nav */
+    .detail-stack-card:nth-child(2) { top: 136px; z-index: 1; }
+    .detail-stack-card:nth-child(3) { top: 148px; z-index: 2; }
+    .detail-stack-card:nth-child(4) { top: 160px; z-index: 3; }
+    .detail-stack-card:nth-child(5) { top: 172px; z-index: 4; }
+    .detail-stack-card:nth-child(6) { top: 184px; z-index: 5; }
+
+    /* Elevated stacked drop shadow */
+    .detail-stack-card.is-stacked {
+      box-shadow: 0 -6px 20px -3px rgba(15, 23, 42, 0.08), 
+                  0 20px 40px -10px rgba(15, 23, 42, 0.2), 
+                  0 0 0 1px rgba(15, 23, 42, 0.06);
+    }
+
+    /* Section Tag pill in top right */
+    .detail-card-stack-tag {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      z-index: 12;
+    }
+    .tag-blue { background: #eff6ff; color: #2563eb; }
+    .tag-purple { background: #f5f3ff; color: #7c3aed; }
+    .tag-cyan { background: #ecfeff; color: #0284c7; }
+    .tag-emerald { background: #ecfdf5; color: #059669; }
+    .tag-amber { background: #fffbeb; color: #d97706; }
     .detail-section-title {
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 800;
       color: #0f172a;
-      margin-bottom: 18px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
     .detail-section-title i {
       color: #004aab;
-      font-size: 20px;
+      font-size: 18px;
     }
 
-    /* Freehand Clipart Banner in Detail Page */
+    /* Compact Freehand Clipart Banner in Detail Page */
     .detail-clipart-banner {
-      border-radius: 16px;
-      height: 250px;
+      border-radius: 12px;
+      height: 140px;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
       overflow: hidden;
-      margin-bottom: 30px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      margin-bottom: 14px;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    }
+    .detail-clipart-banner.thumb-theme-ai,
+    .detail-clipart-banner.thumb-theme-management,
+    .detail-clipart-banner.thumb-theme-bim,
+    .detail-clipart-banner.thumb-theme-site,
+    .detail-clipart-banner.thumb-theme-business,
+    .detail-clipart-banner.thumb-theme-engineering {
+      background: #ffffff !important;
     }
     .detail-clipart-banner .freehand-svg {
-      width: 220px;
-      height: 160px;
-      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.22));
+      width: 200px;
+      max-width: 80%;
+      height: 110px;
+      filter: drop-shadow(0 10px 20px rgba(15, 23, 42, 0.1));
       animation: floatBannerArt 4s ease-in-out infinite;
     }
     @keyframes floatBannerArt {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* Related course cards clipart without background */
+    .grid-card-thumb {
+      height: 175px;
+      background: #ffffff;
+      border-bottom: 1px solid #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 14px;
+    }
+    .grid-card-thumb.thumb-theme-ai,
+    .grid-card-thumb.thumb-theme-management,
+    .grid-card-thumb.thumb-theme-bim,
+    .grid-card-thumb.thumb-theme-site,
+    .grid-card-thumb.thumb-theme-business,
+    .grid-card-thumb.thumb-theme-engineering {
+      background: transparent !important;
     }
 
     .detail-text-p {
-      font-size: 15.5px;
-      line-height: 1.75;
+      font-size: 14px;
+      line-height: 1.55;
       color: #475569;
-      margin-bottom: 20px;
+      margin-bottom: 12px;
     }
 
     /* Tool badges list */
     .detail-tools-row {
       display: flex;
-      gap: 10px;
+      gap: 7px;
       flex-wrap: wrap;
-      margin-top: 15px;
+      margin-top: 8px;
     }
     .detail-tool-chip {
       background: #f1f5f9;
       color: #1e293b;
       font-weight: 600;
-      font-size: 13px;
-      padding: 8px 16px;
-      border-radius: 8px;
+      font-size: 12px;
+      padding: 5px 12px;
+      border-radius: 6px;
       border: 1px solid #cbd5e1;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
 
     /* Curriculum Modules Accordion */
     .curriculum-accordion {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
     }
     .curriculum-module-card {
       border: 1.5px solid #e2e8f0;
@@ -225,7 +376,7 @@
       box-shadow: 0 4px 16px rgba(0, 74, 171, 0.08);
     }
     .module-header {
-      padding: 18px 22px;
+      padding: 13px 18px;
       background: #f8fafc;
       cursor: pointer;
       display: flex;
@@ -238,7 +389,7 @@
       background: #eff6ff;
     }
     .module-header h4 {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       color: #0f172a;
       margin: 0;
@@ -248,14 +399,14 @@
     }
     .module-header i.toggle-icon {
       color: #004aab;
-      font-size: 15px;
+      font-size: 14px;
       transition: transform 0.3s ease;
     }
     .curriculum-module-card.active .module-header i.toggle-icon {
       transform: rotate(180deg);
     }
     .module-body {
-      padding: 22px 24px;
+      padding: 16px 20px;
       display: none;
       border-top: 1px solid #e2e8f0;
       background: #ffffff;
@@ -269,15 +420,15 @@
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 9px;
     }
     .module-topics-list li {
-      font-size: 14.5px;
+      font-size: 13.5px;
       color: #334155;
       display: flex;
       align-items: flex-start;
-      gap: 12px;
-      line-height: 1.5;
+      gap: 10px;
+      line-height: 1.45;
     }
     .module-topics-list li i {
       color: #10b981;
@@ -351,87 +502,70 @@
     /* ── Sidebar Sticky Card ── */
     .detail-sidebar-col {
       position: sticky;
-      top: 100px;
+      top: 88px;
     }
     .sidebar-enroll-card {
       background: #ffffff;
-      border-radius: 20px;
-      padding: 32px 28px;
+      border-radius: 18px;
+      padding: 22px 20px;
       border: 1px solid #e2e8f0;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
     }
-    .sidebar-price-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
+    .sidebar-course-name {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.35;
       margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed #cbd5e1;
+    }
+    .sidebar-price-block {
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .price-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 4px;
     }
     .sidebar-main-price {
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 900;
       color: #004aab;
-    }
-    .sidebar-discount-tag {
-      background: #dcfce7;
-      color: #16a34a;
-      font-weight: 700;
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: 20px;
-    }
-    .sidebar-urgency-note {
-      font-size: 13px;
-      color: #d97706;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 24px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #e2e8f0;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      white-space: nowrap;
+      margin: 0;
+      font-family: 'Outfit', 'Inter', sans-serif;
     }
     .btn-sidebar-enroll {
       width: 100%;
-      padding: 16px;
+      padding: 13px;
       background: linear-gradient(135deg, #004aab 0%, #1480dd 100%);
       color: #ffffff;
       border: none;
-      border-radius: 12px;
-      font-size: 16px;
+      border-radius: 10px;
+      font-size: 15px;
       font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
       transition: all 0.25s ease;
-      box-shadow: 0 6px 20px rgba(0, 74, 171, 0.28);
-      margin-bottom: 12px;
+      box-shadow: 0 4px 16px rgba(0, 74, 171, 0.25);
+      margin-bottom: 16px;
     }
     .btn-sidebar-enroll:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 74, 171, 0.38);
+      box-shadow: 0 6px 20px rgba(0, 74, 171, 0.35);
       color: #ffffff;
-    }
-    .btn-sidebar-syllabus {
-      width: 100%;
-      padding: 13px;
-      background: #f1f5f9;
-      color: #1e293b;
-      border: 1px solid #cbd5e1;
-      border-radius: 12px;
-      font-size: 14.5px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 0.2s ease;
-      margin-bottom: 26px;
-    }
-    .btn-sidebar-syllabus:hover {
-      background: #e2e8f0;
     }
 
     .sidebar-feature-list {
@@ -440,37 +574,38 @@
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 10px;
       border-top: 1px solid #e2e8f0;
-      padding-top: 22px;
+      padding-top: 14px;
     }
     .sidebar-feature-list li {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 14px;
+      gap: 9px;
+      font-size: 13px;
       color: #334155;
       font-weight: 500;
+      line-height: 1.4;
     }
     .sidebar-feature-list li i {
       color: #10b981;
-      font-size: 15px;
+      font-size: 14px;
     }
 
     .sidebar-helpline {
-      margin-top: 24px;
+      margin-top: 14px;
       background: #f8fafc;
-      border-radius: 12px;
-      padding: 16px;
+      border-radius: 10px;
+      padding: 10px 12px;
       text-align: center;
-      font-size: 13px;
+      font-size: 11.5px;
       color: #64748b;
     }
     .sidebar-helpline strong {
       display: block;
       color: #004aab;
-      font-size: 16px;
-      margin-top: 4px;
+      font-size: 14.5px;
+      margin-top: 2px;
     }
 
     /* Related programs section */
@@ -497,6 +632,41 @@
         flex-direction: column;
         text-align: center;
       }
+      .detail-stack-card {
+        margin-bottom: 80px;
+      }
+      .detail-stack-card:last-child {
+        margin-bottom: 25px;
+      }
+      .detail-stack-card:nth-child(2) { top: 114px; }
+      .detail-stack-card:nth-child(3) { top: 122px; }
+      .detail-stack-card:nth-child(4) { top: 130px; }
+      .detail-stack-card:nth-child(5) { top: 138px; }
+      .detail-stack-card:nth-child(6) { top: 146px; }
+    }
+      /* Days in Down (Clean Smart Cohort Meta) */
+    .card-days-down {
+      margin-top: auto;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+    }
+    .card-days-down .badge-duration {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #eff6ff;
+      color: #004aab;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 8px;
+      border: 1px solid #bfdbfe;
+      letter-spacing: 0.2px;
+    }
+    .card-days-down .badge-duration i {
+      color: #004aab;
+      font-size: 13px;
     }
   </style>
 </head>
@@ -616,7 +786,17 @@
                     <li><a href="courses.html?cat=engineering"><i class="fa-solid fa-microchip"></i> Engineering Tech</a></li>
                   </ul>
                 </li>
-                <li><a href="policies.html">Policies</a></li>
+                <li class="dropdown">
+                  <a href="policies.html">
+                    Policies <i class="fa-solid fa-angle-down"></i>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="terms-and-conditions.html"><i class="fa-solid fa-file-contract"></i> Terms &amp; Conditions</a></li>
+                    <li><a href="privacy-policy.html"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a></li>
+                    <li><a href="service-delivery.html"><i class="fa-solid fa-truck-ramp-box"></i> Service Delivery</a></li>
+                    <li><a href="refund-policy.html"><i class="fa-solid fa-rotate-left"></i> Refund Policy</a></li>
+                  </ul>
+                </li>
                 <li><a href="contactus.html">Contact</a></li>
               </ul>
             </nav>
@@ -681,8 +861,23 @@
         <!-- Left Main Column -->
         <div class="detail-main-col">
           
+          <!-- Sticky Section Navigation Pills -->
+          <div class="detail-section-nav" id="detailSectionNav">
+            <!-- Visual Rope Mounting Anchor on Left (Links to live sliding boy character) -->
+            <div class="syllabus-rope-anchor" title="Climbing Rope Track" aria-hidden="true">
+              <span class="anchor-ring"></span>
+              <span>Curriculum Guide</span>
+            </div>
+            <button type="button" class="section-nav-pill active" data-index="0"><i class="fa-solid fa-compass"></i> Overview</button>
+            <button type="button" class="section-nav-pill" data-index="1"><i class="fa-solid fa-layer-group"></i> Syllabus</button>
+            <button type="button" class="section-nav-pill" data-index="2"><i class="fa-solid fa-rocket"></i> Outcomes</button>
+            <button type="button" class="section-nav-pill" data-index="3"><i class="fa-solid fa-user-check"></i> Eligibility</button>
+            <button type="button" class="section-nav-pill" data-index="4"><i class="fa-solid fa-award"></i> Credential</button>
+          </div>
+
           <!-- Clipart Graphic Card & Overview -->
-          <div class="detail-card-box">
+          <div class="detail-card-box detail-stack-card active" id="card-overview" data-index="0">
+            <span class="detail-card-stack-tag tag-blue"><i class="fa-solid fa-compass"></i> Overview</span>
             <div class="detail-clipart-banner thumb-theme-ai" id="detailClipartBanner">
               <div id="detailSvgContainer"></div>
             </div>
@@ -699,7 +894,8 @@
           </div>
 
           <!-- Curriculum Accordion -->
-          <div class="detail-card-box">
+          <div class="detail-card-box detail-stack-card" id="card-curriculum" data-index="1">
+            <span class="detail-card-stack-tag tag-purple"><i class="fa-solid fa-layer-group"></i> Syllabus &amp; Modules</span>
             <h2 class="detail-section-title"><i class="fa-solid fa-layer-group"></i> Comprehensive Modular Curriculum</h2>
             <p class="detail-text-p" style="margin-bottom: 25px;">
               Structured around real-world industry scenarios, actionable checklists, and live lab implementations.
@@ -711,13 +907,15 @@
           </div>
 
           <!-- Career Impact & Learning Outcomes -->
-          <div class="detail-card-box">
+          <div class="detail-card-box detail-stack-card" id="card-outcomes" data-index="2">
+            <span class="detail-card-stack-tag tag-cyan"><i class="fa-solid fa-rocket"></i> Career Outcomes</span>
             <h2 class="detail-section-title"><i class="fa-solid fa-rocket"></i> Career Impact &amp; Vocational Outcomes</h2>
             <div class="outcomes-grid" id="outcomesGrid"></div>
           </div>
 
           <!-- Target Audience & Prerequisites -->
-          <div class="detail-card-box">
+          <div class="detail-card-box detail-stack-card" id="card-audience" data-index="3">
+            <span class="detail-card-stack-tag tag-emerald"><i class="fa-solid fa-user-check"></i> Prerequisites</span>
             <h2 class="detail-section-title"><i class="fa-solid fa-user-check"></i> Eligibility &amp; Target Audience</h2>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;" id="audienceGrid">
               <div>
@@ -736,7 +934,8 @@
           </div>
 
           <!-- Certification Preview -->
-          <div class="certificate-card-preview">
+          <div class="certificate-card-preview detail-stack-card" id="card-certificate" data-index="4">
+            <span class="detail-card-stack-tag tag-amber" style="background: rgba(255, 255, 255, 0.2); color: #ffd166;"><i class="fa-solid fa-award"></i> Credential</span>
             <div class="cert-icon-seal"><i class="fa-solid fa-award"></i></div>
             <div class="cert-info-text">
               <h4>Globally Verifiable PMIUSA Credential</h4>
@@ -750,24 +949,15 @@
         <div class="detail-sidebar-col">
           <div class="sidebar-enroll-card">
             
-            <div class="sidebar-price-header">
-              <div>
-                <span class="price-label">Program Fee</span>
-                <div class="sidebar-main-price" id="sidebarPrice">₹45,000</div>
-              </div>
-              <span class="sidebar-discount-tag"><i class="fa-solid fa-tag me-1"></i> Special Cohort Rate</span>
-            </div>
+            <div class="sidebar-course-name" id="sidebarCourseName">Program Name</div>
 
-            <div class="sidebar-urgency-note">
-              <i class="fa-solid fa-fire text-danger"></i> Next cohort begins this Monday &bull; 4 seats left
+            <div class="sidebar-price-block">
+              <span class="price-label">Program Fee</span>
+              <div class="sidebar-main-price" id="sidebarPrice">INR 40,000</div>
             </div>
 
             <button type="button" class="btn-sidebar-enroll" id="sidebarEnrollBtn">
               <i class="fa-solid fa-user-graduate"></i> Enroll in Program Now
-            </button>
-
-            <button type="button" class="btn-sidebar-syllabus" id="sidebarSyllabusBtn">
-              <i class="fa-solid fa-file-arrow-down"></i> Download Syllabus (PDF)
             </button>
 
             <ul class="sidebar-feature-list">
@@ -776,8 +966,6 @@
               <li><i class="fa-solid fa-circle-check"></i> 1-on-1 Mentor Guidance &amp; Code Review</li>
               <li><i class="fa-solid fa-circle-check"></i> Real-World Enterprise Capstone</li>
               <li><i class="fa-solid fa-circle-check"></i> Globally Verifiable PMIUSA Credential</li>
-              <li><i class="fa-solid fa-circle-check"></i> Lifetime Access to LMS &amp; PDFs</li>
-              <li><i class="fa-solid fa-circle-check"></i> Guaranteed Career Support</li>
             </ul>
 
             <div class="sidebar-helpline">
@@ -790,17 +978,6 @@
         </div>
 
       </div>
-    </div>
-  </section>
-
-  <!-- Related Programs Section -->
-  <section class="related-courses-sec">
-    <div class="container">
-      <div class="section-header" style="margin-bottom: 40px;">
-        <span class="section-tag">Explore More</span>
-        <h2 class="section-title">Related <span>Programs</span> &amp; Certifications</h2>
-      </div>
-      <div class="courses-grid-view" id="relatedGrid" style="margin-bottom: 0;"></div>
     </div>
   </section>
 
@@ -833,25 +1010,25 @@
           </div>
           <ul class="footer-links-list policy-links-list">
             <li>
-              <a href="policies.html#panel-terms" class="policy-link-item" data-policy="terms">
+              <a href="terms-and-conditions.html" class="policy-link-item" data-policy="terms">
                 <i class="fa-solid fa-file-contract"></i>
                 <span>Terms &amp; Conditions</span>
               </a>
             </li>
             <li>
-              <a href="policies.html#panel-privacy" class="policy-link-item" data-policy="privacy">
+              <a href="privacy-policy.html" class="policy-link-item" data-policy="privacy">
                 <i class="fa-solid fa-shield-halved"></i>
                 <span>Privacy Policy</span>
               </a>
             </li>
             <li>
-              <a href="policies.html#panel-delivery" class="policy-link-item" data-policy="delivery">
+              <a href="service-delivery.html" class="policy-link-item" data-policy="delivery">
                 <i class="fa-solid fa-truck-ramp-box"></i>
                 <span>Service Delivery</span>
               </a>
             </li>
             <li>
-              <a href="policies.html#panel-refund" class="policy-link-item" data-policy="refund">
+              <a href="refund-policy.html" class="policy-link-item" data-policy="refund">
                 <i class="fa-solid fa-rotate-left"></i>
                 <span>Refund Policy</span>
               </a>
@@ -882,6 +1059,7 @@
   </footer>
 
   <script src="assets/js/courses-data.js"></script>
+  <script src="assets/js/course-cliparts.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/navbar-logo.js"></script>
 
@@ -918,6 +1096,8 @@
       document.getElementById('metaDuration').textContent = currentCourse.duration;
 
       // Sidebar
+      const sidebarCourseEl = document.getElementById('sidebarCourseName');
+      if (sidebarCourseEl) sidebarCourseEl.textContent = currentCourse.title;
       document.getElementById('sidebarPrice').textContent = currentCourse.price;
       document.getElementById('featDuration').textContent = currentCourse.duration + ' Intensive Cohort';
 
@@ -927,24 +1107,12 @@
 
       // Generate Clipart SVG
       function getSvg(cat) {
-        if (cat === 'ai') {
-          return '<svg class="freehand-svg" viewBox="0 0 160 120" fill="none"><rect x="48" y="32" width="64" height="54" rx="16" fill="#ffffff" stroke="#1e1b4b" stroke-width="3"/><rect x="56" y="42" width="48" height="24" rx="10" fill="#0f172a"/><circle cx="68" cy="54" r="5" fill="#38bdf8"/><circle cx="92" cy="54" r="5" fill="#38bdf8"/><path d="M80 32V20M80 18A4 4 0 1 0 80 10A4 4 0 0 0 80 18" stroke="#ffd166" stroke-width="3.5"/><path d="M70 74C74 78 86 78 90 74" stroke="#4338ca" stroke-width="3"/><path d="M22 26L25 18L28 26L36 29L28 32L25 40L22 32L14 29Z" fill="#ffd166"/><circle cx="132" cy="78" r="4" fill="#a5f3fc"/></svg>';
+        if (window.getCourseClipart) {
+          return window.getCourseClipart(currentCourse.id, currentCourse.category, currentCourse.title);
         }
-        if (cat === 'bim') {
-          return '<svg class="freehand-svg" viewBox="0 0 160 120" fill="none"><path d="M80 20L125 44L80 68L35 44Z" fill="#38bdf8" stroke="#0f172a" stroke-width="3"/><path d="M35 44L80 68V106L35 82Z" fill="#0284c7" stroke="#0f172a" stroke-width="3"/><path d="M80 68L125 44V82L80 106Z" fill="#bae6fd" stroke="#0f172a" stroke-width="3"/><path d="M125 22L138 35M138 35L145 28" stroke="#ffd166" stroke-width="3.5"/></svg>';
-        }
-        if (cat === 'management') {
-          return '<svg class="freehand-svg" viewBox="0 0 160 120" fill="none"><rect x="36" y="22" width="88" height="68" rx="12" fill="#ffffff" stroke="#1e293b" stroke-width="3"/><rect x="36" y="22" width="88" height="18" rx="10" fill="#3b82f6"/><rect x="44" y="48" width="22" height="16" rx="4" fill="#fde047" stroke="#1e293b" stroke-width="1.8"/><rect x="70" y="48" width="22" height="24" rx="4" fill="#93c5fd" stroke="#1e293b" stroke-width="1.8"/><path d="M125 78A16 16 0 1 1 140 68" stroke="#f59e0b" stroke-width="3.5"/><path d="M22 42L28 48L38 36" stroke="#22c55e" stroke-width="3.5"/></svg>';
-        }
-        if (cat === 'site') {
-          return '<svg class="freehand-svg" viewBox="0 0 160 120" fill="none"><path d="M38 104V28M38 34L118 34M118 34L136 44" stroke="#f59e0b" stroke-width="3.5"/><path d="M102 85C102 70 142 70 142 85Z" fill="#ffd166" stroke="#1e293b" stroke-width="3"/><path d="M96 85H148" stroke="#1e293b" stroke-width="3.5"/><path d="M20 104H145" stroke="#ffffff" stroke-width="3"/></svg>';
-        }
-        if (cat === 'business') {
-          return '<svg class="freehand-svg" viewBox="0 0 160 120" fill="none"><rect x="30" y="76" width="16" height="26" rx="4" fill="#34d399" stroke="#064e3b" stroke-width="2"/><rect x="52" y="62" width="16" height="40" rx="4" fill="#10b981" stroke="#064e3b" stroke-width="2"/><rect x="74" y="46" width="16" height="56" rx="4" fill="#059669" stroke="#064e3b" stroke-width="2"/><path d="M28 68L56 50L78 36L126 18" stroke="#fde047" stroke-width="3.5"/><circle cx="120" cy="58" r="14" fill="#f59e0b" stroke="#78350f" stroke-width="2.5"/></svg>';
-        }
-        return '<svg class="freehand-svg" viewBox="0 0 160 120" fill="none"><circle cx="80" cy="58" r="24" fill="#e0e7ff" stroke="#312e81" stroke-width="3"/><circle cx="80" cy="58" r="10" fill="#6366f1"/><path d="M80 26V34M80 82V90M48 58H56M104 58H112" stroke="#312e81" stroke-width="4.5"/></svg>';
+        return '<svg class="freehand-svg" viewBox="0 0 160 120" fill="none"><circle cx="80" cy="58" r="24" fill="#e0e7ff" stroke="#312e81" stroke-width="3"/><circle cx="80" cy="58" r="10" fill="#6366f1"/></svg>';
       }
-      document.getElementById('detailSvgContainer').innerHTML = getSvg(currentCourse.category);
+      document.getElementById('detailSvgContainer').innerHTML = (window.getCourseClipart ? window.getCourseClipart(currentCourse.id, currentCourse.category, currentCourse.title) : getSvg(currentCourse.category));
 
       // Overview text
       const curr = currentCourse.curriculum;
@@ -1011,16 +1179,15 @@
         relatedGrid.innerHTML = related.map(function(rc) {
           return '<div class="course-grid-card">' +
             '<div class="grid-card-thumb thumb-theme-' + rc.category + '">' +
-              '<div class="thumb-badge-top">' +
-                '<span class="badge-category">' + catLabel + '</span>' +
-                '<span class="badge-duration">' + rc.duration + '</span>' +
-              '</div>' +
               '<div class="clipart-art-wrapper">' +
-                getSvg(rc.category) +
+                (window.getCourseClipart ? window.getCourseClipart(rc.id, rc.category, rc.title) : getSvg(rc.category)) +
               '</div>' +
             '</div>' +
             '<div class="grid-card-body">' +
               '<h3 class="course-card-title"><a href="course-detail.html?id=' + rc.id + '" style="color: inherit; text-decoration: none;">' + rc.title + '</a></h3>' +
+              '<div class="card-days-down">' +
+                '<span class="badge-duration"><i class="fa-regular fa-clock me-1"></i> ' + rc.duration + '</span>' +
+              '</div>' +
               '<div class="grid-card-footer">' +
                 '<div class="course-price">' + rc.price + '</div>' +
                 '<a href="course-detail.html?id=' + rc.id + '" class="btn-enroll" style="text-decoration: none;">' +
@@ -1038,13 +1205,115 @@
           openEnrollDrawer(currentCourse.title, currentCourse.id);
         }
       });
-      document.getElementById('sidebarSyllabusBtn').addEventListener('click', function() {
-        if (typeof openEnrollDrawer === 'function') {
-          openEnrollDrawer(currentCourse.title, currentCourse.id);
-        }
-      });
 
+      // ── Smart Stacking Cards on Course Detail Left Column ──
+      const detailCards = document.querySelectorAll('.detail-stack-card');
+      const navPills = document.querySelectorAll('.section-nav-pill');
+      if (detailCards.length > 0) {
+        const getDetailStackConfig = () => {
+          const isMobile = window.innerWidth < 992;
+          return {
+            baseTop: isMobile ? 114 : 136,
+            stepOffset: isMobile ? 8 : 12
+          };
+        };
+
+        const updateDetailStack = () => {
+          const { baseTop, stepOffset } = getDetailStackConfig();
+          let activeIndex = 0;
+
+          detailCards.forEach((card, idx) => {
+            const rect = card.getBoundingClientRect();
+            const targetTop = baseTop + (idx * stepOffset);
+            if (rect.top <= targetTop + 15) {
+              activeIndex = idx;
+            }
+          });
+
+          detailCards.forEach((card, idx) => {
+            card.classList.toggle('active', idx === activeIndex);
+            card.classList.toggle('is-stacked', idx >= 1 && idx <= activeIndex);
+
+            if (idx < activeIndex) {
+              const depth = activeIndex - idx;
+              const scale = Math.max(0.92, 1 - (depth * 0.02));
+              const brightness = Math.max(0.82, 1 - (depth * 0.05));
+              card.style.transform = `scale(${scale})`;
+              card.style.filter = `brightness(${brightness})`;
+              card.style.cursor = 'pointer';
+            } else {
+              card.style.transform = 'scale(1)';
+              card.style.filter = 'brightness(1)';
+              card.style.cursor = 'default';
+            }
+          });
+
+          // Sync section nav pills
+          navPills.forEach((pill, idx) => {
+            pill.classList.toggle('active', idx === activeIndex);
+          });
+        };
+
+        let ticking = false;
+        const onDetailScroll = () => {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              updateDetailStack();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        };
+
+        window.addEventListener('scroll', onDetailScroll, { passive: true });
+        window.addEventListener('resize', onDetailScroll, { passive: true });
+
+        // Pill click smooth scrolling directly to card
+        navPills.forEach((pill) => {
+          pill.addEventListener('click', (e) => {
+            e.preventDefault();
+            const idx = parseInt(pill.getAttribute('data-index'), 10);
+            const card = detailCards[idx];
+            if (card) {
+              const { baseTop, stepOffset } = getDetailStackConfig();
+              const cardTargetTop = baseTop + (idx * stepOffset);
+              const cardDocTop = card.getBoundingClientRect().top + window.scrollY;
+              window.scrollTo({
+                top: Math.max(0, cardDocTop - cardTargetTop + 2),
+                behavior: 'smooth'
+              });
+            }
+          });
+        });
+
+        // Click buried card tab to unstack & smooth-scroll back to it
+        detailCards.forEach((card, idx) => {
+          card.addEventListener('click', (e) => {
+            if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.module-header')) {
+              return;
+            }
+            let activeIdx = 0;
+            detailCards.forEach((c, i) => {
+              if (c.classList.contains('active')) activeIdx = i;
+            });
+
+            if (idx < activeIdx) {
+              const { baseTop, stepOffset } = getDetailStackConfig();
+              const cardTargetTop = baseTop + (idx * stepOffset);
+              const cardDocTop = card.getBoundingClientRect().top + window.scrollY;
+              window.scrollTo({
+                top: Math.max(0, cardDocTop - cardTargetTop),
+                behavior: 'smooth'
+              });
+            }
+          });
+        });
+
+        updateDetailStack();
+      }
     });
   </script>
+  <!-- Live 3D Boy Character Sliding on Continuous Rope for Syllabus -->
+  <script src="assets/js/rope-boy-character.js"></script>
 </body>
 </html>

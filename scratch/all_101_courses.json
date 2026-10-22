@@ -1,0 +1,608 @@
+[
+  {
+    "index": 1,
+    "id": "generative-ai-prompt-engineering-for-enterprise-workflows",
+    "cat": "ai",
+    "title": "Generative AI Prompt Engineering for Enterprise Workflows"
+  },
+  {
+    "index": 2,
+    "id": "ai-powered-automation-for-small-business-operations",
+    "cat": "ai",
+    "title": "AI-Powered Automation for Small Business Operations"
+  },
+  {
+    "index": 3,
+    "id": "ai-driven-copywriting-marketing-content-generation",
+    "cat": "ai",
+    "title": "AI-Driven Copywriting & Marketing Content Generation"
+  },
+  {
+    "index": 4,
+    "id": "using-ai-tools-for-market-research-data-synthesis",
+    "cat": "ai",
+    "title": "Using AI Tools for Market Research & Data Synthesis"
+  },
+  {
+    "index": 5,
+    "id": "ai-enhanced-video-editing-creative-media-production",
+    "cat": "ai",
+    "title": "AI-Enhanced Video Editing & Creative Media Production"
+  },
+  {
+    "index": 6,
+    "id": "no-code-ai-agent-custom-chatbot-architecture",
+    "cat": "ai",
+    "title": "No-Code AI Agent & Custom Chatbot Architecture"
+  },
+  {
+    "index": 7,
+    "id": "ai-productivity-hacks-for-microsoft-office-google-workspace",
+    "cat": "ai",
+    "title": "AI Productivity Hacks for Microsoft Office & Google Workspace"
+  },
+  {
+    "index": 8,
+    "id": "using-midjourney-dall-e-for-commercial-graphic-design",
+    "cat": "ai",
+    "title": "Using Midjourney & DALL-E for Commercial Graphic Design"
+  },
+  {
+    "index": 9,
+    "id": "ai-for-human-resource-operations-talent-sourcing",
+    "cat": "ai",
+    "title": "AI for Human Resource Operations & Talent Sourcing"
+  },
+  {
+    "index": 10,
+    "id": "financial-analysis-budgeting-using-ai-assistance",
+    "cat": "ai",
+    "title": "Financial Analysis & Budgeting Using AI Assistance"
+  },
+  {
+    "index": 11,
+    "id": "ai-powered-sales-scraping-cold-email-automation",
+    "cat": "ai",
+    "title": "AI-Powered Sales Scraping & Cold Email Automation"
+  },
+  {
+    "index": 12,
+    "id": "using-ai-for-supply-chain-optimization-inventory-planning",
+    "cat": "ai",
+    "title": "Using AI for Supply Chain Optimization & Inventory Planning"
+  },
+  {
+    "index": 13,
+    "id": "ai-coding-assistants-github-copilot-for-rapid-development",
+    "cat": "ai",
+    "title": "AI Coding Assistants (GitHub Copilot) for Rapid Development"
+  },
+  {
+    "index": 14,
+    "id": "customer-support-automation-using-ai-helpdesk-tools",
+    "cat": "ai",
+    "title": "Customer Support Automation Using AI Helpdesk Tools"
+  },
+  {
+    "index": 15,
+    "id": "ai-prompt-engineering-for-legal-compliance-documentation",
+    "cat": "ai",
+    "title": "AI Prompt Engineering for Legal & Compliance Documentation"
+  },
+  {
+    "index": 16,
+    "id": "construction-project-scheduling-basic-estimation",
+    "cat": "engineering",
+    "title": "Construction Project Scheduling & Basic Estimation"
+  },
+  {
+    "index": 17,
+    "id": "construction-cost-estimation-quantity-surveying-basics",
+    "cat": "site",
+    "title": "Construction Cost Estimation & Quantity Surveying Basics"
+  },
+  {
+    "index": 18,
+    "id": "contract-administration-procurement-in-construction",
+    "cat": "management",
+    "title": "Contract Administration & Procurement in Construction"
+  },
+  {
+    "index": 19,
+    "id": "construction-bill-checking-contractor-invoice-verification",
+    "cat": "management",
+    "title": "Construction Bill Checking & Contractor Invoice Verification"
+  },
+  {
+    "index": 20,
+    "id": "rate-analysis-construction-material-price-forecasting",
+    "cat": "engineering",
+    "title": "Rate Analysis & Construction Material Price Forecasting"
+  },
+  {
+    "index": 21,
+    "id": "construction-risk-assessment-hazard-mitigation-strategies",
+    "cat": "management",
+    "title": "Construction Risk Assessment & Hazard Mitigation Strategies"
+  },
+  {
+    "index": 22,
+    "id": "tendering-bidding-commercial-bid-evaluation-frameworks",
+    "cat": "management",
+    "title": "Tendering, Bidding & Commercial Bid Evaluation Frameworks"
+  },
+  {
+    "index": 23,
+    "id": "real-estate-project-cost-control-budget-management",
+    "cat": "business",
+    "title": "Real Estate Project Cost Control & Budget Management"
+  },
+  {
+    "index": 24,
+    "id": "construction-claim-management-dispute-resolution-prep",
+    "cat": "ai",
+    "title": "Construction Claim Management & Dispute Resolution Prep"
+  },
+  {
+    "index": 25,
+    "id": "agile-frameworks-scrum-for-construction-management",
+    "cat": "management",
+    "title": "Agile Frameworks & Scrum for Construction Management"
+  },
+  {
+    "index": 26,
+    "id": "subcontractor-management-site-logistics-mastery",
+    "cat": "management",
+    "title": "Subcontractor Management & Site Logistics Mastery"
+  },
+  {
+    "index": 27,
+    "id": "construction-micro-scheduling-daily-work-progress-tracking",
+    "cat": "ai",
+    "title": "Construction Micro-Scheduling & Daily Work Progress Tracking"
+  },
+  {
+    "index": 28,
+    "id": "cash-flow-management-capital-allocation-for-builders",
+    "cat": "business",
+    "title": "Cash Flow Management & Capital Allocation for Builders"
+  },
+  {
+    "index": 29,
+    "id": "construction-site-operations-supervisor-foundations",
+    "cat": "site",
+    "title": "Construction Site Operations & Supervisor Foundations"
+  },
+  {
+    "index": 30,
+    "id": "heavy-equipment-fleet-management-operations",
+    "cat": "site",
+    "title": "Heavy Equipment Fleet Management Operations"
+  },
+  {
+    "index": 31,
+    "id": "construction-quality-control-site-inspection-frameworks",
+    "cat": "site",
+    "title": "Construction Quality Control & Site Inspection Frameworks"
+  },
+  {
+    "index": 32,
+    "id": "site-layout-land-surveying-tools-levelling-operations",
+    "cat": "site",
+    "title": "Site Layout, Land Surveying Tools & Levelling Operations"
+  },
+  {
+    "index": 33,
+    "id": "construction-material-storage-waste-reduction-storekeeping",
+    "cat": "engineering",
+    "title": "Construction Material Storage, Waste Reduction & Storekeeping"
+  },
+  {
+    "index": 34,
+    "id": "excavation-shoring-deep-foundation-site-coordination",
+    "cat": "site",
+    "title": "Excavation, Shoring & Deep Foundation Site Coordination"
+  },
+  {
+    "index": 35,
+    "id": "scaffolding-safety-erection-control-high-rise-access-planning",
+    "cat": "site",
+    "title": "Scaffolding Safety, Erection Control & High-Rise Access Planning"
+  },
+  {
+    "index": 36,
+    "id": "construction-site-water-management-dewatering-systems",
+    "cat": "site",
+    "title": "Construction Site Water Management & Dewatering Systems"
+  },
+  {
+    "index": 37,
+    "id": "demolition-planning-structural-dismantling-salvage-management",
+    "cat": "site",
+    "title": "Demolition Planning, Structural Dismantling & Salvage Management"
+  },
+  {
+    "index": 38,
+    "id": "labour-productivity-management-on-site-performance-tracking",
+    "cat": "site",
+    "title": "Labour Productivity Management & On-Site Performance Tracking"
+  },
+  {
+    "index": 39,
+    "id": "temporary-structures-site-infrastructure-layout-planning",
+    "cat": "site",
+    "title": "Temporary Structures & Site Infrastructure Layout Planning"
+  },
+  {
+    "index": 40,
+    "id": "construction-site-utilities-temporary-power-water-setup",
+    "cat": "site",
+    "title": "Construction Site Utilities & Temporary Power/Water Setup"
+  },
+  {
+    "index": 41,
+    "id": "bim-building-information-modeling-software-coordination",
+    "cat": "bim",
+    "title": "BIM (Building Information Modeling) Software Coordination"
+  },
+  {
+    "index": 42,
+    "id": "advanced-blueprint-architectural-drawing-interpretation",
+    "cat": "bim",
+    "title": "Advanced Blueprint & Architectural Drawing Interpretation"
+  },
+  {
+    "index": 43,
+    "id": "pre-engineered-building-peb-design-and-assembly-principles",
+    "cat": "engineering",
+    "title": "Pre-Engineered Building (PEB) Design and Assembly Principles"
+  },
+  {
+    "index": 44,
+    "id": "structural-drawing-verification-for-site-engineers",
+    "cat": "bim",
+    "title": "Structural Drawing Verification for Site Engineers"
+  },
+  {
+    "index": 45,
+    "id": "mep-mechanical-electrical-plumbing-drawing-coordination",
+    "cat": "bim",
+    "title": "MEP (Mechanical, Electrical, Plumbing) Drawing Coordination"
+  },
+  {
+    "index": 46,
+    "id": "as-built-drawing-documentation-handover-report-drafting",
+    "cat": "bim",
+    "title": "As-Built Drawing Documentation & Handover Report Drafting"
+  },
+  {
+    "index": 47,
+    "id": "construction-standard-operating-procedure-sop-writing",
+    "cat": "engineering",
+    "title": "Construction Standard Operating Procedure (SOP) Writing"
+  },
+  {
+    "index": 48,
+    "id": "digital-document-control-daily-progress-report-dpr-systems",
+    "cat": "ai",
+    "title": "Digital Document Control & Daily Progress Report (DPR) Systems"
+  },
+  {
+    "index": 49,
+    "id": "using-excel-for-construction-bar-bending-schedules-bbs",
+    "cat": "management",
+    "title": "Using Excel for Construction Bar Bending Schedules (BBS)"
+  },
+  {
+    "index": 50,
+    "id": "revit-architecture-foundations-for-project-managers",
+    "cat": "bim",
+    "title": "Revit Architecture Foundations for Project Managers"
+  },
+  {
+    "index": 51,
+    "id": "autocad-basics-for-construction-site-supervisors",
+    "cat": "bim",
+    "title": "AutoCAD Basics for Construction Site Supervisors"
+  },
+  {
+    "index": 52,
+    "id": "concrete-technology-modern-formwork-applications",
+    "cat": "engineering",
+    "title": "Concrete Technology & Modern Formwork Applications"
+  },
+  {
+    "index": 53,
+    "id": "interior-fit-out-commercial-finishing-project-coordination",
+    "cat": "engineering",
+    "title": "Interior Fit-Out & Commercial Finishing Project Coordination"
+  },
+  {
+    "index": 54,
+    "id": "sustainable-building-materials-green-construction-intro",
+    "cat": "ai",
+    "title": "Sustainable Building Materials & Green Construction Intro"
+  },
+  {
+    "index": 55,
+    "id": "residential-property-development-foundations",
+    "cat": "business",
+    "title": "Residential Property Development Foundations"
+  },
+  {
+    "index": 56,
+    "id": "waterproofing-technology-materials-selection-application",
+    "cat": "engineering",
+    "title": "Waterproofing Technology: Materials, Selection & Application"
+  },
+  {
+    "index": 57,
+    "id": "advanced-flooring-systems-tiling-project-inspection",
+    "cat": "site",
+    "title": "Advanced Flooring Systems & Tiling Project Inspection"
+  },
+  {
+    "index": 58,
+    "id": "fa-ade-engineering-commercial-glazing-installation-systems",
+    "cat": "engineering",
+    "title": "Façade Engineering & Commercial Glazing Installation Systems"
+  },
+  {
+    "index": 59,
+    "id": "precast-concrete-elements-manufacturing-erection-control",
+    "cat": "engineering",
+    "title": "Precast Concrete Elements: Manufacturing & Erection Control"
+  },
+  {
+    "index": 60,
+    "id": "drywall-partitioning-acoustic-insulation-project-coordination",
+    "cat": "engineering",
+    "title": "Drywall Partitioning & Acoustic Insulation Project Coordination"
+  },
+  {
+    "index": 61,
+    "id": "road-pavement-construction-materials-field-execution",
+    "cat": "engineering",
+    "title": "Road & Pavement Construction Materials & Field Execution"
+  },
+  {
+    "index": 62,
+    "id": "building-structural-repair-retrofitting-rehabilitation-basics",
+    "cat": "ai",
+    "title": "Building Structural Repair, Retrofitting & Rehabilitation Basics"
+  },
+  {
+    "index": 63,
+    "id": "landscape-construction-engineering-external-site-works",
+    "cat": "site",
+    "title": "Landscape Construction Engineering & External Site Works"
+  },
+  {
+    "index": 64,
+    "id": "smart-home-automation-iot-hardware-site-integration",
+    "cat": "site",
+    "title": "Smart Home Automation & IoT Hardware Site Integration"
+  },
+  {
+    "index": 65,
+    "id": "modular-kitchen-wardrobe-joinery-project-management",
+    "cat": "engineering",
+    "title": "Modular Kitchen & Wardrobe Joinery Project Management"
+  },
+  {
+    "index": 66,
+    "id": "advanced-microsoft-excel-data-dashboarding-for-operations",
+    "cat": "engineering",
+    "title": "Advanced Microsoft Excel & Data Dashboarding for Operations"
+  },
+  {
+    "index": 67,
+    "id": "supply-chain-logistics-warehouse-inventory-management",
+    "cat": "ai",
+    "title": "Supply Chain Logistics & Warehouse Inventory Management"
+  },
+  {
+    "index": 68,
+    "id": "vendor-management-strategic-procurement-operations",
+    "cat": "business",
+    "title": "Vendor Management & Strategic Procurement Operations"
+  },
+  {
+    "index": 69,
+    "id": "agile-frameworks-scrum-basics-for-non-tech-operations",
+    "cat": "management",
+    "title": "Agile Frameworks & Scrum Basics for Non-Tech Operations"
+  },
+  {
+    "index": 70,
+    "id": "business-process-mapping-workflow-optimization-blueprint",
+    "cat": "bim",
+    "title": "Business Process Mapping & Workflow Optimization Blueprint"
+  },
+  {
+    "index": 71,
+    "id": "lean-six-sigma-foundations-for-operational-excellence",
+    "cat": "engineering",
+    "title": "Lean Six Sigma Foundations for Operational Excellence"
+  },
+  {
+    "index": 72,
+    "id": "customer-success-operations-account-retention-strategies",
+    "cat": "engineering",
+    "title": "Customer Success Operations & Account Retention Strategies"
+  },
+  {
+    "index": 73,
+    "id": "key-account-management-client-relations-frameworks",
+    "cat": "engineering",
+    "title": "Key Account Management & Client Relations Frameworks"
+  },
+  {
+    "index": 74,
+    "id": "project-management-essentials-for-operational-teams",
+    "cat": "engineering",
+    "title": "Project Management Essentials for Operational Teams"
+  },
+  {
+    "index": 75,
+    "id": "enterprise-resource-planning-erp-software-navigation-basics",
+    "cat": "engineering",
+    "title": "Enterprise Resource Planning (ERP) Software Navigation Basics"
+  },
+  {
+    "index": 76,
+    "id": "data-analytics-for-operations-using-powerbi-and-tableau",
+    "cat": "engineering",
+    "title": "Data Analytics for Operations Using PowerBI and Tableau"
+  },
+  {
+    "index": 77,
+    "id": "quality-assurance-qa-and-process-control-frameworks",
+    "cat": "engineering",
+    "title": "Quality Assurance (QA) and Process Control Frameworks"
+  },
+  {
+    "index": 78,
+    "id": "change-management-frameworks-for-operational-restructuring",
+    "cat": "engineering",
+    "title": "Change Management Frameworks for Operational Restructuring"
+  },
+  {
+    "index": 79,
+    "id": "business-continuity-planning-disaster-recovery-workflows",
+    "cat": "engineering",
+    "title": "Business Continuity Planning & Disaster Recovery Workflows"
+  },
+  {
+    "index": 80,
+    "id": "cross-border-trade-logistics-custom-clearance-operations",
+    "cat": "engineering",
+    "title": "Cross-Border Trade Logistics & Custom Clearance Operations"
+  },
+  {
+    "index": 81,
+    "id": "corporate-retail-operations-store-management-systems",
+    "cat": "ai",
+    "title": "Corporate Retail Operations & Store Management Systems"
+  },
+  {
+    "index": 82,
+    "id": "b2b-service-operations-management-client-sla-tracking",
+    "cat": "engineering",
+    "title": "B2B Service Operations Management & Client SLA Tracking"
+  },
+  {
+    "index": 83,
+    "id": "digital-product-operations-lifecycle-coordination",
+    "cat": "engineering",
+    "title": "Digital Product Operations & Lifecycle Coordination"
+  },
+  {
+    "index": 84,
+    "id": "e-commerce-operations-supply-chain-fulfillment-tactics",
+    "cat": "ai",
+    "title": "E-Commerce Operations & Supply Chain Fulfillment Tactics"
+  },
+  {
+    "index": 85,
+    "id": "risk-mitigation-internal-control-audit-for-operations-managers",
+    "cat": "management",
+    "title": "Risk Mitigation & Internal Control Audit for Operations Managers"
+  },
+  {
+    "index": 86,
+    "id": "strategic-facility-optimization-resource-budgeting",
+    "cat": "business",
+    "title": "Strategic Facility Optimization & Resource Budgeting"
+  },
+  {
+    "index": 87,
+    "id": "root-cause-analysis-operational-bottleneck-troubleshooting",
+    "cat": "engineering",
+    "title": "Root-Cause Analysis & Operational Bottleneck Troubleshooting"
+  },
+  {
+    "index": 88,
+    "id": "operational-dashboard-design-performance-kpi-mapping",
+    "cat": "engineering",
+    "title": "Operational Dashboard Design & Performance KPI Mapping"
+  },
+  {
+    "index": 89,
+    "id": "b2b-client-onboarding-service-delivery-workflows",
+    "cat": "engineering",
+    "title": "B2B Client Onboarding & Service Delivery Workflows"
+  },
+  {
+    "index": 90,
+    "id": "fleet-logistics-optimization-last-mile-delivery-planning",
+    "cat": "engineering",
+    "title": "Fleet Logistics Optimization & Last-Mile Delivery Planning"
+  },
+  {
+    "index": 91,
+    "id": "corporate-standard-operating-procedure-sop-deployment",
+    "cat": "engineering",
+    "title": "Corporate Standard Operating Procedure (SOP) Deployment"
+  },
+  {
+    "index": 92,
+    "id": "incident-management-operational-escalation-engineering",
+    "cat": "engineering",
+    "title": "Incident Management & Operational Escalation Engineering"
+  },
+  {
+    "index": 93,
+    "id": "agile-scaling-frameworks-for-cross-departmental-work",
+    "cat": "management",
+    "title": "Agile Scaling Frameworks for Cross-Departmental Work"
+  },
+  {
+    "index": 94,
+    "id": "third-party-logistics-3pl-vendor-performance-auditing",
+    "cat": "engineering",
+    "title": "Third-Party Logistics (3PL) & Vendor Performance Auditing"
+  },
+  {
+    "index": 95,
+    "id": "enterprise-assets-inventory-valuation-methodologies",
+    "cat": "engineering",
+    "title": "Enterprise Assets & Inventory Valuation Methodologies"
+  },
+  {
+    "index": 96,
+    "id": "predictive-capacity-planning-workforce-operations",
+    "cat": "engineering",
+    "title": "Predictive Capacity Planning & Workforce Operations"
+  },
+  {
+    "index": 97,
+    "id": "green-supply-chain-carbon-neutral-operations-basics",
+    "cat": "ai",
+    "title": "Green Supply Chain & Carbon-Neutral Operations Basics"
+  },
+  {
+    "index": 98,
+    "id": "corporate-relocation-logistics-infrastructure-set-up",
+    "cat": "engineering",
+    "title": "Corporate Relocation Logistics & Infrastructure Set Up"
+  },
+  {
+    "index": 99,
+    "id": "digital-workspace-optimization-automation-for-admin-teams",
+    "cat": "engineering",
+    "title": "Digital Workspace Optimization: Automation for Admin Teams"
+  },
+  {
+    "index": 100,
+    "id": "crisis-operations-management-business-stabilization",
+    "cat": "engineering",
+    "title": "Crisis Operations Management & Business Stabilization"
+  },
+  {
+    "index": 101,
+    "id": "problemsolvingcertification",
+    "cat": "engineering",
+    "title": "Problem Solving Certification"
+  }
+]

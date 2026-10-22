@@ -1,0 +1,420 @@
+/* ==========================================================================
+   Live 3D Realistic Boy Climbing Character & Continuous Rope on Scroll
+   - Single unbroken continuous climbing rope (100% connected with character)
+   - Lifelike blinking, breathing, dynamic rappel lean
+   - Positioned on the LEFT side of syllabus with right-facing speech bubbles
+   ========================================================================== */
+
+.live-rope-boy-container {
+  position: fixed;
+  top: 0;
+  left: max(20px, calc((100vw - 1320px) / 2 - 180px));
+  width: 200px;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  overflow: visible;
+}
+
+.live-rope-boy-container.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Metallic Mounting Anchor Plate at Top (Center at X = 108px) */
+.rope-boy-anchor-plate {
+  position: absolute;
+  top: 0;
+  left: 94px;
+  width: 28px;
+  height: 38px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+}
+
+.rope-boy-anchor-bracket {
+  width: 28px;
+  height: 14px;
+  background: linear-gradient(180deg, #94a3b8 0%, #475569 50%, #1e293b 100%);
+  border-radius: 4px 4px 2px 2px;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.45), 0 2px 5px rgba(0, 0, 0, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 4px;
+  box-sizing: border-box;
+}
+
+.rope-boy-anchor-bolt {
+  width: 4px;
+  height: 4px;
+  background: #cbd5e1;
+  border-radius: 50%;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.55);
+}
+
+.rope-boy-anchor-carabiner {
+  width: 14px;
+  height: 22px;
+  border: 3.5px solid #d97706; /* Mountaineering alloy carabiner */
+  border-radius: 7px;
+  margin-top: -3px;
+  background: transparent;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.6), 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Continuous Unbroken Live SVG Rope */
+.live-rope-boy-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 5; /* Positioned behind character so hands naturally grip in front */
+}
+
+/* Character Carriage that Slides on the Rope */
+/* Positioned at left: 11.5px so boy's hand (x=53.7% of 180px = 96.6px) aligns EXACTLY to 108px */
+.rope-boy-carriage {
+  position: absolute;
+  top: 0;
+  left: 11.5px;
+  width: 180px;
+  height: 180px;
+  pointer-events: auto;
+  cursor: grab;
+  /* Transform origin centered EXACTLY at his hand gripping the rope */
+  transform-origin: 53.7% 13.7%;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  z-index: 10;
+}
+
+.rope-boy-carriage:active {
+  cursor: grabbing;
+}
+
+/* Lifelike Organic Breathing Animator */
+.boy-body-animator {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: boyBreathe 3.4s ease-in-out infinite;
+  transform-origin: 53.7% 13.7%;
+}
+
+@keyframes boyBreathe {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.018, 1.025) translateY(-2px);
+  }
+}
+
+/* 3D Realistic Character Avatar Image with Drop Shadow */
+.rope-boy-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 28px rgba(15, 23, 42, 0.28)) drop-shadow(0 4px 10px rgba(15, 23, 42, 0.15));
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.25s ease;
+  pointer-events: none;
+  position: relative;
+  z-index: 8;
+  display: block;
+}
+
+.rope-boy-carriage:hover .rope-boy-avatar {
+  transform: scale(1.05);
+  filter: drop-shadow(0 18px 36px rgba(234, 88, 12, 0.35)) drop-shadow(0 6px 14px rgba(15, 23, 42, 0.2));
+}
+
+/* Lifelike Animated Eyelids (Natural Human Blinking) */
+.boy-character-eye {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 12;
+  overflow: hidden;
+}
+
+.boy-character-eye.eye-left {
+  left: 36.8%;
+  top: 18.6%;
+  width: 5.0%;
+  height: 3.4%;
+  transform: rotate(-3deg);
+}
+
+.boy-character-eye.eye-right {
+  left: 42.4%;
+  top: 19.2%;
+  width: 4.8%;
+  height: 3.4%;
+  transform: rotate(2deg);
+}
+
+.boy-eyelid {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #9a5b3a 0%, #b8754e 65%, #422211 100%);
+  border-radius: 50% 50% 20% 20%;
+  transform: translateY(-100%);
+  transition: transform 0.08s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0 -1.5px 1.5px rgba(0, 0, 0, 0.6);
+}
+
+.boy-eyelid.is-closed {
+  transform: translateY(0%);
+}
+
+/* Dynamic Interactive Speech Bubble (Points RIGHT toward Syllabus) */
+.rope-boy-speech-bubble {
+  position: absolute;
+  left: 175px; /* Positioned to the right of the character, facing syllabus content */
+  top: 25px;
+  min-width: 180px;
+  max-width: 250px;
+  background: #ffffff;
+  border: 1.5px solid rgba(226, 232, 240, 0.95);
+  border-radius: 16px;
+  padding: 10px 14px;
+  box-shadow: 0 12px 30px -4px rgba(15, 23, 42, 0.14), 0 4px 12px rgba(15, 23, 42, 0.06);
+  opacity: 0;
+  transform: translateX(-12px) scale(0.9);
+  pointer-events: auto;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+  z-index: 25;
+}
+
+.rope-boy-speech-bubble.is-active {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+/* Pointer arrow pointing LEFT toward the character */
+.rope-boy-speech-bubble::after {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-right: 8px solid #ffffff;
+  filter: drop-shadow(-2px 0 1px rgba(226, 232, 240, 0.8));
+}
+
+.boy-bubble-avatar-badge {
+  font-size: 20px;
+  flex-shrink: 0;
+  animation: boyBadgeBounce 2s ease-in-out infinite;
+}
+
+@keyframes boyBadgeBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px) scale(1.08); }
+}
+
+.boy-bubble-text-content {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* Speed Wind Streaks */
+.boy-speed-wind-streak {
+  position: absolute;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(217, 119, 6, 0.6) 50%, rgba(255, 255, 255, 0) 100%);
+  width: 2px;
+  border-radius: 2px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 6;
+}
+
+.boy-speed-wind-streak.streak-1 {
+  left: 20px;
+  top: -20px;
+  height: 45px;
+}
+.boy-speed-wind-streak.streak-2 {
+  right: 25px;
+  top: 10px;
+  height: 55px;
+}
+.boy-speed-wind-streak.streak-3 {
+  left: 45px;
+  bottom: -15px;
+  height: 40px;
+}
+
+.rope-boy-carriage.is-fast-sliding .boy-speed-wind-streak {
+  opacity: 1;
+  animation: boyWindFlicker 0.25s linear infinite;
+}
+
+@keyframes boyWindFlicker {
+  0% { transform: translateY(-5px); opacity: 0.8; }
+  50% { transform: translateY(5px); opacity: 0.3; }
+  100% { transform: translateY(-5px); opacity: 0.8; }
+}
+
+/* Back to Top Mini Button */
+.rope-boy-back-to-top-btn {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: #ea580c;
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  padding: 4px 11px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.35);
+  opacity: 0;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.rope-boy-carriage:hover .rope-boy-back-to-top-btn {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.rope-boy-back-to-top-btn:hover {
+  background: #c2410c;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+/* Bottom Safety Knot on the Rope (Center at X = 108px) */
+.rope-boy-bottom-knot {
+  position: absolute;
+  bottom: 15px;
+  left: 101px;
+  width: 14px;
+  height: 22px;
+  background: linear-gradient(135deg, #b45309 0%, #451a03 100%);
+  border-radius: 7px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Visual Anchor Bracket on Syllabus Navigation */
+.syllabus-rope-anchor {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 8px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  color: #ea580c;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  filter: drop-shadow(0 2px 5px rgba(234, 88, 12, 0.12));
+}
+
+.syllabus-rope-anchor:hover {
+  background: #ffedd5;
+  transform: translateY(-1px);
+}
+
+.syllabus-rope-anchor .anchor-ring {
+  width: 10px;
+  height: 10px;
+  border: 2px solid #ea580c;
+  border-radius: 50%;
+  display: inline-block;
+  animation: anchorPulse 2s ease-in-out infinite;
+}
+
+@keyframes anchorPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Responsiveness */
+@media (max-width: 1400px) {
+  .live-rope-boy-container {
+    left: 8px;
+    width: 160px;
+  }
+  .rope-boy-anchor-plate {
+    left: 74px; /* Center at 88px */
+  }
+  .rope-boy-carriage {
+    width: 150px;
+    height: 150px;
+    left: 7.5px; /* 7.5 + (150 * 0.537) = 88px! */
+    transform-origin: 53.7% 13.7%;
+  }
+  .rope-boy-bottom-knot {
+    left: 81px; /* Center at 88px */
+  }
+  .rope-boy-speech-bubble {
+    left: 145px;
+    min-width: 160px;
+    font-size: 11.5px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .live-rope-boy-container {
+    left: 2px;
+    width: 130px;
+  }
+  .rope-boy-anchor-plate {
+    left: 56px; /* Center at 70px */
+  }
+  .rope-boy-carriage {
+    width: 120px;
+    height: 120px;
+    left: 5.5px; /* 5.5 + (120 * 0.537) = 70px! */
+    transform-origin: 53.7% 13.7%;
+  }
+  .rope-boy-bottom-knot {
+    left: 63px; /* Center at 70px */
+  }
+  .rope-boy-speech-bubble {
+    display: none; /* Keep mobile view clean */
+  }
+}
+
+@media (max-width: 768px) {
+  .live-rope-boy-container {
+    left: -10px;
+    transform: scale(0.85);
+    transform-origin: top left;
+  }
+}

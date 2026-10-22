@@ -159,60 +159,182 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 4. Interactive Courses Split Showcase
+  // 4. Interactive Courses Split Showcase: Smart Stacking Cards & Smooth Scroll Sync
+  const coursesSection = document.getElementById('courses');
   const courseNavItems = document.querySelectorAll('.course-nav-item');
   const courseCards = document.querySelectorAll('.course-detail-card');
+  const contentColumn = document.querySelector('.courses-content-column');
+  const navColumn = document.querySelector('.courses-nav-column');
 
-  courseNavItems.forEach((item) => {
-    item.addEventListener('click', () => {
-      const targetId = item.getAttribute('data-target');
-      
-      // Update nav states
-      courseNavItems.forEach(n => n.classList.remove('active'));
-      item.classList.add('active');
+  if (coursesSection && courseNavItems.length > 0 && courseCards.length > 0) {
+    let isProgrammaticScroll = false;
+    let programmaticScrollTimer = null;
+    let currentActiveIndex = 0;
 
-      // Scroll to target card smoothly
-      const targetCard = document.getElementById(targetId);
-      if (targetCard) {
-        const offset = 120;
-        const bodyRect = document.body.getBoundingClientRect().top;
-        const elementRect = targetCard.getBoundingClientRect().top;
-        const elementPosition = elementRect - bodyRect;
-        const offsetPosition = elementPosition - offset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
+    // Helper: calculate sticky top offset dynamically based on viewport / header
+    const getStickyTopConfig = () => {
+      const isMobile = window.innerWidth < 992;
+      const isShortScreen = window.innerHeight <= 740;
+      if (isShortScreen) {
+        return {
+          baseTop: 68,
+          stepOffset: 4
+        };
       }
-    });
-  });
+      return {
+        baseTop: isMobile ? 80 : 76,
+        stepOffset: isMobile ? 4 : 6
+      };
+    };
 
-  // Highlight nav item as cards scroll into view
-  window.addEventListener('scroll', () => {
-    if (courseCards.length === 0) return;
-
-    let currentCardId = '';
-    const scrollMiddle = window.scrollY + window.innerHeight / 2;
-
-    courseCards.forEach(card => {
-      const cardTop = card.offsetTop;
-      const cardHeight = card.offsetHeight;
-      if (scrollMiddle >= cardTop && scrollMiddle <= cardTop + cardHeight) {
-        currentCardId = card.getAttribute('id');
+    // Helper: activate nav item & ensure it's visible (auto-scroll on mobile chips)
+    const setActiveNav = (index) => {
+      if (index === currentActiveIndex && courseNavItems[index].classList.contains('active')) {
+        return;
       }
-    });
+      currentActiveIndex = index;
+      courseNavItems.forEach((nav, idx) => {
+        const isActive = idx === index;
+        nav.classList.toggle('active', isActive);
+        nav.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
 
-    if (currentCardId) {
-      courseNavItems.forEach(nav => {
-        if (nav.getAttribute('data-target') === currentCardId) {
-          nav.classList.add('active');
-        } else {
-          nav.classList.remove('active');
+      // Auto-scroll horizontal pill bar on mobile so active chip is centered in view
+      if (window.innerWidth < 992 && navColumn) {
+        const activeNav = courseNavItems[index];
+        if (activeNav) {
+          const navLeft = activeNav.offsetLeft;
+          const navWidth = activeNav.offsetWidth;
+          const containerWidth = navColumn.offsetWidth;
+          navColumn.scrollTo({
+            left: navLeft - (containerWidth / 2) + (navWidth / 2),
+            behavior: 'smooth'
+          });
+        }
+      }
+    };
+
+    // Helper: update card depth, transforms & stacking states on scroll
+    const updateCardStack = () => {
+      const { baseTop, stepOffset } = getStickyTopConfig();
+      let activeIndex = 0;
+
+      // Find currently active / topmost stacked card based on staggered tops
+      courseCards.forEach((card, idx) => {
+        const rect = card.getBoundingClientRect();
+        const cardTargetTop = baseTop + (idx * stepOffset);
+        if (rect.top <= cardTargetTop + 15) {
+          activeIndex = idx;
         }
       });
-    }
-  });
+
+      // Synchronize left navigation (unless user clicked and programmatic flight is active)
+      if (!isProgrammaticScroll) {
+        setActiveNav(activeIndex);
+      }
+
+      // Calculate continuous depth, scaling, and stacking states for realistic card deck
+      courseCards.forEach((card, idx) => {
+        card.classList.toggle('active', idx === activeIndex);
+        card.classList.toggle('is-stacked', idx >= 1 && idx <= activeIndex);
+
+        if (idx < activeIndex) {
+          // Cards buried underneath the current active card
+          const depth = activeIndex - idx;
+          const scale = Math.max(0.92, 1 - (depth * 0.02));
+          const brightness = Math.max(0.78, 1 - (depth * 0.06));
+
+          card.style.transform = `scale(${scale})`;
+          card.style.filter = `brightness(${brightness})`;
+          card.style.cursor = 'pointer';
+        } else {
+          // Active card or cards below that haven't reached the stack yet
+          card.style.transform = 'scale(1)';
+          card.style.filter = 'brightness(1)';
+          card.style.cursor = 'default';
+        }
+      });
+    };
+
+    // High performance scroll listener with requestAnimationFrame
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateCardStack();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+
+    // Smooth scroll to card when user clicks or presses Enter on nav item
+    const scrollToCard = (index) => {
+      if (index < 0 || index >= courseCards.length) return;
+
+      const { baseTop, stepOffset } = getStickyTopConfig();
+      const cardTargetTop = baseTop + (index * stepOffset);
+      const targetCard = courseCards[index];
+
+      // Instant nav activation for immediate visual feedback
+      isProgrammaticScroll = true;
+      setActiveNav(index);
+
+      if (programmaticScrollTimer) {
+        clearTimeout(programmaticScrollTimer);
+      }
+
+      // Calculate exact document scroll position where targetCard reaches cardTargetTop
+      const contentDocTop = contentColumn.getBoundingClientRect().top + window.scrollY;
+      const targetScrollY = contentDocTop + targetCard.offsetTop - cardTargetTop;
+
+      window.scrollTo({
+        top: Math.max(0, targetScrollY),
+        behavior: 'smooth'
+      });
+
+      // Release programmatic flag once smooth scroll settles
+      programmaticScrollTimer = setTimeout(() => {
+        isProgrammaticScroll = false;
+        updateCardStack();
+      }, 750);
+    };
+
+    // Attach click and keyboard events to nav items
+    courseNavItems.forEach((item, idx) => {
+      item.setAttribute('role', 'button');
+      item.setAttribute('tabindex', '0');
+
+      item.addEventListener('click', () => {
+        scrollToCard(idx);
+      });
+
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          scrollToCard(idx);
+        }
+      });
+    });
+
+    // Allow clicking peeking buried cards in the stack to unstack & jump back to that card
+    courseCards.forEach((card, idx) => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a') || e.target.closest('button')) {
+          return;
+        }
+        if (idx < currentActiveIndex) {
+          scrollToCard(idx);
+        }
+      });
+    });
+
+    // Initial run on page load
+    updateCardStack();
+  }
 
   // 5. Testimonials Slider
   const track = document.querySelector('.testimonials-track');
@@ -368,190 +490,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 11. Interactive Policy Modal & Hub (From PMI Website)
-  const policyLinks = document.querySelectorAll('.policy-link-item');
-  const isPoliciesPage = window.location.pathname.endsWith('policies.html');
-
-  if (!isPoliciesPage && policyLinks.length > 0) {
-    const modalHtml = `
-      <div class="policy-modal-overlay" id="policyModalOverlay" role="dialog" aria-modal="true" aria-labelledby="policyModalTitle">
-        <div class="policy-modal-card">
-          <div class="policy-modal-header">
-            <div class="modal-header-info">
-              <div class="modal-icon-badge">
-                <i class="fa-solid fa-scale-balanced" id="policyModalIcon"></i>
-              </div>
-              <div class="modal-header-text">
-                <h3 id="policyModalTitle">PMIUSA Policy Framework</h3>
-                <p id="policyModalSubtitle">Institutional Governance & Compliance</p>
-              </div>
-            </div>
-            <div class="modal-header-actions">
-              <a href="policies.html" class="modal-btn-action" id="policyFullPageBtn" title="Open full legal document in new tab">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                <span>Full Page</span>
-              </a>
-              <button type="button" class="modal-close-btn" id="policyModalCloseBtn" aria-label="Close policy modal">
-                <i class="fa-solid fa-xmark"></i>
-              </button>
-            </div>
-          </div>
-
-          <div class="modal-tabs-bar" role="tablist">
-            <button type="button" class="modal-tab-btn" data-policy="terms">
-              <i class="fa-solid fa-file-contract"></i> Terms &amp; Conditions
-            </button>
-            <button type="button" class="modal-tab-btn" data-policy="privacy">
-              <i class="fa-solid fa-shield-halved"></i> Privacy Policy
-            </button>
-            <button type="button" class="modal-tab-btn" data-policy="delivery">
-              <i class="fa-solid fa-truck-ramp-box"></i> Service Delivery
-            </button>
-            <button type="button" class="modal-tab-btn" data-policy="refund">
-              <i class="fa-solid fa-rotate-left"></i> Refund Policy
-            </button>
-          </div>
-
-          <div class="policy-modal-body">
-            <!-- Terms Tab -->
-            <div class="modal-tab-pane" id="modal-tab-terms">
-              <div style="background:#f0fdfa; border-left:4px solid #00d2c4; padding:14px 18px; border-radius:8px; margin-bottom:20px;">
-                <strong style="color:#0f2942;">Official Enrollment Terms:</strong> Please review these Terms &amp; Conditions carefully before enrolling in our programs. Your enrollment implies legally binding acceptance of all institutional guidelines.
-              </div>
-              <h4 style="font-size:16px; font-weight:700; color:#0f172a; margin:16px 0 8px;"><i class="fa-solid fa-building-columns" style="color:#004aab; margin-right:6px;"></i> 1. Institutional Governance</h4>
-              <p>PMIUSA functions as an educational infrastructure provider delivering enterprise PMO advisory and vocational training pathways asynchronously.</p>
-              <h4 style="font-size:16px; font-weight:700; color:#0f172a; margin:16px 0 8px;"><i class="fa-solid fa-id-card" style="color:#004aab; margin-right:6px;"></i> 2. Mandatory KYC Identification</h4>
-              <p>All candidates must successfully complete Document KYC and Video KYC verification prior to receiving unrestricted examination tokens and official certifications.</p>
-              <h4 style="font-size:16px; font-weight:700; color:#0f172a; margin:16px 0 8px;"><i class="fa-solid fa-copyright" style="color:#004aab; margin-right:6px;"></i> 3. Proprietary Intellectual Property</h4>
-              <p>Curricular blueprints, video masterclasses, and PDF reference manuals are the sole intellectual property of PMIUSA. Unauthorized redistribution is strictly prohibited.</p>
-            </div>
-
-            <!-- Privacy Tab -->
-            <div class="modal-tab-pane" id="modal-tab-privacy">
-              <div style="background:#eff6ff; border-left:4px solid #2563eb; padding:14px 18px; border-radius:8px; margin-bottom:20px;">
-                <strong style="color:#1e3a8a;">Data Security Commitment:</strong> PMIUSA employs bank-grade 256-bit TLS encryption to safeguard student identity records and academic telemetry.
-              </div>
-              <h4 style="font-size:16px; font-weight:700; color:#0f172a; margin:16px 0 8px;"><i class="fa-solid fa-database" style="color:#2563eb; margin-right:6px;"></i> 1. Information Collected</h4>
-              <p>We collect essential identity details, verified contact channels, government KYC credentials, and portal engagement analytics for academic verification.</p>
-              <h4 style="font-size:16px; font-weight:700; color:#0f172a; margin:16px 0 8px;"><i class="fa-solid fa-lock" style="color:#2563eb; margin-right:6px;"></i> 2. Cryptographic Protection</h4>
-              <p>Sensitive KYC documents are encrypted at rest using AES-256 and stored in segregated cloud silos accessible only to authorized compliance officers.</p>
-            </div>
-
-            <!-- Delivery Tab -->
-            <div class="modal-tab-pane" id="modal-tab-delivery">
-              <div style="background:#fefce8; border-left:4px solid #eab308; padding:14px 18px; border-radius:8px; margin-bottom:20px;">
-                <strong style="color:#713f12;">9-Step Service Fulfillment:</strong> All curricular tracks are provisioned within 24 to 48 business hours following fee clearance and KYC authentication.
-              </div>
-              <h4 style="font-size:16px; font-weight:700; color:#0f172a; margin:16px 0 8px;"><i class="fa-solid fa-network-wired" style="color:#ca8a04; margin-right:6px;"></i> Asynchronous Learning Delivery</h4>
-              <p>Students receive instantaneous digital access to our LMS dashboard, downloadable PDF study blueprints, modular video lectures, and online proctored examination portals.</p>
-            </div>
-
-            <!-- Refund Tab -->
-            <div class="modal-tab-pane" id="modal-tab-refund">
-              <div style="background:#fef2f2; border-left:4px solid #ef4444; padding:14px 18px; border-radius:8px; margin-bottom:20px;">
-                <strong style="color:#991b1b;">Finality of Transactions:</strong> All educational registrations and commercial transactions on PMIUSA are strictly <strong>FINAL, NON-CANCELLABLE, AND NON-REFUNDABLE</strong>.
-              </div>
-              <h4 style="font-size:16px; font-weight:700; color:#0f172a; margin:16px 0 8px;"><i class="fa-solid fa-triangle-exclamation" style="color:#dc2626; margin-right:6px;"></i> 1. Instant Fulfillment Waiver</h4>
-              <p>Upon triggering Step 1 (Admission Confirmation) and Step 5 (PDF Study Material Dissemination), digital fulfillment is complete. Enrollees explicitly waive any cooling-off period.</p>
-              <h4 style="font-size:16px; font-weight:700; color:#0f172a; margin:16px 0 8px;"><i class="fa-solid fa-shield-halved" style="color:#dc2626; margin-right:6px;"></i> 2. Chargeback &amp; Dispute Mitigation</h4>
-              <p>Attempted chargebacks or false transaction claims will be legally treated as contract breach. Server log telemetry is submitted directly to banks to deny reversals.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-
-    document.body.insertAdjacentHTML('beforeend', modalHtml);
-
-    const overlay = document.getElementById('policyModalOverlay');
-    const closeBtn = document.getElementById('policyModalCloseBtn');
-    const fullPageBtn = document.getElementById('policyFullPageBtn');
-    const tabBtns = overlay.querySelectorAll('.modal-tab-btn');
-    const panes = overlay.querySelectorAll('.modal-tab-pane');
-    const modalTitle = document.getElementById('policyModalTitle');
-    const modalSubtitle = document.getElementById('policyModalSubtitle');
-    const modalIcon = document.getElementById('policyModalIcon');
-
-    const policyMetadata = {
-      terms: {
-        title: 'Terms & Conditions',
-        subtitle: 'Institutional Governance & Legal Contract',
-        icon: 'fa-file-contract',
-        hash: 'panel-terms'
-      },
-      privacy: {
-        title: 'Privacy Policy',
-        subtitle: 'Comprehensive Data Protection & KYC Security',
-        icon: 'fa-shield-halved',
-        hash: 'panel-privacy'
-      },
-      delivery: {
-        title: 'Service Delivery Policy',
-        subtitle: '9-Step Asynchronous Fulfillment Architecture',
-        icon: 'fa-truck-ramp-box',
-        hash: 'panel-delivery'
-      },
-      refund: {
-        title: 'Service Fulfillment & No-Refund Policy',
-        subtitle: 'Transaction Finality, Waivers & Dispute Mitigation',
-        icon: 'fa-rotate-left',
-        hash: 'panel-refund'
-      }
-    };
-
-    function showPolicyInModal(policyKey) {
-      const meta = policyMetadata[policyKey] || policyMetadata.terms;
-      modalTitle.textContent = meta.title;
-      modalSubtitle.textContent = meta.subtitle;
-      modalIcon.className = 'fa-solid ' + meta.icon;
-      fullPageBtn.href = 'policies.html#' + meta.hash;
-
-      tabBtns.forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-policy') === policyKey);
-      });
-      panes.forEach(pane => {
-        pane.classList.toggle('active', pane.id === 'modal-tab-' + policyKey);
-      });
-
-      overlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closePolicyModal() {
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    policyLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const policyKey = link.getAttribute('data-policy') || 'terms';
-        showPolicyInModal(policyKey);
-      });
-    });
-
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const policyKey = btn.getAttribute('data-policy');
-        showPolicyInModal(policyKey);
-      });
-    });
-
-    if (closeBtn) {
-      closeBtn.addEventListener('click', closePolicyModal);
-    }
-
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) {
-        closePolicyModal();
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && overlay.classList.contains('active')) {
-        closePolicyModal();
-      }
-    });
-  }
-
+  // 11. Standalone Policy Pages Navigation
+  // All policy links navigate directly to separate standalone policy pages (terms-and-conditions.html, privacy-policy.html, service-delivery.html, refund-policy.html).
 });

@@ -13,5 +13,9 @@
     "courses"
   ],
   "author": "PMIUSA",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "pngjs": "^7.0.0",
+    "sharp": "^0.35.5"
+  }
 }
