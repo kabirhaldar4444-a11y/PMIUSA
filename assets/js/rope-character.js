@@ -211,6 +211,14 @@
     let isSectionVisible = false;
 
     function updateTargetProgress() {
+      if (window.innerWidth < 1280) {
+        if (isSectionVisible) {
+          isSectionVisible = false;
+          container.classList.remove('is-visible');
+        }
+        return;
+      }
+
       const scrollY = window.scrollY || window.pageYOffset;
       const targetElement = controlsWrapper || coursesGrid;
       if (!targetElement) return;

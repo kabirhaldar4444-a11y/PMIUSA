@@ -28,11 +28,10 @@ const server = http.createServer((req, res) => {
 
   if (reqPath === '/' || reqPath === '') reqPath = '/index.html';
 
-  // Check process.cwd() first (standard in Vercel lambda), then __dirname, then brain artifacts
+  // Check process.cwd() first (standard in Vercel lambda), then __dirname
   const candidates = [
     path.join(process.cwd(), reqPath),
-    path.join(__dirname, reqPath),
-    path.join('C:\\Users\\Dell\\.gemini\\antigravity-ide\\brain\\8e267a3f-0def-469d-a4eb-7b0e2e21cbcb', reqPath)
+    path.join(__dirname, reqPath)
   ];
 
   let resolvedPath = null;

@@ -34,6 +34,13 @@ sharp(inputPath)
         } else {
           outData[dstIdx + 3] = 255;
         }
+
+        // Erase static rope above boy's upper hand (y < 85) and below foot (y > 940)
+        if (x >= 520 && x <= 585) {
+          if (y < 85 || y > 940) {
+            outData[dstIdx + 3] = 0;
+          }
+        }
       }
     }
 

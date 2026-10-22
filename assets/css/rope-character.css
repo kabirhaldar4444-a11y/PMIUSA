@@ -337,54 +337,10 @@
 }
 
 /* Responsiveness */
-@media (max-width: 1280px) {
+/* Responsiveness: Strictly hide on viewports under 1280px (mobile, tablet, smaller laptops)
+   to ensure the character and rope never overlap or obscure course cards or touch scrolling */
+@media (max-width: 1279px) {
   .live-rope-container {
-    right: 10px;
-    width: 160px;
-  }
-  .rope-character-carriage {
-    width: 150px;
-    height: 150px;
-    left: 8px;
-  }
-  .rope-anchor-plate {
-    left: 82px;
-  }
-  .rope-bottom-knot {
-    left: 88px;
-  }
-  .rope-speech-bubble {
-    right: 145px;
-    min-width: 150px;
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 991px) {
-  .live-rope-container {
-    right: 4px;
-    width: 130px;
-  }
-  .rope-character-carriage {
-    width: 120px;
-    height: 120px;
-    left: 0px;
-  }
-  .rope-anchor-plate {
-    left: 58px;
-  }
-  .rope-bottom-knot {
-    left: 64px;
-  }
-  .rope-speech-bubble {
-    display: none;
-  }
-}
-
-@media (max-width: 600px) {
-  .live-rope-container {
-    right: -10px;
-    transform: scale(0.85);
-    transform-origin: top right;
+    display: none !important;
   }
 }

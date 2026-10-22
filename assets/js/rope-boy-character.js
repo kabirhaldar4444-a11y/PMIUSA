@@ -78,7 +78,7 @@
           <div class="boy-body-animator" id="boyBodyAnimator">
             <!-- 3D Realistic Character Image -->
             <img 
-              src="boy_character_sliding_rope_1792670686550.jpg" 
+              src="assets/images/rope_boy_character.png" 
               alt="3D Boy Character Rappelling on Rope" 
               class="rope-boy-avatar" 
               id="ropeBoyImg" 
@@ -119,59 +119,6 @@
     const pathBase = document.getElementById('boyRopePathBase');
     const pathPattern = document.getElementById('boyRopePathPattern');
     const pathHighlight = document.getElementById('boyRopePathHighlight');
-
-    // ─────────────────────────────────────────────────────────────
-    // 1. Client-Side Transparent Alpha & Tail Removal
-    //    Seamlessly removes white bg and trims duplicate static rope tails
-    // ─────────────────────────────────────────────────────────────
-    if (boyImg) {
-      const processImg = new Image();
-      processImg.crossOrigin = 'anonymous';
-      processImg.src = boyImg.src;
-      processImg.onload = function () {
-        try {
-          const canvas = document.createElement('canvas');
-          canvas.width = processImg.naturalWidth;
-          canvas.height = processImg.naturalHeight;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(processImg, 0, 0);
-
-          const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-          const data = imgData.data;
-          const w = canvas.width;
-          const h = canvas.height;
-
-          for (let i = 0; i < data.length; i += 4) {
-            const r = data[i];
-            const g = data[i + 1];
-            const b = data[i + 2];
-            // Euclidean distance from pure white (255, 255, 255)
-            const dist = Math.hypot(255 - r, 255 - g, 255 - b);
-
-            if (dist < 18) {
-              data[i + 3] = 0; // Pure white background transparent
-            } else if (dist < 48) {
-              data[i + 3] = Math.round(((dist - 18) / 30) * 255); // Smooth feathered edge
-            }
-
-            // Erase static rope above boy's upper hand (y < 85) and below foot (y > 940)
-            // in the vertical rope strip (520px to 585px) so the live SVG rope is the ONLY rope!
-            const px = (i / 4) % w;
-            const py = Math.floor((i / 4) / w);
-            if (px >= 520 && px <= 585) {
-              if (py < 85 || py > 940) {
-                data[i + 3] = 0;
-              }
-            }
-          }
-
-          ctx.putImageData(imgData, 0, 0);
-          boyImg.src = canvas.toDataURL('image/png');
-        } catch (e) {
-          console.warn('Canvas alpha process fallback:', e);
-        }
-      };
-    }
 
     // ─────────────────────────────────────────────────────────────
     // 2. Lifelike Blinking Engine (Natural human intervals + double blinks)
@@ -316,6 +263,15 @@
     }
 
     function updatePhysics() {
+      if (window.innerWidth < 1440) {
+        if (isVisible) {
+          isVisible = false;
+          container.classList.remove('is-visible');
+        }
+        requestAnimationFrame(updatePhysics);
+        return;
+      }
+
       const bounds = getSyllabusBounds();
       if (!bounds) {
         requestAnimationFrame(updatePhysics);
