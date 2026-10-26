@@ -1,9 +1,10 @@
 /**
- * Live Continuous Rope with 3D Young Climbing Character on Scroll
- * - Single unbroken 3D mountaineering rope (zero disconnection)
- * - Lifelike blinking eyes (natural human timing + double blinks)
- * - Organic breathing & posture micro-animations
- * - Cursor gaze tracking & dynamic rappelling physics
+ * Live Continuous Rope with 3D Young Climbing Character on Scroll (Course Catalogue)
+ * - DESKTOP (>= 1100px): Continuous unbroken 3D rope in the left gutter
+ * - MOBILE & TABLET (< 1100px): Sleek Floating Progress Mascot (FAB) in bottom-left
+ *     * ZERO rope slicing through course cards!
+ *     * Circular scroll progress ring tracking 101 programs progress
+ *     * 100% touch-safe & content-friendly
  */
 
 (function () {
@@ -21,8 +22,8 @@
       container.className = 'live-rope-container';
       container.setAttribute('aria-hidden', 'true');
       container.innerHTML = `
-        <!-- Top Anchor Mount -->
-        <div class="rope-anchor-plate">
+        <!-- Top Anchor Mount (Desktop Only) -->
+        <div class="rope-anchor-plate" id="ropeAnchorPlate">
           <div class="rope-anchor-bracket">
             <span class="anchor-bolt"></span>
             <span class="anchor-bolt"></span>
@@ -30,7 +31,7 @@
           <div class="rope-anchor-carabiner"></div>
         </div>
 
-        <!-- Continuous Unbroken 3D Live Rope -->
+        <!-- Continuous Unbroken 3D Live Rope (Desktop Only) -->
         <svg class="live-rope-svg" id="liveRopeSvg">
           <defs>
             <linearGradient id="ropeCoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -41,7 +42,7 @@
               <stop offset="100%" stop-color="#78350f" />
             </linearGradient>
             <filter id="ropeShadow" x="-50%" y="-10%" width="200%" height="120%">
-              <feDropShadow dx="3" dy="4" stdDeviation="3.5" flood-opacity="0.3"/>
+              <feDropShadow dx="2" dy="3" stdDeviation="2.5" flood-opacity="0.3"/>
             </filter>
             <!-- 3D Braided rope fiber texture -->
             <pattern id="ropeBraids" width="8" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(32)">
@@ -52,15 +53,21 @@
           </defs>
 
           <!-- Single UNBROKEN continuous rope paths from top anchor to bottom knot -->
-          <path id="ropePathShadow" fill="none" stroke="rgba(15, 23, 42, 0.22)" stroke-width="8" stroke-linecap="round"/>
-          <path id="ropePathBase" fill="none" stroke="url(#ropeCoreGrad)" stroke-width="6.5" stroke-linecap="round"/>
-          <path id="ropePathPattern" fill="none" stroke="url(#ropeBraids)" stroke-width="5" stroke-linecap="round" opacity="0.85"/>
-          <path id="ropePathHighlight" fill="none" stroke="rgba(255, 255, 255, 0.55)" stroke-width="1.8" stroke-linecap="round"/>
+          <path id="ropePathShadow" fill="none" stroke="rgba(15, 23, 42, 0.22)" stroke-width="7" stroke-linecap="round"/>
+          <path id="ropePathBase" fill="none" stroke="url(#ropeCoreGrad)" stroke-width="5.5" stroke-linecap="round"/>
+          <path id="ropePathPattern" fill="none" stroke="url(#ropeBraids)" stroke-width="4.2" stroke-linecap="round" opacity="0.85"/>
+          <path id="ropePathHighlight" fill="none" stroke="rgba(255, 255, 255, 0.6)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+
+        <!-- Mobile Circular Progress Ring (Mobile & Tablet Only) -->
+        <svg class="rope-mobile-progress" id="ropeMobileProgress" viewBox="0 0 62 62">
+          <circle cx="31" cy="31" r="27" fill="none" stroke="rgba(20, 128, 221, 0.16)" stroke-width="3" />
+          <circle id="girlMascotProgFill" cx="31" cy="31" r="27" fill="none" stroke="#1480dd" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="169.65" stroke-dashoffset="169.65" transform="rotate(-90 31 31)" />
         </svg>
 
         <!-- Sliding 3D Character Carriage -->
         <div class="rope-character-carriage" id="ropeCharacterCarriage">
-          <!-- Speed Wind Streaks -->
+          <!-- Speed Wind Streaks (Desktop Only) -->
           <span class="speed-wind-streak streak-1"></span>
           <span class="speed-wind-streak streak-2"></span>
           <span class="speed-wind-streak streak-3"></span>
@@ -68,7 +75,7 @@
           <!-- Interactive Speech Bubble -->
           <div class="rope-speech-bubble" id="ropeSpeechBubble">
             <span class="bubble-avatar-badge" id="bubbleEmoji">🎒</span>
-            <p class="bubble-text-content" id="bubbleText">Hey! 101 Courses waiting for you!</p>
+            <p class="bubble-text-content" id="bubbleText">Hey! 101 Programs waiting for you!</p>
           </div>
 
           <!-- Organic Breathing Body Animator -->
@@ -85,13 +92,13 @@
             </div>
           </div>
 
-          <!-- Back to Top Mini Button -->
+          <!-- Back to Top Mini Button (Desktop Only) -->
           <button type="button" class="rope-back-to-top-btn" id="ropeBackToTop" title="Scroll to top of courses">
             <i class="fa-solid fa-arrow-up"></i> Top
           </button>
         </div>
 
-        <!-- Bottom Safety Knot -->
+        <!-- Bottom Safety Knot (Desktop Only) -->
         <div class="rope-bottom-knot" id="ropeBottomKnot"></div>
       `;
       document.body.appendChild(container);
@@ -99,8 +106,11 @@
 
     // Elements
     const carriage = document.getElementById('ropeCharacterCarriage');
-    const eyelidLeft = document.getElementById('eyelidLeft');
-    const eyelidRight = document.getElementById('eyelidRight');
+    const anchorPlate = document.getElementById('ropeAnchorPlate');
+    const bottomKnot = document.getElementById('ropeBottomKnot');
+    const progFill = document.getElementById('girlMascotProgFill');
+    const eyelidLeft = document.getElementById('eyeLeft');
+    const eyelidRight = document.getElementById('eyeRight');
     const bubble = document.getElementById('ropeSpeechBubble');
     const bubbleEmoji = document.getElementById('bubbleEmoji');
     const bubbleText = document.getElementById('bubbleText');
@@ -109,6 +119,7 @@
     const pathBase = document.getElementById('ropePathBase');
     const pathPattern = document.getElementById('ropePathPattern');
     const pathHighlight = document.getElementById('ropePathHighlight');
+    const controlsAnchor = document.querySelector('.controls-rope-anchor');
 
     // ─────────────────────────────────────────────────────────────
     // 1. Lifelike Blinking Engine (Natural human intervals + double blinks)
@@ -128,7 +139,6 @@
     }
 
     function triggerWink() {
-      // Playful left-eye wink
       if (eyelidLeft) eyelidLeft.classList.add('is-closed');
       setTimeout(() => {
         if (eyelidLeft) eyelidLeft.classList.remove('is-closed');
@@ -136,14 +146,12 @@
     }
 
     function scheduleBlinkLoop() {
-      // Normal human blinking every 2.8s - 4.5s
       const nextDelay = 2600 + Math.random() * 2200;
       setTimeout(() => {
         triggerBlink();
 
-        // 28% chance of a realistic quick double-blink
         if (Math.random() < 0.28) {
-          setTimeout(() => triggerBlink(95), 240);
+          setTimeout(() => triggerBlink(90), 220);
         }
 
         scheduleBlinkLoop();
@@ -152,72 +160,132 @@
     scheduleBlinkLoop();
 
     // ─────────────────────────────────────────────────────────────
-    // 2. Cursor Gaze Tracking (Eyes & head follow user mouse subtly)
+    // 2. Interactive Speech Engine & Course Tips
     // ─────────────────────────────────────────────────────────────
-    let mouseGazeTilt = 0;
-    window.addEventListener('mousemove', (e) => {
-      if (!isSectionVisible || !carriage) return;
-      const rect = carriage.getBoundingClientRect();
-      const charCenterX = rect.left + rect.width * 0.5;
-      const charCenterY = rect.top + rect.height * 0.25;
-
-      const deltaX = e.clientX - charCenterX;
-      const deltaY = e.clientY - charCenterY;
-
-      // Subtle tilt toward mouse (-4deg to +4deg)
-      const targetGaze = Math.max(-4, Math.min(4, (deltaX / window.innerWidth) * 8));
-      mouseGazeTilt += (targetGaze - mouseGazeTilt) * 0.05;
-    }, { passive: true });
-
-    // ─────────────────────────────────────────────────────────────
-    // 3. Speech & Interactive State
-    // ─────────────────────────────────────────────────────────────
-    const speeches = [
-      { max: 0.18, emoji: '🎒', text: 'Hey! 101 Programs waiting for you!' },
-      { max: 0.40, emoji: '🤖', text: 'GenAI, Copilot & Prompt Engineering!' },
-      { max: 0.65, emoji: '🏗️', text: 'Agile & BIM Architecture tracks!' },
-      { max: 0.88, emoji: '💻', text: 'Full Stack, Cloud & DevOps!' },
-      { max: 1.00, emoji: '🌟', text: 'Awesome! Explored all 101 courses!' }
+    const courseMilestones = [
+      { progress: 0.00, emoji: '🎒', text: '101 Accredited Programs' },
+      { progress: 0.15, emoji: '🤖', text: 'Explore AI & Cloud Tech' },
+      { progress: 0.35, emoji: '🏗️', text: 'Project Management & BIM' },
+      { progress: 0.60, emoji: '⚡', text: 'Executive Credentials' },
+      { progress: 0.85, emoji: '🌟', text: 'Find Your Dream Program' }
     ];
 
-    let lastSpeechIndex = -1;
+    let lastMilestone = -1;
     let bubbleTimer = null;
     let isUserHovering = false;
     let isClickBouncing = false;
 
     function showSpeech(emoji, text, autoDismiss = true) {
-      if (bubbleEmoji) bubbleEmoji.textContent = emoji;
-      if (bubbleText) bubbleText.textContent = text;
+      if (!bubble || !bubbleEmoji || !bubbleText) return;
+      bubbleEmoji.textContent = emoji;
+      bubbleText.textContent = text;
       bubble.classList.add('is-active');
 
       if (bubbleTimer) clearTimeout(bubbleTimer);
-      if (autoDismiss && !isUserHovering) {
+      if (autoDismiss) {
+        const dismissTime = window.innerWidth < 1100 ? 2600 : 3800;
         bubbleTimer = setTimeout(() => {
           if (!isUserHovering) {
             bubble.classList.remove('is-active');
           }
-        }, 3600);
+        }, dismissTime);
+      }
+    }
+
+    // Scroll to Top action
+    function scrollToCoursesTop() {
+      const targetElement = controlsWrapper || coursesGrid;
+      if (targetElement) {
+        const rect = targetElement.getBoundingClientRect();
+        const targetY = window.scrollY + rect.top - 70;
+        window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // Click handler for mobile container or desktop carriage
+    if (container) {
+      container.addEventListener('click', (e) => {
+        if (window.innerWidth < 1100) {
+          e.stopPropagation();
+          triggerWink();
+          showSpeech('⬆️', 'Zipping back to top!');
+          scrollToCoursesTop();
+        }
+      });
+    }
+
+    // Interactive Click on Controls Anchor
+    if (controlsAnchor) {
+      controlsAnchor.addEventListener('click', (e) => {
+        e.preventDefault();
+        scrollToCoursesTop();
+        triggerWink();
+        showSpeech('🧗‍♀️', 'Climbing through 101 top courses!');
+      });
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // 3. Desktop Continuous 3D Live Rope (Locked with Hand)
+    // ─────────────────────────────────────────────────────────────
+    function drawContinuousRope(charY) {
+      const isMobile = window.innerWidth < 768;
+      const isTablet = window.innerWidth >= 768 && window.innerWidth < 1100;
+      const defaultW = isMobile ? 52 : (isTablet ? 90 : 160);
+      const defaultLeft = isMobile ? 5 : (isTablet ? 5 : 10);
+
+      const carriageWidth = (carriage && carriage.offsetWidth > 10) ? carriage.offsetWidth : defaultW;
+      const carriageLeft = (carriage && carriage.offsetLeft > 0) ? carriage.offsetLeft : defaultLeft;
+      const viewportHeight = window.innerHeight;
+      
+      const anchorX = carriageLeft + (carriageWidth * 0.52);
+      const charHandY = charY + (carriageWidth * 0.18);
+      
+      const topAnchorY = 24;
+      const bottomKnotY = viewportHeight - 20;
+
+      const bowX = anchorX + (velocity * 0.35);
+
+      const fullPath = `M ${anchorX} ${topAnchorY} ` +
+                       `Q ${bowX} ${(topAnchorY + charHandY) * 0.5} ${anchorX} ${charHandY} ` +
+                       `Q ${anchorX} ${(charHandY + bottomKnotY) * 0.5} ${anchorX} ${bottomKnotY}`;
+
+      if (pathShadow) pathShadow.setAttribute('d', fullPath);
+      if (pathBase) pathBase.setAttribute('d', fullPath);
+      if (pathPattern) pathPattern.setAttribute('d', fullPath);
+      if (pathHighlight) pathHighlight.setAttribute('d', fullPath);
+
+      if (anchorPlate) {
+        anchorPlate.style.left = `${anchorX}px`;
+        anchorPlate.style.transform = 'translateX(-50%)';
+      }
+      if (bottomKnot) {
+        bottomKnot.style.left = `${anchorX}px`;
+        bottomKnot.style.transform = 'translateX(-50%)';
       }
     }
 
     // ─────────────────────────────────────────────────────────────
     // 4. Scroll Tracking & Physics Engine
     // ─────────────────────────────────────────────────────────────
+    const initCharY = window.innerWidth < 768 ? 95 : 110;
     let targetProgress = 0;
-    let currentY = 100;
-    let targetY = 100;
+    let currentY = initCharY;
+    let targetY = initCharY;
     let currentTilt = 0;
     let velocity = 0;
-    let isSectionVisible = false;
+    let isSectionVisible = true;
+
+    // Immediate initial draw
+    if (carriage) {
+      carriage.style.transform = `translate3d(0, ${initCharY}px, 0)`;
+    }
+    drawContinuousRope(initCharY);
 
     function updateTargetProgress() {
-      if (window.innerWidth < 1280) {
-        if (isSectionVisible) {
-          isSectionVisible = false;
-          container.classList.remove('is-visible');
-        }
-        return;
-      }
+      const vw = window.innerWidth;
+      const isMobile = vw < 1100;
 
       const scrollY = window.scrollY || window.pageYOffset;
       const targetElement = controlsWrapper || coursesGrid;
@@ -232,74 +300,57 @@
 
       const viewportHeight = window.innerHeight;
 
-      // Visibility triggers
-      const startTrigger = sectionTop - viewportHeight * 0.4;
-      const endTrigger = sectionBottom - 50;
+      // Visibility triggers (Visible from top of page through course listings)
+      const startTrigger = 0;
+      const endTrigger = sectionBottom + 250;
 
-      if (scrollY >= startTrigger && scrollY <= endTrigger) {
+      if (scrollY <= endTrigger) {
         if (!isSectionVisible) {
           isSectionVisible = true;
-          container.classList.add('is-visible');
-          showSpeech('🎒', '101 Accredited Programs to explore!', true);
+          container.classList.remove('is-hidden');
+          showSpeech('🎒', isMobile ? '101 Programs' : '101 Accredited Programs to explore', true);
         }
 
         const scrollDistance = scrollY - (sectionTop - 80);
-        const maxScrollDistance = sectionTotalHeight - (viewportHeight * 0.5);
+        const maxScrollDistance = sectionTotalHeight - (viewportHeight * 0.4);
         const progress = Math.max(0, Math.min(1, scrollDistance / Math.max(1, maxScrollDistance)));
         targetProgress = progress;
 
-        const minY = 80;
-        const maxY = Math.max(minY + 50, viewportHeight - 215);
-        targetY = minY + (progress * (maxY - minY));
-
-        const speechObj = speeches.find(s => progress <= s.max) || speeches[speeches.length - 1];
-        const speechIdx = speeches.indexOf(speechObj);
-        if (speechIdx !== lastSpeechIndex && !isUserHovering) {
-          lastSpeechIndex = speechIdx;
-          showSpeech(speechObj.emoji, speechObj.text, true);
+        // Active milestone feedback
+        let activeMilestone = 0;
+        for (let i = courseMilestones.length - 1; i >= 0; i--) {
+          if (progress >= courseMilestones[i].progress) {
+            activeMilestone = i;
+            break;
+          }
         }
-
+        if (activeMilestone !== lastMilestone && !isUserHovering) {
+          lastMilestone = activeMilestone;
+          const m = courseMilestones[activeMilestone];
+          showSpeech(m.emoji, m.text);
+        }
       } else {
         if (isSectionVisible) {
           isSectionVisible = false;
-          container.classList.remove('is-visible');
+          container.classList.add('is-hidden');
         }
       }
+
+      // ── Responsive Vertical Gutter Slide (ALL SCREENS) ──
+      let trackMinY = 110;
+      let trackMaxY = viewportHeight - 185;
+      if (vw < 768) {
+        trackMinY = 95;
+        trackMaxY = viewportHeight - 85;
+      } else if (vw < 1100) {
+        trackMinY = 105;
+        trackMaxY = viewportHeight - 130;
+      }
+      targetY = trackMinY + targetProgress * (trackMaxY - trackMinY);
     }
 
     // ─────────────────────────────────────────────────────────────
-    // 5. Continuous Unbroken Live Rope Drawing
-    // ─────────────────────────────────────────────────────────────
-    function drawContinuousRope(charY) {
-      const containerWidth = container.offsetWidth || 200;
-      const viewportHeight = window.innerHeight;
-      
-      // Fixed anchor line (matches top carabiner & bottom knot perfectly)
-      const anchorX = containerWidth > 150 ? 107 : 77;
-      const topAnchorY = 24;
-      const bottomKnotY = viewportHeight - 20;
-
-      // Character hand anchor coordinate
-      const charRopeX = anchorX + (currentTilt * 0.35);
-      const charHandY = charY + 32;
-
-      // Subtle rope tension curve based on sliding velocity
-      const bowX = anchorX + (velocity * 0.5);
-
-      // ONE SINGLE UNBROKEN PATH FROM TOP ANCHOR TO BOTTOM KNOT
-      // No segments, no gaps, no disconnection!
-      const fullPath = `M ${anchorX} ${topAnchorY} ` +
-                       `Q ${bowX} ${(topAnchorY + charHandY) * 0.5} ${charRopeX} ${charHandY} ` +
-                       `Q ${anchorX} ${(charHandY + bottomKnotY) * 0.5} ${anchorX} ${bottomKnotY}`;
-
-      if (pathShadow) pathShadow.setAttribute('d', fullPath);
-      if (pathBase) pathBase.setAttribute('d', fullPath);
-      if (pathPattern) pathPattern.setAttribute('d', fullPath);
-      if (pathHighlight) pathHighlight.setAttribute('d', fullPath);
-    }
-
-    // ─────────────────────────────────────────────────────────────
-    // 6. Physics Animation Loop (60 FPS requestAnimationFrame)
+    // 5. Physics Animation Loop (60 FPS requestAnimationFrame)
     // ─────────────────────────────────────────────────────────────
     let lastTime = performance.now();
     function animatePhysics(now) {
@@ -307,9 +358,8 @@
       lastTime = now;
 
       if (isSectionVisible) {
-        // Inertia damping
         const dy = targetY - currentY;
-        velocity = dy * 0.085;
+        velocity = dy * 0.088;
         currentY += velocity;
 
         if (Math.abs(velocity) > 4.5) {
@@ -318,25 +368,24 @@
           container.classList.remove('is-speeding');
         }
 
-        // Dynamic body lean
-        let targetTilt = mouseGazeTilt;
+        let targetTilt = 0;
         if (velocity > 0.4) {
-          targetTilt += Math.min(13, velocity * 1.6); // Lean back when sliding down
+          targetTilt += Math.min(12, velocity * 1.5);
         } else if (velocity < -0.4) {
-          targetTilt += Math.max(-10, velocity * 1.6); // Lean forward when climbing up
+          targetTilt += Math.max(-10, velocity * 1.5);
         }
 
-        // Idle gentle sway when stopped
-        if (Math.abs(velocity) < 0.2 && !isClickBouncing) {
-          targetTilt += Math.sin(now * 0.0022) * 2.2;
+        if (Math.abs(velocity) < 0.25 && !isClickBouncing) {
+          targetTilt += Math.sin(now * 0.0022) * 2.0;
         }
 
         currentTilt += (targetTilt - currentTilt) * 0.12;
 
         const bounceOffset = isClickBouncing ? Math.sin(now * 0.016) * 9 : 0;
-        carriage.style.transform = `translate3d(0, ${currentY + bounceOffset}px, 0) rotate(${currentTilt}deg)`;
+        if (carriage) {
+          carriage.style.transform = `translate3d(0, ${(currentY + bounceOffset).toFixed(2)}px, 0) rotate(${currentTilt.toFixed(2)}deg)`;
+        }
 
-        // Draw the 100% continuous, unbroken rope
         drawContinuousRope(currentY + bounceOffset);
       }
 
@@ -345,49 +394,50 @@
 
     // Event Listeners
     window.addEventListener('scroll', updateTargetProgress, { passive: true });
-    window.addEventListener('resize', updateTargetProgress, { passive: true });
+    window.addEventListener('resize', () => {
+      updateTargetProgress();
+      if (isSectionVisible) {
+        drawContinuousRope(currentY);
+      }
+    }, { passive: true });
 
-    // Interactive Hover: Playful wink & greeting!
+    // Interactive Hover: Playful wink & greeting (Desktop)
     carriage.addEventListener('mouseenter', () => {
-      isUserHovering = true;
-      triggerWink();
-      showSpeech('😉', "Hey there! I'm your course climbing buddy! 🧗‍♀️", false);
+      if (window.innerWidth >= 1100) {
+        isUserHovering = true;
+        triggerWink();
+        showSpeech('😉', "Hey there! I'm your course climbing buddy! 🧗‍♀️", false);
+      }
     });
 
     carriage.addEventListener('mouseleave', () => {
-      isUserHovering = false;
-      if (bubbleTimer) clearTimeout(bubbleTimer);
-      bubbleTimer = setTimeout(() => {
-        bubble.classList.remove('is-active');
-      }, 1500);
+      if (window.innerWidth >= 1100) {
+        isUserHovering = false;
+        if (bubbleTimer) clearTimeout(bubbleTimer);
+        bubbleTimer = setTimeout(() => {
+          bubble.classList.remove('is-active');
+        }, 1500);
+      }
     });
 
-    // Interactive Click: Fun Spring Bounce & double blink
+    // Interactive Click: Fun Spring Bounce & double blink (Desktop)
     carriage.addEventListener('click', (e) => {
-      if (e.target.closest('#ropeBackToTop')) return;
-      
-      isClickBouncing = true;
-      triggerBlink(160);
-      showSpeech('⚡', "Wheee! Let's explore more courses!", false);
-      
-      setTimeout(() => {
-        isClickBouncing = false;
-      }, 650);
+      if (window.innerWidth >= 1100) {
+        if (e.target.closest('#ropeBackToTop')) return;
+        isClickBouncing = true;
+        triggerBlink(160);
+        showSpeech('⚡', "Wheee! Let's explore more courses!", false);
+        setTimeout(() => {
+          isClickBouncing = false;
+        }, 650);
+      }
     });
 
-    // Back to top button
+    // Back to top button (Desktop)
     if (backToTopBtn) {
       backToTopBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        const targetElement = controlsWrapper || coursesGrid;
-        if (targetElement) {
-          const rect = targetElement.getBoundingClientRect();
-          const targetY = window.scrollY + rect.top - 80;
-          window.scrollTo({
-            top: Math.max(0, targetY),
-            behavior: 'smooth'
-          });
-        }
+        scrollToCoursesTop();
       });
     }
 

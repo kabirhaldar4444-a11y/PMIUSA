@@ -123,12 +123,17 @@
     /* ── Content Layout Grid ── */
     .detail-layout-container {
       padding: 24px 0 80px;
+      overflow-x: clip;
+      max-width: 100%;
     }
     .detail-grid {
       display: grid;
-      grid-template-columns: 1fr 380px;
+      grid-template-columns: minmax(0, 1fr) 380px;
       gap: 40px;
       align-items: start;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
     }
 
     /* ── Main Column Sections & Smart Card Stack ── */
@@ -136,6 +141,9 @@
       display: flex;
       flex-direction: column;
       position: relative;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
     }
 
     /* Sticky Section Navigation Pills for Instant Visibility in Full Screen */
@@ -154,7 +162,11 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
       margin-bottom: 14px;
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
     }
     .detail-section-nav::-webkit-scrollbar {
       display: none;
@@ -173,6 +185,7 @@
       gap: 6px;
       white-space: nowrap;
       transition: all 0.2s ease;
+      flex-shrink: 0;
     }
     .section-nav-pill:hover {
       color: #004aab;
@@ -191,6 +204,19 @@
       border: 1px solid #e2e8f0;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
       position: relative;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    /* Audience Grid (Responsive Prerequisites & Audience) */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      width: 100%;
+      min-width: 0;
     }
     
     /* Smart Stackable Cards - Perfectly Proportioned to fit in Full Screen */
@@ -616,33 +642,122 @@
     }
 
     @media (max-width: 992px) {
+      .detail-layout-container {
+        padding: 16px 0 60px;
+      }
+      .detail-layout-container .container {
+        padding-left: 12px;
+        padding-right: 58px; /* Dedicated right gutter for hanging climbing rope */
+        box-sizing: border-box;
+      }
       .detail-grid {
         grid-template-columns: 1fr;
+        gap: 24px;
+        width: 100%;
+        max-width: 100%;
+      }
+      .detail-main-col {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
       }
       .detail-sidebar-col {
         position: static;
+        width: 100%;
+        max-width: 100%;
       }
       .detail-hero-title {
-        font-size: 28px;
+        font-size: 24px;
+        line-height: 1.3;
+      }
+      .detail-hero-subtitle {
+        font-size: 13.5px;
+        line-height: 1.5;
       }
       .outcomes-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .audience-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
       }
       .certificate-card-preview {
         flex-direction: column;
         text-align: center;
+        padding: 24px 16px;
+        gap: 16px;
       }
+      .cert-icon-seal {
+        width: 68px;
+        height: 68px;
+        font-size: 32px;
+      }
+      .cert-info-text h4 {
+        font-size: 18px;
+      }
+      
+      /* Mobile Natural Card Flow:
+         Removes sticky positioning and max-height so vertical touch scrolling
+         is 100% natural and fluid, completely eliminating touch-freeze/unresponsiveness */
       .detail-stack-card {
-        margin-bottom: 80px;
+        position: static !important;
+        top: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+        transform: none !important;
+        filter: none !important;
+        margin-bottom: 20px !important;
+        box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05) !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
       }
       .detail-stack-card:last-child {
-        margin-bottom: 25px;
+        margin-bottom: 24px !important;
       }
-      .detail-stack-card:nth-child(2) { top: 114px; }
-      .detail-stack-card:nth-child(3) { top: 122px; }
-      .detail-stack-card:nth-child(4) { top: 130px; }
-      .detail-stack-card:nth-child(5) { top: 138px; }
-      .detail-stack-card:nth-child(6) { top: 146px; }
+      .detail-card-box {
+        padding: 18px 16px;
+        border-radius: 14px;
+      }
+
+      /* Sticky Section Navigation bar on mobile */
+      .detail-section-nav {
+        top: 70px;
+        border-radius: 16px;
+        padding: 6px 8px;
+        gap: 6px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+      .section-nav-pill {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+
+      /* Hide rope anchor from navigation pills on mobile */
+      .syllabus-rope-anchor {
+        display: none !important;
+      }
+
+      /* Section Tag Pill inside Card */
+      .detail-card-stack-tag {
+        position: static;
+        margin-bottom: 12px;
+        display: inline-flex;
+      }
+
+      /* Freehand banner mobile sizing */
+      .detail-clipart-banner {
+        height: 115px;
+      }
+      .detail-clipart-banner .freehand-svg {
+        width: 140px;
+        max-width: 85%;
+        height: 85px;
+      }
     }
       /* Days in Down (Clean Smart Cohort Meta) */
     .card-days-down {
@@ -863,16 +978,16 @@
           
           <!-- Sticky Section Navigation Pills -->
           <div class="detail-section-nav" id="detailSectionNav">
-            <!-- Visual Rope Mounting Anchor on Left (Links to live sliding boy character) -->
-            <div class="syllabus-rope-anchor" title="Climbing Rope Track" aria-hidden="true">
-              <span class="anchor-ring"></span>
-              <span>Curriculum Guide</span>
-            </div>
             <button type="button" class="section-nav-pill active" data-index="0"><i class="fa-solid fa-compass"></i> Overview</button>
             <button type="button" class="section-nav-pill" data-index="1"><i class="fa-solid fa-layer-group"></i> Syllabus</button>
             <button type="button" class="section-nav-pill" data-index="2"><i class="fa-solid fa-rocket"></i> Outcomes</button>
             <button type="button" class="section-nav-pill" data-index="3"><i class="fa-solid fa-user-check"></i> Eligibility</button>
             <button type="button" class="section-nav-pill" data-index="4"><i class="fa-solid fa-award"></i> Credential</button>
+            <!-- Visual Rope Mounting Anchor on Right (Links to live sliding boy character) -->
+            <div class="syllabus-rope-anchor" title="Climbing Rope Track" aria-hidden="true" style="margin-left: auto;">
+              <span class="anchor-ring"></span>
+              <span>Curriculum Guide</span>
+            </div>
           </div>
 
           <!-- Clipart Graphic Card & Overview -->
@@ -917,7 +1032,7 @@
           <div class="detail-card-box detail-stack-card" id="card-audience" data-index="3">
             <span class="detail-card-stack-tag tag-emerald"><i class="fa-solid fa-user-check"></i> Prerequisites</span>
             <h2 class="detail-section-title"><i class="fa-solid fa-user-check"></i> Eligibility &amp; Target Audience</h2>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;" id="audienceGrid">
+            <div class="audience-grid" id="audienceGrid">
               <div>
                 <h4 style="font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 14px;">
                   <i class="fa-solid fa-users text-primary me-2"></i> Who Should Enroll
@@ -1206,22 +1321,59 @@
         }
       });
 
-      // ── Smart Stacking Cards on Course Detail Left Column ──
+      // ── Smart Responsive Stacking Cards on Course Detail Left Column ──
       const detailCards = document.querySelectorAll('.detail-stack-card');
       const navPills = document.querySelectorAll('.section-nav-pill');
       if (detailCards.length > 0) {
         const getDetailStackConfig = () => {
-          const isMobile = window.innerWidth < 992;
           return {
-            baseTop: isMobile ? 114 : 136,
-            stepOffset: isMobile ? 8 : 12
+            baseTop: 136,
+            stepOffset: 12
           };
         };
 
         const updateDetailStack = () => {
-          const { baseTop, stepOffset } = getDetailStackConfig();
+          const isMobile = window.innerWidth < 992;
           let activeIndex = 0;
 
+          if (isMobile) {
+            // Mobile: natural scroll position detection
+            const triggerY = 140;
+            detailCards.forEach((card, idx) => {
+              const rect = card.getBoundingClientRect();
+              if (rect.top <= triggerY) {
+                activeIndex = idx;
+              }
+            });
+
+            detailCards.forEach((card, idx) => {
+              card.classList.toggle('active', idx === activeIndex);
+              card.classList.remove('is-stacked');
+              card.style.transform = 'none';
+              card.style.filter = 'none';
+              card.style.cursor = 'default';
+            });
+
+            // Sync section nav pills and auto-scroll active pill into view
+            navPills.forEach((pill, idx) => {
+              const isActive = idx === activeIndex;
+              pill.classList.toggle('active', isActive);
+              if (isActive && pill.parentElement) {
+                const pillNav = pill.parentElement;
+                const pillLeft = pill.offsetLeft;
+                const pillWidth = pill.offsetWidth;
+                const navWidth = pillNav.offsetWidth;
+                pillNav.scrollTo({
+                  left: pillLeft - (navWidth / 2) + (pillWidth / 2),
+                  behavior: 'smooth'
+                });
+              }
+            });
+            return;
+          }
+
+          // Desktop: sticky stacking deck
+          const { baseTop, stepOffset } = getDetailStackConfig();
           detailCards.forEach((card, idx) => {
             const rect = card.getBoundingClientRect();
             const targetTop = baseTop + (idx * stepOffset);
@@ -1275,13 +1427,25 @@
             const idx = parseInt(pill.getAttribute('data-index'), 10);
             const card = detailCards[idx];
             if (card) {
-              const { baseTop, stepOffset } = getDetailStackConfig();
-              const cardTargetTop = baseTop + (idx * stepOffset);
-              const cardDocTop = card.getBoundingClientRect().top + window.scrollY;
-              window.scrollTo({
-                top: Math.max(0, cardDocTop - cardTargetTop + 2),
-                behavior: 'smooth'
-              });
+              const isMobile = window.innerWidth < 992;
+              if (isMobile) {
+                const navEl = document.getElementById('detailSectionNav');
+                const navHeight = navEl ? navEl.offsetHeight : 44;
+                const headerOffset = 70 + navHeight + 12;
+                const cardDocTop = card.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo({
+                  top: Math.max(0, cardDocTop - headerOffset),
+                  behavior: 'smooth'
+                });
+              } else {
+                const { baseTop, stepOffset } = getDetailStackConfig();
+                const cardTargetTop = baseTop + (idx * stepOffset);
+                const cardDocTop = card.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo({
+                  top: Math.max(0, cardDocTop - cardTargetTop + 2),
+                  behavior: 'smooth'
+                });
+              }
             }
           });
         });
@@ -1292,6 +1456,8 @@
             if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.module-header')) {
               return;
             }
+            if (window.innerWidth < 992) return; // Natural scroll on mobile
+
             let activeIdx = 0;
             detailCards.forEach((c, i) => {
               if (c.classList.contains('active')) activeIdx = i;
@@ -1315,5 +1481,7 @@
   </script>
   <!-- Live 3D Boy Character Sliding on Continuous Rope for Syllabus -->
   <script src="assets/js/rope-boy-character.js"></script>
+
+
 </body>
 </html>

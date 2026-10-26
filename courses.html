@@ -449,6 +449,13 @@
         grid-template-columns: repeat(2, 1fr);
       }
     }
+    @media (max-width: 768px) {
+      .courses-main-section .container {
+        padding-left: 58px; /* Dedicated left gutter for hanging climbing girl */
+        padding-right: 12px;
+        box-sizing: border-box;
+      }
+    }
     @media (max-width: 680px) {
       .courses-grid-view {
         grid-template-columns: 1fr;
@@ -634,7 +641,7 @@
   </section>
 
   <!-- Courses Main Content -->
-  <section style="padding: 10px 0 80px; background: #f8fafc;">
+  <section class="courses-main-section" style="padding: 10px 0 80px; background: #f8fafc;">
     <div class="container">
       
       <!-- Search & Filter Controls -->

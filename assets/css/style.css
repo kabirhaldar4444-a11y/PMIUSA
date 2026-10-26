@@ -497,7 +497,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .wave {
-  background: url('https://www.pcits.net/assets/images/download.svg') repeat-x;
+  background: url('../images/wave-shape.svg') repeat-x;
   position: absolute;
   top: -55px;
   width: 6400px;
@@ -1819,7 +1819,9 @@ h1, h2, h3, h4, h5, h6 {
   top: 140px;
   right: 0;
   transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0.4s ease;
   z-index: 10000;
   background: #ffffff;
   box-shadow: -5px 10px 40px rgba(0, 0, 0, 0.18);
@@ -1832,6 +1834,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .floating-drawer.open {
   transform: translateX(0);
+  visibility: visible !important;
+  pointer-events: auto !important;
 }
 
 .floating-drawer-tab {
@@ -2458,7 +2462,9 @@ h1, h2, h3, h4, h5, h6 {
   background: #ffffff;
   box-shadow: -10px 0 40px rgba(0, 0, 0, 0.25);
   z-index: 99999;
-  transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  visibility: hidden;
+  pointer-events: none;
+  transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -2467,6 +2473,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .floating-drawer.open {
   right: 0 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
 }
 
 /* Floating Drawer Tab Handle (Sticky tab on right screen edge) */
