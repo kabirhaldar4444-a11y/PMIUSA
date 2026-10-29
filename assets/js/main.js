@@ -396,32 +396,218 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 7. Floating Drawer ("Reach out to us")
+  // 7. Floating Drawer & Course Enrollment Modal System
   const drawer = document.querySelector('.floating-drawer');
   const drawerTab = document.querySelector('.floating-drawer-tab');
   const drawerBackdrop = document.getElementById('drawerBackdrop');
+  const drawerCloseBtn = document.getElementById('drawerCloseBtn') || (drawer ? drawer.querySelector('.drawer-close-btn') : null);
+  const drawerSuccessDoneBtn = document.getElementById('drawerSuccessDoneBtn');
+  const drawerForm = document.getElementById('drawerForm');
+  const drawerSuccessState = document.getElementById('drawerSuccessState');
 
-  if (drawer && drawerTab) {
-    drawerTab.addEventListener('click', (e) => {
-      e.stopPropagation();
-      drawer.classList.toggle('open');
-      if (drawerBackdrop) drawerBackdrop.classList.toggle('active');
-    });
+  window.closeEnrollDrawer = function() {
+    if (drawer) drawer.classList.remove('open');
+    if (drawerBackdrop) drawerBackdrop.classList.remove('active');
+    document.body.style.overflow = '';
+  };
 
-    // Close on outside click
-    document.addEventListener('click', (e) => {
-      if (drawer.classList.contains('open') && !drawer.contains(e.target)) {
-        drawer.classList.remove('open');
-        if (drawerBackdrop) drawerBackdrop.classList.remove('active');
+  window.openEnrollDrawer = function(courseTitle, courseId) {
+    if (window.event && window.event.stopPropagation) {
+      window.event.stopPropagation();
+    }
+    if (!drawer) return;
+
+    let price = 'INR 45,000';
+    let duration = '20 Days';
+    let cat = 'PMIUSA Certified';
+
+    const catMap = {
+      'ai': 'AI & Modern Tech',
+      'management': 'Project & Agile',
+      'bim': 'BIM & Architecture',
+      'site': 'Site Operations',
+      'business': 'Business & Finance',
+      'engineering': 'Engineering Tech'
+    };
+
+    // Look up from window.PMIUSA_COURSES dataset if available
+    if (window.PMIUSA_COURSES && Array.isArray(window.PMIUSA_COURSES) && courseId) {
+      const found = window.PMIUSA_COURSES.find(c => c.id === courseId);
+      if (found) {
+        if (found.price) price = found.price;
+        if (found.duration) duration = found.duration;
+        if (found.category) cat = catMap[found.category] || found.category;
+        if (!courseTitle) courseTitle = found.title;
       }
+    }
+
+    // Fallback: look up in DOM card if present (e.g. on courses.html)
+    if (courseId) {
+      const card = document.getElementById(courseId);
+      if (card) {
+        const p = card.querySelector('.course-price');
+        const d = card.querySelector('.badge-duration');
+        const c = card.querySelector('.badge-category');
+        if (p) price = p.textContent.trim();
+        if (d) duration = d.textContent.trim();
+        if (c) {
+          cat = c.textContent.trim();
+        } else {
+          const rawCat = card.getAttribute('data-category') || '';
+          if (rawCat && catMap[rawCat]) cat = catMap[rawCat];
+        }
+      }
+    }
+
+    // On course-detail page, check sidebar elements if still default
+    const sidebarTitle = document.getElementById('sidebarCourseName');
+    const sidebarPrice = document.getElementById('sidebarPrice');
+    const featDuration = document.getElementById('featDuration');
+    if (sidebarTitle && !courseTitle) courseTitle = sidebarTitle.textContent.trim();
+    if (sidebarPrice && price === 'INR 45,000') price = sidebarPrice.textContent.trim();
+    if (featDuration && duration === '20 Days') {
+      duration = featDuration.textContent.replace('Intensive Cohort', '').trim();
+    }
+
+    // Populate drawer elements if present
+    const titleEl = document.getElementById('drawerProgramTitle');
+    const priceEl = document.getElementById('drawerProgramPrice');
+    const durationEl = document.getElementById('drawerProgramDuration');
+    const catEl = document.getElementById('drawerProgramCat');
+    const idInput = document.getElementById('drawer_course_id');
+    const titleInput = document.getElementById('drawer_course_title');
+
+    if (titleEl) titleEl.textContent = courseTitle || 'Professional Program';
+    if (priceEl) priceEl.textContent = price;
+    if (durationEl) durationEl.innerHTML = '<i class="fa-regular fa-clock me-1"></i> ' + duration;
+    if (catEl) catEl.textContent = cat;
+    if (idInput) idInput.value = courseId || '';
+    if (titleInput) titleInput.value = courseTitle || '';
+
+    // If dropdown exists (e.g. on index.html)
+    const courseSelect = document.getElementById('drawer_course');
+    if (courseSelect && (courseId || courseTitle)) {
+      for (let opt of courseSelect.options) {
+        if (opt.value === courseId || (courseTitle && opt.text.toLowerCase().includes(courseTitle.toLowerCase()))) {
+          opt.selected = true;
+          break;
+        }
+      }
+    }
+
+    // Reset form view
+    if (drawerForm) drawerForm.style.display = 'block';
+    if (drawerSuccessState) drawerSuccessState.style.display = 'none';
+
+    // Open drawer & backdrop
+    drawer.classList.add('open');
+    if (drawerBackdrop) drawerBackdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    const nameInput = document.getElementById('drawer_name');
+    if (nameInput) setTimeout(() => nameInput.focus(), 300);
+  };
+
+  if (drawer) {
+    if (drawerTab) {
+      drawerTab.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (drawer.classList.contains('open')) {
+          window.closeEnrollDrawer();
+        } else {
+          const sidebarCourseName = document.getElementById('sidebarCourseName');
+          const currentTitle = sidebarCourseName ? sidebarCourseName.textContent.trim() : 'General Program Counseling';
+          window.openEnrollDrawer(currentTitle, '');
+        }
+      });
+    }
+
+    if (drawerCloseBtn) {
+      drawerCloseBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        window.closeEnrollDrawer();
+      });
+    }
+
+    if (drawerBackdrop) {
+      drawerBackdrop.addEventListener('click', (e) => {
+        e.stopPropagation();
+        window.closeEnrollDrawer();
+      });
+    }
+
+    if (drawerSuccessDoneBtn) {
+      drawerSuccessDoneBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        window.closeEnrollDrawer();
+      });
+    }
+
+    // Close on outside click (ignoring any buttons meant to open/toggle the drawer)
+    document.addEventListener('click', (e) => {
+      if (!drawer.classList.contains('open')) return;
+      if (drawer.contains(e.target)) return;
+      if (e.target.closest('.floating-drawer-tab')) return;
+      if (e.target.closest('.btn-enroll')) return;
+      if (e.target.closest('.btn-sidebar-enroll')) return;
+      if (e.target.closest('#sidebarEnrollBtn')) return;
+      if (e.target.closest('[data-enroll-trigger]')) return;
+      if (e.target.closest('.drawer-close-btn')) return;
+
+      window.closeEnrollDrawer();
     });
 
     // Close drawer on Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && drawer.classList.contains('open')) {
-        drawer.classList.remove('open');
-        if (drawerBackdrop) drawerBackdrop.classList.remove('active');
+        window.closeEnrollDrawer();
       }
+    });
+
+    // Drawer form submission handling
+    if (drawerForm) {
+      drawerForm.addEventListener('submit', (e) => {
+        const phoneInput = drawerForm.querySelector('input[type="tel"]');
+        if (phoneInput) {
+          const digitsOnly = phoneInput.value.replace(/\D/g, '');
+          if (digitsOnly.length < 10 || digitsOnly.length > 15) {
+            e.preventDefault();
+            alert('Please enter a valid phone number with 10 to 15 digits.');
+            phoneInput.focus();
+            return;
+          }
+        }
+
+        e.preventDefault();
+        const titleInput = document.getElementById('drawer_course_title');
+        const courseName = (titleInput && titleInput.value) || 'the program';
+        const successCourseName = document.getElementById('successCourseName');
+        if (successCourseName) successCourseName.textContent = courseName;
+
+        if (drawerSuccessState) {
+          drawerForm.style.display = 'none';
+          drawerSuccessState.style.display = 'block';
+        } else {
+          alert('Thank you for enrolling in ' + courseName + '! Our learning advisor will get in touch with you shortly.');
+          drawerForm.reset();
+          window.closeEnrollDrawer();
+        }
+      });
+    }
+
+    // Phone number input restriction (max 15 digits, prevents oversized numbers)
+    const phoneInputs = document.querySelectorAll('input[type="tel"]');
+    phoneInputs.forEach(input => {
+      input.setAttribute('maxlength', '16');
+      input.addEventListener('input', (e) => {
+        let val = e.target.value;
+        const hasPlus = val.startsWith('+');
+        let cleaned = val.replace(/[^\d]/g, '');
+        if (cleaned.length > 15) {
+          cleaned = cleaned.substring(0, 15);
+        }
+        e.target.value = (hasPlus ? '+' : '') + cleaned;
+      });
     });
   }
 

@@ -136,6 +136,9 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+  /* Smart clip to eliminate PNG duplicate rope stubs above hand & below feet */
+  clip-path: inset(12.3% 0 10.1% 0);
+  -webkit-clip-path: inset(12.3% 0 10.1% 0);
   filter: drop-shadow(0 14px 28px rgba(15, 23, 42, 0.28)) drop-shadow(0 4px 10px rgba(15, 23, 42, 0.15));
   transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.25s ease;
   pointer-events: none;
@@ -322,20 +325,9 @@
   pointer-events: none;
 }
 
-/* Decorative Mounting Anchor at Left Corner of .course-controls-wrapper */
+/* Decorative Mounting Anchor (deprecated - single continuous rope used) */
 .controls-rope-anchor {
-  position: absolute;
-  top: -12px;
-  left: 28px;
-  right: auto;
-  width: 32px;
-  height: 28px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 25;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.18));
-  cursor: pointer;
+  display: none !important;
 }
 
 .anchor-bracket-base {

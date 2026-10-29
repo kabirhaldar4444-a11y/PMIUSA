@@ -239,8 +239,9 @@
       const carriageLeft = (carriage && carriage.offsetLeft > 0) ? carriage.offsetLeft : defaultLeft;
       const viewportHeight = window.innerHeight;
       
-      const anchorX = carriageLeft + (carriageWidth * 0.52);
-      const charHandY = charY + (carriageWidth * 0.18);
+      // Precision alignment with the character's gripping hand (49.6% X, 14.5% Y)
+      const anchorX = carriageLeft + (carriageWidth * 0.496);
+      const charHandY = charY + (carriageWidth * 0.145);
       
       const topAnchorY = 24;
       const bottomKnotY = viewportHeight - 20;

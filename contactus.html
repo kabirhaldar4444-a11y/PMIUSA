@@ -226,7 +226,7 @@
             </div>
             <div class="form-group">
               <label>Phone Number *</label>
-              <input type="tel" class="form-control" placeholder="+91 98765 43210" required>
+              <input type="tel" class="form-control" placeholder="+91 98765 43210" maxlength="15" minlength="10" pattern="[\+]?[0-9\s\-\(\)]{10,15}" title="Please enter a valid phone number (10 to 15 digits)" required>
             </div>
             <div class="form-group">
               <label>Email Address *</label>

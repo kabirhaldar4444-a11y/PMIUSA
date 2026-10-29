@@ -514,20 +514,11 @@
         </div>
         <div class="form-group">
           <label for="drawer_phone">WhatsApp / Phone Number *</label>
-          <input type="tel" id="drawer_phone" class="form-control" placeholder="+91 98765 43210" required>
+          <input type="tel" id="drawer_phone" class="form-control" placeholder="+91 98765 43210" maxlength="15" minlength="10" pattern="[\+]?[0-9\s\-\(\)]{10,15}" title="Please enter a valid phone number (10 to 15 digits)" required>
         </div>
         <div class="form-group">
           <label for="drawer_email">Email Address *</label>
           <input type="email" id="drawer_email" class="form-control" placeholder="your.email@example.com" required>
-        </div>
-        <div class="form-group">
-          <label for="drawer_batch">Preferred Batch Schedule *</label>
-          <select id="drawer_batch" class="form-control" required>
-            <option value="immediate" selected>Upcoming Cohort (Starts This Week)</option>
-            <option value="weekend">Weekend Batch (Sat - Sun)</option>
-            <option value="evening">Weekday Evening Batch (7:00 PM - 9:00 PM)</option>
-            <option value="fasttrack">1-on-1 Fast Track Corporate</option>
-          </select>
         </div>
         <button type="submit" class="btn-drawer-submit">
           <i class="fa-solid fa-check-circle me-1"></i> Confirm Enrollment &amp; Get Syllabus
@@ -646,11 +637,6 @@
       
       <!-- Search & Filter Controls -->
       <div class="course-controls-wrapper">
-        <!-- Visual Rope Mounting Anchor at Corner (Links to live sliding character) -->
-        <div class="controls-rope-anchor" title="Climbing Rope Anchor" aria-hidden="true">
-          <span class="anchor-bracket-base"></span>
-          <span class="anchor-bracket-ring"></span>
-        </div>
         <div class="search-bar-row">
           <div class="search-input-box">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -9374,10 +9360,31 @@
 
     // Open Enrollment Drawer Modal
     window.openEnrollDrawer = function(courseTitle, courseId) {
+      if (window.event && window.event.stopPropagation) {
+        window.event.stopPropagation();
+      }
       // Find card details
       let price = 'INR 45,000';
       let duration = '20 Days';
       let cat = 'PMIUSA Certified';
+
+      if (window.PMIUSA_COURSES && Array.isArray(window.PMIUSA_COURSES) && courseId) {
+        const found = window.PMIUSA_COURSES.find(c => c.id === courseId);
+        if (found) {
+          if (found.price) price = found.price;
+          if (found.duration) duration = found.duration;
+          const catMap = {
+            'ai': 'AI & Modern Tech',
+            'management': 'Project & Agile',
+            'bim': 'BIM & Architecture',
+            'site': 'Site Operations',
+            'business': 'Business & Finance',
+            'engineering': 'Engineering Tech'
+          };
+          if (found.category) cat = catMap[found.category] || found.category;
+          if (!courseTitle) courseTitle = found.title;
+        }
+      }
 
       if (courseId) {
         const card = document.getElementById(courseId);
@@ -9405,12 +9412,19 @@
       }
 
       // Update drawer elements
-      document.getElementById('drawerProgramTitle').textContent = courseTitle || 'Professional Program';
-      document.getElementById('drawerProgramPrice').textContent = price;
-      document.getElementById('drawerProgramDuration').innerHTML = '<i class="fa-regular fa-clock me-1"></i> ' + duration;
-      document.getElementById('drawerProgramCat').textContent = cat;
-      document.getElementById('drawer_course_id').value = courseId || '';
-      document.getElementById('drawer_course_title').value = courseTitle || '';
+      const titleEl = document.getElementById('drawerProgramTitle');
+      const priceEl = document.getElementById('drawerProgramPrice');
+      const durationEl = document.getElementById('drawerProgramDuration');
+      const catEl = document.getElementById('drawerProgramCat');
+      const idInput = document.getElementById('drawer_course_id');
+      const titleInput = document.getElementById('drawer_course_title');
+
+      if (titleEl) titleEl.textContent = courseTitle || 'Professional Program';
+      if (priceEl) priceEl.textContent = price;
+      if (durationEl) durationEl.innerHTML = '<i class="fa-regular fa-clock me-1"></i> ' + duration;
+      if (catEl) catEl.textContent = cat;
+      if (idInput) idInput.value = courseId || '';
+      if (titleInput) titleInput.value = courseTitle || '';
 
       // Reset form view
       if (drawerForm) drawerForm.style.display = 'block';
@@ -9432,12 +9446,22 @@
     };
 
     // Close events
-    if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeEnrollDrawer);
-    if (backdrop) backdrop.addEventListener('click', closeEnrollDrawer);
-    if (drawerSuccessDoneBtn) drawerSuccessDoneBtn.addEventListener('click', closeEnrollDrawer);
+    if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', (e) => {
+      if (e) e.stopPropagation();
+      closeEnrollDrawer();
+    });
+    if (backdrop) backdrop.addEventListener('click', (e) => {
+      if (e) e.stopPropagation();
+      closeEnrollDrawer();
+    });
+    if (drawerSuccessDoneBtn) drawerSuccessDoneBtn.addEventListener('click', (e) => {
+      if (e) e.stopPropagation();
+      closeEnrollDrawer();
+    });
 
     if (drawerTab) {
-      drawerTab.addEventListener('click', () => {
+      drawerTab.addEventListener('click', (e) => {
+        if (e) e.stopPropagation();
         openEnrollDrawer('General Program Counseling', '');
       });
     }
@@ -9449,6 +9473,16 @@
     // Form submission
     if (drawerForm) {
       drawerForm.addEventListener('submit', (e) => {
+        const phoneInput = drawerForm.querySelector('input[type="tel"]');
+        if (phoneInput) {
+          const digitsOnly = phoneInput.value.replace(/\D/g, '');
+          if (digitsOnly.length < 10 || digitsOnly.length > 15) {
+            e.preventDefault();
+            alert('Please enter a valid phone number with 10 to 15 digits.');
+            phoneInput.focus();
+            return;
+          }
+        }
         e.preventDefault();
         const courseName = document.getElementById('drawer_course_title').value || 'the program';
         document.getElementById('successCourseName').textContent = courseName;

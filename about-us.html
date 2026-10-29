@@ -86,13 +86,22 @@
 </head>
 <body>
 
+  <!-- Backdrop for Drawer / Modal -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+
   <!-- Floating Drawer -->
   <aside class="floating-drawer" id="inquiryDrawer">
     <div class="floating-drawer-tab" id="drawerTab" role="button" tabindex="0">
       <i class="fa-solid fa-graduation-cap"></i>
       <span>Reach out to us</span>
     </div>
-    <h3 class="drawer-title">Connect with Us</h3>
+    <div class="drawer-header" style="position: relative;">
+      <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close drawer">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <h3 class="drawer-title" style="margin: 0; color: #fff;">Connect with Us</h3>
+      <p class="drawer-subtitle" style="margin: 6px 0 0; font-size: 13.5px; color: rgba(255,255,255,0.85);">Have questions regarding courses or corporate partnership? Let us know!</p>
+    </div>
     <form id="drawerForm" action="#" method="POST">
       <div class="form-group">
         <label>Full Name *</label>
@@ -100,7 +109,7 @@
       </div>
       <div class="form-group">
         <label>Phone Number *</label>
-        <input type="tel" class="form-control" placeholder="+91 98765 43210" required>
+        <input type="tel" class="form-control" placeholder="+91 98765 43210" maxlength="15" minlength="10" pattern="[\+]?[0-9\s\-\(\)]{10,15}" title="Please enter a valid phone number (10 to 15 digits)" required>
       </div>
       <div class="form-group">
         <label>Email Address *</label>
